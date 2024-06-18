@@ -47,7 +47,147 @@
 <p></p>
 <p></p>
 <h1>CAD</h1>
-<h2>Solvespace</h2>
+<p><a href="https://link.springer.com/book/10.1007/978-3-319-03862-9">2015 Space Modeling with SolidWorks and NX</a></p>
+<p>Pymadcad:</p>
+<p style="padding-left: 30px;"><a href="https://madcad.netlify.app/">https://madcad.netlify.app/</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/jimy-byerley/pymadcad">https://github.com/jimy-byerley/pymadcad</a> (<a href="https://github.com/mdecycu/pymadcad">https://github.com/mdecycu/pymadcad</a>)</p>
+<p style="padding-left: 30px;"><a href="https://github.com/jimy-byerley/uimadcad">https://github.com/jimy-byerley/uimadcad</a> (<a href="https://github.com/mdecycu/uimadcad">https://github.com/mdecycu/uimadcad</a>)</p>
+<p style="padding-left: 30px;">系統先安裝 <a href="https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/">https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/</a></p>
+<p style="padding-left: 30px;">重新開機後, 啟動可攜程式系統, 利用 pip install pymadcad </p>
+<p style="padding-left: 30px;">git clone <a href="https://github.com/mdecycu/pymadcad.git">https://github.com/mdecycu/pymadcad.git</a></p>
+<p style="padding-left: 30px;">利用可攜系統中的 SciTE 開啟 examples 目錄中的 axis-holder.py 修改 write() 如下後, 利用 Tools - Go 執行.</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from madcad import *
+
+# define a base of vectors: origin and directions
+O = vec3(0,0,0)
+X = vec3(1,0,0)
+Y = vec3(0,1,0)
+Z = vec3(0,0,1)
+
+# part parameters
+dint = 20
+dext = 100
+h = 30
+rvis = dext/3
+dvis = 3
+hvis = 3
+
+
+# create the revolution profile, called 'cone'
+# --------------------------------------------
+
+B = vec3(dint/2, 0, 0)
+S = vec3(dint/2, 0, h)
+E = vec3(dext/2, 0, 0)
+Eh = E+2*Z
+Se = S+5*X
+# sketch a profile
+line = [
+	Segment(B,S),
+	ArcCentered(((Se+S)/2, Y), S, Se),
+	Segment(Se, Eh),
+	Segment(Eh, E),
+	Segment(E, B),
+	]
+# mutate the profile to fit some geometrical constraints
+solve([
+		Tangent(line[0], line[1], S),
+		Tangent(line[1], line[2], Se),
+		Radius(line[1], 5),
+		Distance(E, Eh, 10),
+		OnPlane((O,Y), [B,S,E,Eh,Se]),
+		],
+	fixed=[O,X,Y,Z,B,S,E],
+	precision=1e-12
+	)
+# generate the cone
+cone = revolution(
+			radians(360), 
+			(O,Z), 
+			web(line))
+# merge the start and end sections of the revolution (because its a 360° revolution)
+cone.mergeclose()
+# chamfer the lower edge: this is a chamfer over a circular edge
+chamfer(cone, cone.frontiers((0,4)), ('depth', 3))
+
+
+
+# create the slots for screws
+# ---------------------------
+# we remove a partially defined volume
+
+rplace = dvis*3+2
+C = vec3(rvis,0,hvis)
+A = vec3(rvis, rplace,hvis)
+B = vec3(rvis,-rplace,hvis)
+Ae = A+vec3(dext/2, 60,0)
+Be = B+vec3(dext/2,-60,0)
+# sketch its line
+line = [
+	Segment(Ae, A),
+	ArcCentered((C,Z), A, B),
+	Segment(B, Be),
+	]
+solve([
+		Tangent(line[0], line[1], A),
+		Tangent(line[2], line[1], B),
+		Radius(line[1], 3*dvis),
+		Distance(Ae, O, dext),
+		Distance(Be, O, dext),
+		Angle(Segment(Ae,A), Segment(Be,B), radians(60)),
+		OnPlane((C,Z), [A,B,Ae,Be]),
+		],
+	fixed=[O,X,Y,Z,C],
+	precision=1e-12,
+	)
+# extrude that base line and add a bottom face
+place = (	extrusion(vec3(0,0,h), line) 
+		+	flatsurface(wire(line).flip())
+		)
+# merge outlines of both generated faces
+place.mergeclose()
+# round the cutting edge to have smooth transition
+bevel(
+	place, 	
+	(   place.frontiers(0,3) 	# this is the frontier line between group 0 and group 3
+	  + place.frontiers(1,3) 	# this is the frontier line between group 1 and group 3
+	  + place.frontiers(2,3) ), 
+	('depth', 2))
+
+# make the screw holes:
+# a cylinder (not necessarily closed on its ends as we don't care of that surfaces)
+vis = extrusion(vec3(0,0,-2*h), web(Circle((C+vec3(0,0,h),-Z), dvis)))
+
+
+# assemble everything
+# -------------------
+# get 6 shapes with the slot and the hole for the scren
+big = repeat(
+		union(place, vis), 	# this union cuts the slot to add the hole
+		6, rotatearound(radians(60), (O,Z)))
+# cut the cone to put the slots and holes
+part = difference(cone, big)
+# this is the final touch for parts: optimize the buffers and check mesh validity
+part.finish()
+
+
+
+
+# if we want we can at any moment place some fancy notes
+notes = [
+	note_leading(part.group(2), text="conic surface"),
+	note_leading(part.group(11), vec3(-5,0,-10), text='ø'+str(dvis)),
+	]
+
+# write the part to a ply file
+#write(part, 'tests/axis-holder.ply')
+with open('tests/axis-holder.ply', 'w') as f:
+    f.write(str(part))
+
+# display what we want
+show([part, notes])
+</pre>
+<p style="padding-left: 30px;"></p><h2>Solvespace</h2>
 <p>SolveSpace 所提供的主要功能:</p>
 <p>1. 2D 草圖設計:<br/> - 繪製基本 2D 形狀(線、矩形、圓等)<br/> - 添加約束(長度、距離、角度等)<br/> - 完全參數化設計</p>
 <p>2. 3D 實體建模:<br/> - 通過擠出、旋轉等方式從 2D 草圖生成 3D 實體<br/> - 支持 3D 實體的布林運算(並集、差集、交集)<br/> - 提供渲染和陰影視覺效果</p>
@@ -123,6 +263,8 @@
 <p>8. 開放API和集成:</p>
 <p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
 <h2>NX</h2>
+<p><a href="https://www.youtube.com/watch?v=J1I6fDGjKBA&amp;list=PLvjX0x1uNNLFLiRzEdnpgBjPmUhgo7Zas">NX CAD Tutorial</a></p>
+<p><a href="https://www.youtube.com/watch?v=jYmcd9Id48o">NX Surface Tutorial</a></p>
 <p class="whitespace-pre-wrap break-words">西門子NX的發展歷程可以追溯至1969年,當時麥道公司成立了自動化部門McAuto,開始發展內部CAD/CAM系統CADD。CADD最初運行於IBM 360/40電腦上,並使用IBM 2250圖形顯示終端機。</p>
 <p class="whitespace-pre-wrap break-words">1976年,McAuto收購了United Computing,獲得該公司開發的互動式CAD系統Unigraphics。Unigraphics最初運行於通用自動化SPC-16小型機上,並使用Tektronix顯示終端機。</p>
 <p class="whitespace-pre-wrap break-words">1982年,McAuto開始開發新一代Unigraphics II,目標是打造更強大的三維設計、繪圖和NC加工系統。Unigraphics II 1.0版於1983年發布,首次支援圖形著色。</p>
@@ -144,8 +286,7 @@
 <p class="whitespace-pre-wrap break-words">2007年之後的版本請參考: <a href="https://en.wikipedia.org/wiki/Siemens_NX">https://en.wikipedia.org/wiki/Siemens_NX</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/mdecycu/nxlab">https://github.com/mdecycu/nxlab</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/me5763">https://github.com/me5763</a> </p>
-<p class="whitespace-pre-wrap break-words"></p>
-<h2>CoppeliaSim</h2>
+<p class="whitespace-pre-wrap break-words"></p><h2>CoppeliaSim</h2>
 <p><a href="/downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="/downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
