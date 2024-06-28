@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='Topics.html'>Topics</a><ul class='dropdown'><li><a href='操作系統.html'>操作系統</a><li><a href='CMS.html'>CMS</a><li><a href='Github.html'>Github</a><li><a href='虛擬主機.html'>虛擬主機</a><li><a href='計算機程式.html'>計算機程式</a><li><a href='網際程式.html'>網際程式</a></li></ul><li class='has-children'><a href='IDE.html'>IDE</a><ul class='dropdown'><li><a href='Replit.html'>Replit</a><li><a href='Codespaces.html'>Codespaces</a><li><a href='Gitpod.html'>Gitpod</a></li></ul><li class='has-children'><a href='CAD.html'>CAD</a><ul class='dropdown'><li><a href='Solvespace.html'>Solvespace</a><li><a href='Solidworks.html'>Solidworks</a><li><a href='Onshape.html'>Onshape</a><li><a href='NX.html'>NX</a><li><a href='CoppeliaSim.html'>CoppeliaSim</a><li><a href='Webots.html'>Webots</a></li></ul><li><a href='Python.html'>Python</a><li class='has-children'><a href='Projects.html'>Projects</a><ul class='dropdown'><li><a href='Webots_doc.html'>Webots_doc</a><li class='has-children'><a href='Robots.html'>Robots</a><ul class='dropdown'><li><a href='Non-mobile.html'>Non-mobile</a><li><a href='Mobile.html'>Mobile</a></li></li></ul></ul><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Topics.html'>Topics</a><li><a href='IDE.html'>IDE</a><li><a href='CAD.html'>CAD</a><li><a href='Python.html'>Python</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,7 +142,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Gitpod << <a href='Gitpod.html'>Previous</a> <a href='Solvespace.html'>Next</a> >> Solvespace<br /><h1>CAD</h1>
+    <div id="tipue_search_content">IDE << <a href='IDE.html'>Previous</a> <a href='Python.html'>Next</a> >> Python<br /><h1>CAD</h1>
 <p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
 <p>Computer Aided Design:</p>
 <p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Polygon_mesh">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>
@@ -304,8 +304,100 @@ io.write(s["part"], "screw.stl")
 read_mesh = io.read("screw.stl")
 read_mesh.mergeclose()
 show([read_mesh])</pre>
-<p></p>
-<br />Gitpod << <a href='Gitpod.html'>Previous</a> <a href='Solvespace.html'>Next</a> >> Solvespace</div>
+<h4>Solvespace</h4>
+<p>SolveSpace 所提供的主要功能:</p>
+<p>1. 2D 草圖設計:<br/> - 繪製基本 2D 形狀(線、矩形、圓等)<br/> - 添加約束(長度、距離、角度等)<br/> - 完全參數化設計</p>
+<p>2. 3D 實體建模:<br/> - 通過擠出、旋轉等方式從 2D 草圖生成 3D 實體<br/> - 支持 3D 實體的布林運算(並集、差集、交集)<br/> - 提供渲染和陰影視覺效果</p>
+<p>3. 參數化和約束求解:<br/> - 可添加各種幾何和代數約束<br/> - 支持尺寸驅動設計<br/> - 自動求解過約束或過約定系統</p>
+<p>4. 分析工具:<br/> - 質量屬性分析(體積、表面積、質心等)<br/> - 公差分析<br/> - 運動學模擬(僅限簡單機構)</p>
+<p>5. 輔助建模工具:<br/> - 添加工程參考幾何(平面、軸線等)<br/> - 支持配置不同的草圖視圖和投影視圖</p>
+<p>6. 開發者擴展性:<br/> - 開源代碼,支持定製化擴展<br/> - 可通過 C++、Python 等語言擴充功能</p>
+<p>7. 操作界面:<br/> - 傳統的圖形用戶界面<br/> - 支持鍵盤快捷鍵和命令行輸入</p>
+<p>8. 導入導出格式:<br/> - 支持導入/導出 STEP、STL、DXF 等 CAD 文件格式<br/> - 可嵌入網頁或其他應用程序</p>
+<h4>Onshape</h4>
+<p>Onshape 是一款基於雲端的3D CAD軟體,它提供了許多功能來協助設計和工程工作。Onshape 作為全功能的雲端CAD工具,提供了建模、協作、分析、數據管理等全面的功能,適合用於產品設計、工程項目等領域。</p>
+<p>以下是 Onshape 提供的主要功能:</p>
+<p>1. 全功能3D參數式建模工具:</p>
+<p style="padding-left: 30px;">- 實體和曲面建模<br/> - 參數化和約束幾何體<br/> - 自動生成製造製圖<br/> - 直覺式草圖工具</p>
+<p>2. 直接編輯功能:</p>
+<p style="padding-left: 30px;">- 不需要返回設計樹狀結構<br/> - 可以直接編輯和修改現有幾何體</p>
+<p>3. 版本控制和分支:</p>
+<p style="padding-left: 30px;">- 類似 Git 的版本控制系統<br/> - 可以創建分支和合併分支<br/> - 方便協作和跟踪修改歷史</p>
+<p>4. 數據管理和整合:</p>
+<p style="padding-left: 30px;">- 整合PDM/PLM系統<br/> - 材料庫和標準件庫<br/> - Onshape App Store 提供各種插件</p>
+<p>5. 實時協作和評註:</p>
+<p style="padding-left: 30px;">- 多人同時編輯同一個文件<br/> - 添加評註和討論設計細節</p>
+<p>6. 模擬和分析工具:</p>
+<p style="padding-left: 30px;">- 有限元分析(FEA)<br/> - 運動學模擬<br/> - 碰撞檢測</p>
+<p>7. 雲端計算和存儲:</p>
+<p style="padding-left: 30px;">- 無需安裝軟體<br/> - 所有設計都存儲在雲端<br/> - 可隨時隨地訪問</p>
+<p>8. 開放API和集成:</p>
+<p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
+<h4>NX</h4>
+<p><a href="https://www.youtube.com/watch?v=J1I6fDGjKBA&amp;list=PLvjX0x1uNNLFLiRzEdnpgBjPmUhgo7Zas">NX CAD Tutorial</a></p>
+<p><a href="https://www.youtube.com/watch?v=jYmcd9Id48o">NX Surface Tutorial</a></p>
+<p class="whitespace-pre-wrap break-words">西門子NX的發展歷程可以追溯至1969年,當時麥道公司成立了自動化部門McAuto,開始發展內部CAD/CAM系統CADD。CADD最初運行於IBM 360/40電腦上,並使用IBM 2250圖形顯示終端機。</p>
+<p class="whitespace-pre-wrap break-words">1976年,McAuto收購了United Computing,獲得該公司開發的互動式CAD系統Unigraphics。Unigraphics最初運行於通用自動化SPC-16小型機上,並使用Tektronix顯示終端機。</p>
+<p class="whitespace-pre-wrap break-words">1982年,McAuto開始開發新一代Unigraphics II,目標是打造更強大的三維設計、繪圖和NC加工系統。Unigraphics II 1.0版於1983年發布,首次支援圖形著色。</p>
+<p class="whitespace-pre-wrap break-words">1985年,麥道公司將McAuto重組為McDonnell Douglas Information Systems Company,Unigraphics歸入其中。</p>
+<p class="whitespace-pre-wrap break-words">1988年,麥道公司收購Shape Data,獲得其開發的Parasolid幾何造型核心。</p>
+<p class="whitespace-pre-wrap break-words">1989年,Unigraphics 7.0版發布,首次支援Parasolid造型核心。</p>
+<p class="whitespace-pre-wrap break-words">1991年,電子資料系統公司收購MISCO,Unigraphics成為EDS的一部門,更名為EDS Unigraphics。</p>
+<p class="whitespace-pre-wrap break-words">1992年,Unigraphics 10.0版發布,強調參數化設計和三維造型。</p>
+<p class="whitespace-pre-wrap break-words">1996年,Unigraphics 12.0版發布,首次支援Windows NT平台,並加入UG Scenario分析軟體。</p>
+<p class="whitespace-pre-wrap break-words">1997年,Unigraphics 13.0版發布,引入WAVE技術,提高設計效率。</p>
+<p class="whitespace-pre-wrap break-words">1998年,EDS成立Unigraphics Solutions,完成對Intergraph機械部門的收購,合併Solid Edge產品線。</p>
+<p class="whitespace-pre-wrap break-words">1999年,UGS發布Unigraphics 16.0版,強調基於網路的協同設計。</p>
+<p class="whitespace-pre-wrap break-words">2000年,EDS將UGS拆分為獨立公司並上市。UGS發布Unigraphics 17.0版,首次支援JT數據交換格式。</p>
+<p class="whitespace-pre-wrap break-words">2001年,EDS收購SDRC,UGS成為EDS PLM Solutions的一部分,更名為EDS PLM Solutions。</p>
+<p class="whitespace-pre-wrap break-words">2002年,UGS PLM Solutions發布NX 1.0版,旨在整合Unigraphics和I-DEAS。</p>
+<p class="whitespace-pre-wrap break-words">2003年,UGS PLM Solutions發布NX 2.0版,改進使用者介面和知識庫設計。</p>
+<p class="whitespace-pre-wrap break-words">2004年,UGS被Bain Capital、Silver Lake Partners和Warburg Pincus等三家私募股權公司收購,更名為UGS Corporation。同年發布NX 3.0版,實現Unigraphics和I-DEAS的整合。</p>
+<p class="whitespace-pre-wrap break-words">2007年,西門子公司收購UGS Corporation,更名為Siemens PLM Software,NX成為其旗艦產品。同年發布NX 5.0版,進一步最佳化使用者介面和模型編輯功能。</p>
+<p class="whitespace-pre-wrap break-words">2007年之後的版本請參考: <a href="https://en.wikipedia.org/wiki/Siemens_NX">https://en.wikipedia.org/wiki/Siemens_NX</a> </p>
+<p class="whitespace-pre-wrap break-words"><a href="https://github.com/mdecycu/nxlab">https://github.com/mdecycu/nxlab</a> </p>
+<p class="whitespace-pre-wrap break-words"><a href="https://github.com/me5763">https://github.com/me5763</a> </p>
+<p class="whitespace-pre-wrap break-words"></p>
+<h4>CoppeliaSim</h4>
+<p><a href="./../downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
+<p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
+<p><a href="./../downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
+<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
+<h4>Webots</h4>
+<p>Webots 自 R2019a 之後採開放源授權: <a href="https://cyberbotics.com/doc/blog/Webots-2019-a-release">https://cyberbotics.com/doc/blog/Webots-2019-a-release</a>, 採 <a href="https://apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權.</p>
+<p><a href="https://www.youtube.com/watch?v=-xBvcOhazeY">How to un simulation on cloud</a></p>
+<p><a href="https://www.youtube.com/watch?v=yi4e5FoVWbQ">Set up environment</a></p>
+<p><a href="https://www.youtube.com/watch?v=wOHXOg2jLmU">Webots and ROS2</a></p>
+<p><a href="https://www.cyberbotics.com/doc/guide/webots-cloud?version=master">Webots.cloud</a> (<a href="https://webots.cloud/">https://webots.cloud/</a>)</p>
+<p><a href="https://github.com/cyberbotics/webots-cloud-simulation-examples">Simulation examples</a></p>
+<p><a href="https://webots.cloud/proto">Webots cloud proto</a></p>
+<p><a href="http://www.graphics.stanford.edu/courses/cs248-98-fall/Assignments/Assignment3/VRML2_Specification/">VRML 2.0 Specification</a></p>
+<h4>Webots_doc</h4>
+<p><a href="./../downloads/A Systematic Comparison of Simulation Software for Robotic Arm Manipulation using ROS2.pdf">A Systematic Comparison of Simulation Software for Robotic Arm Manipulation using ROS2.pdf</a> (<a href="https://arxiv.org/pdf/2204.06433">source</a>)</p>
+<p><a href="https://cyberbotics.com/doc/guide/tutorials">https://cyberbotics.com/doc/guide/tutorials</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots">https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots</a></p>
+<p>Tutorial 1:</p>
+<p>滑鼠左鍵拖曳可以旋轉視圖</p>
+<p>滑鼠中鍵前後滑動可以拉近或拉遠視圖</p>
+<p>滑鼠右鍵移動則可拖曳視圖</p>
+<p>Shift + 滑鼠左鍵選擇 Object, 可以移動物件<br/><br/><span>When a Webots world is modified with the intention of being saved, it is fundamental that the simulation is first paused and reloaded to its initial state, i.e. the virtual time counter on the main toolbar should show 0:00:00:000. Otherwise at each save, the position of each 3D object can accumulate errors. Therefore, any modification of the world should be performed in that order: pause, reset, modify and save the simulation.</span></p>
+<p>Programming:</p>
+<p><a href="https://cyberbotics.com/doc/guide/language-setup">https://cyberbotics.com/doc/guide/language-setup</a> <span><br/></span></p>
+<p><a href="https://github.com/cyberbotics/urdf2webots">https://github.com/cyberbotics/urdf2webots</a></p>
+<p><a href="https://github.com/cyberbotics/wrestling">https://github.com/cyberbotics/wrestling</a></p>
+<p>Controller Programming:</p>
+<p><a href="https://cyberbotics.com/doc/guide/controller-programming">https://cyberbotics.com/doc/guide/controller-programming</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/starting-webots-remotely-ssh">https://cyberbotics.com/doc/guide/starting-webots-remotely-ssh</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip">https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/running-extern-robot-controllers">https://cyberbotics.com/doc/guide/running-extern-robot-controllers</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/web-interface">https://cyberbotics.com/doc/guide/web-interface</a></p>
+<p><a href="https://cyberbotics.com/animations/soccer_example/soccer.html">https://cyberbotics.com/animations/soccer_example/soccer.html</a></p>
+<p><a href="https://github.com/guisalmon/webots-remote-control">https://github.com/guisalmon/webots-remote-control</a></p>
+<p>Web:</p>
+<p><a href="https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b">https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b</a></p>
+<p><a href="https://github.com/cyberbotics/webots-server">https://github.com/cyberbotics/webots-server</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p>
+<br />IDE << <a href='IDE.html'>Previous</a> <a href='Python.html'>Next</a> >> Python</div>
         
     <!-- footer -->
       <div class="container">
