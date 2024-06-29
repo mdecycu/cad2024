@@ -234,37 +234,133 @@ show([read_mesh])</pre>
 <p style="padding-left: 30px;">- 無需安裝軟體<br/> - 所有設計都存儲在雲端<br/> - 可隨時隨地訪問</p>
 <p>8. 開放API和集成:</p>
 <p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
-<h4>NX</h4>
+<h2>NX</h2>
+<p>cad2024 使用 NX1872, 也就是安裝在電腦輔助設計室電腦 C:\ SSD 中的 Siemens NX1872 版本, 若您需要在校外使用 NX1872, 請諮詢如何在自己的電腦安裝 NX1872 套件, 或自行配置可攜式 NX1872, 並透過網路連線認證後啟動.</p>
 <p><a href="https://www.youtube.com/watch?v=J1I6fDGjKBA&amp;list=PLvjX0x1uNNLFLiRzEdnpgBjPmUhgo7Zas">NX CAD Tutorial</a></p>
 <p><a href="https://www.youtube.com/watch?v=jYmcd9Id48o">NX Surface Tutorial</a></p>
-<p class="whitespace-pre-wrap break-words">西門子NX的發展歷程可以追溯至1969年,當時麥道公司成立了自動化部門McAuto,開始發展內部CAD/CAM系統CADD。CADD最初運行於IBM 360/40電腦上,並使用IBM 2250圖形顯示終端機。</p>
-<p class="whitespace-pre-wrap break-words">1976年,McAuto收購了United Computing,獲得該公司開發的互動式CAD系統Unigraphics。Unigraphics最初運行於通用自動化SPC-16小型機上,並使用Tektronix顯示終端機。</p>
-<p class="whitespace-pre-wrap break-words">1982年,McAuto開始開發新一代Unigraphics II,目標是打造更強大的三維設計、繪圖和NC加工系統。Unigraphics II 1.0版於1983年發布,首次支援圖形著色。</p>
-<p class="whitespace-pre-wrap break-words">1985年,麥道公司將McAuto重組為McDonnell Douglas Information Systems Company,Unigraphics歸入其中。</p>
-<p class="whitespace-pre-wrap break-words">1988年,麥道公司收購Shape Data,獲得其開發的Parasolid幾何造型核心。</p>
-<p class="whitespace-pre-wrap break-words">1989年,Unigraphics 7.0版發布,首次支援Parasolid造型核心。</p>
-<p class="whitespace-pre-wrap break-words">1991年,電子資料系統公司收購MISCO,Unigraphics成為EDS的一部門,更名為EDS Unigraphics。</p>
-<p class="whitespace-pre-wrap break-words">1992年,Unigraphics 10.0版發布,強調參數化設計和三維造型。</p>
-<p class="whitespace-pre-wrap break-words">1996年,Unigraphics 12.0版發布,首次支援Windows NT平台,並加入UG Scenario分析軟體。</p>
-<p class="whitespace-pre-wrap break-words">1997年,Unigraphics 13.0版發布,引入WAVE技術,提高設計效率。</p>
-<p class="whitespace-pre-wrap break-words">1998年,EDS成立Unigraphics Solutions,完成對Intergraph機械部門的收購,合併Solid Edge產品線。</p>
-<p class="whitespace-pre-wrap break-words">1999年,UGS發布Unigraphics 16.0版,強調基於網路的協同設計。</p>
-<p class="whitespace-pre-wrap break-words">2000年,EDS將UGS拆分為獨立公司並上市。UGS發布Unigraphics 17.0版,首次支援JT數據交換格式。</p>
-<p class="whitespace-pre-wrap break-words">2001年,EDS收購SDRC,UGS成為EDS PLM Solutions的一部分,更名為EDS PLM Solutions。</p>
-<p class="whitespace-pre-wrap break-words">2002年,UGS PLM Solutions發布NX 1.0版,旨在整合Unigraphics和I-DEAS。</p>
-<p class="whitespace-pre-wrap break-words">2003年,UGS PLM Solutions發布NX 2.0版,改進使用者介面和知識庫設計。</p>
-<p class="whitespace-pre-wrap break-words">2004年,UGS被Bain Capital、Silver Lake Partners和Warburg Pincus等三家私募股權公司收購,更名為UGS Corporation。同年發布NX 3.0版,實現Unigraphics和I-DEAS的整合。</p>
-<p class="whitespace-pre-wrap break-words">2007年,西門子公司收購UGS Corporation,更名為Siemens PLM Software,NX成為其旗艦產品。同年發布NX 5.0版,進一步最佳化使用者介面和模型編輯功能。</p>
+<p class="whitespace-pre-wrap break-words">西門子NX的發展歷程可以追溯至1969年,當時麥道公司成立了自動化部門 McAuto, 開始發展內部CAD/CAM系統CADD。CADD 最初運行於 IBM 360/40 電腦上,並使用 IBM 2250 圖形顯示終端機。</p>
+<p class="whitespace-pre-wrap break-words">1976年,McAuto 收購了 United Computing, 獲得該公司開發的互動式 CAD 系統 Unigraphics。Unigraphics 最初運行於通用自動化 SPC-16 小型機上,並使用 Tektronix 顯示終端機。</p>
+<p class="whitespace-pre-wrap break-words">1982年, McAuto 開始開發新一代 Unigraphics II, 目標是打造更強大的三維設計、繪圖和 NC 加工系統。Unigraphics II 1.0 版於1983年發布,首次支援圖形著色。</p>
+<p class="whitespace-pre-wrap break-words">1985年, 麥道公司將 McAuto 重組為 McDonnell Douglas Information Systems Company, Unigraphics 歸入其中。</p>
+<p class="whitespace-pre-wrap break-words">1988年, 麥道公司收購 Shape Data, 獲得其開發的 Parasolid 幾何造型核心。</p>
+<p class="whitespace-pre-wrap break-words">1989年, Unigraphics 7.0 版發布, 首次支援 Parasolid 造型核心。</p>
+<p class="whitespace-pre-wrap break-words">1991年, 電子資料系統公司收購 MISCO, Unigraphics 成為 EDS 的一部門,更名為 EDS Unigraphics。</p>
+<p class="whitespace-pre-wrap break-words">1992年, Unigraphics 10.0 版發布, 強調參數化設計和三維造型。</p>
+<p class="whitespace-pre-wrap break-words">1996年, Unigraphics 12.0 版發布, 首次支援 Windows NT 平台,並加入 UG Scenario 分析軟體。</p>
+<p class="whitespace-pre-wrap break-words">1997年, Unigraphics 13.0 版發布,引入 WAVE 技術, 提高設計效率。</p>
+<p class="whitespace-pre-wrap break-words">1998年, EDS 成立 Unigraphics Solutions, 完成對 Intergraph 機械部門的收購, 合併 Solid Edge 產品線。</p>
+<p class="whitespace-pre-wrap break-words">1999年, UGS 發布 Unigraphics 16.0 版, 強調基於網路的協同設計。</p>
+<p class="whitespace-pre-wrap break-words">2000年, EDS 將 UGS 拆分為獨立公司並上市。UGS 發布 Unigraphics 17.0 版, 首次支援 JT 數據交換格式。</p>
+<p class="whitespace-pre-wrap break-words">2001年, EDS 收購 SDRC, UGS 成為 EDS PLM Solutions 的一部分, 更名為 EDS PLM Solutions。</p>
+<p class="whitespace-pre-wrap break-words">2002年, UGS PLM Solutions 發布 NX 1.0 版, 旨在整合 Unigraphics 和 I-DEAS。</p>
+<p class="whitespace-pre-wrap break-words">2003年, UGS PLM Solutions 發布 NX 2.0 版, 改進使用者介面和知識庫設計。</p>
+<p class="whitespace-pre-wrap break-words">2004年, UGS 被 Bain Capital、Silver Lake Partners 和 Warburg Pincus 等三家私募股權公司收購,更名為UGS Corporation。同年發布 NX 3.0 版, 實現 Unigraphics 和 I-DEAS 的整合。</p>
+<p class="whitespace-pre-wrap break-words">2007年, 西門子公司收購 UGS Corporation, 更名為 Siemens PLM Software, NX 成為其旗艦產品。同年發布NX 5.0 版, 進一步最佳化使用者介面和模型編輯功能。</p>
 <p class="whitespace-pre-wrap break-words">2007年之後的版本請參考: <a href="https://en.wikipedia.org/wiki/Siemens_NX">https://en.wikipedia.org/wiki/Siemens_NX</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/mdecycu/nxlab">https://github.com/mdecycu/nxlab</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/me5763">https://github.com/me5763</a> </p>
-<p class="whitespace-pre-wrap break-words"></p>
-<h4>CoppeliaSim</h4>
+<p class="whitespace-pre-wrap break-words">透過 <a href="/downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 1872 版本各子目錄與總容量 (17.89GB):</p>
+<p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
+CAPITALINTEGRATION: 與 Siemens Capital 軟件集成,用於電氣系統設計。
+CATIAV5: CATIA V5 文件的轉換器和介面。
+CMM_INSPECTION: 座標測量機(CMM)檢測功能。
+DESIGN_TOOLS: 各種輔助設計工具和功能。
+DIAGRAMCORE: 圖表和示意圖的核心功能。
+DIAGRAMMING: 用於創建各種工程和系統圖表。
+DRAFTING: 2D製圖和文檔創建工具。
+IGES: 初始圖形交換規範(IGES)文件的導入/導出。
+INSTALL: 安裝相關文件和腳本。
+LOCALIZATION: 多語言支持和本地化文件。
+MACH: 工具機加工和 CNC 編程功能。
+MANUFACTURING_PLANNING: 製造規劃和工藝設計工具。
+MECH: 機械設計和工程功能。
+MECHATRONICS: 機電整合設計工具。
+MOLDWIZARD: 模具設計和分析工具。
+MPA: 運動模擬和分析功能。
+NXASSEMBLY: 零件裝配和管理工具。
+NXBIN: NX 的核心檔案和執行檔。
+NXCAE_EXTRAS: 額外的電腦輔助工程(CAE)工具和功能。
+NXHUMAN: 人體工程學和人因工程設計工具。
+NXJOIN: 零件連接和焊接功能。
+NXNASTRAN: 有限元素分析(FEA)求解器。
+NXPARTS: 零件設計和模擬工具。
+NXPLOT: 繪圖和可視化工具。
+NXPROE: Pro/ENGINEER 文件的轉換器和介面。
+NXREPORTS: 報告生成和管理工具。
+NXSHIP: 船舶設計專用工具。
+POSTBUILD: 後處理和結果分析工具。
+PSTUDIO: 產品工作室, 用於產品設計和管理。
+PVTRANS: 產品視覺化轉換工具。
+REL_INFO: 發布資訊和檔案。
+SIMULATION: 各種模擬和分析工具。
+STAMPING_TOOLS: 沖壓工具設計功能。
+STEP203UG 和 STEP214UG: STEP 文件格式的導入/導出。
+TDP: Technical Data Package 創建和管理工具。
+Temp 和 temp_module: 臨時文件存儲目錄。
+TOOLING_BASE: 工具設計的基礎功能。
+TRANSLATORS: 各種文件格式轉換器。
+UGALLIANCE: 與其他 CAD 系統的集成工具。
+UGAUTOMOTIVE: 汽車行業專用設計工具。
+UGCATIA: CATIA文件的轉換器和介面。
+UGFLEXLM: FlexLM許可證管理系統。
+UGFPCD: 印刷電路板(PCB)設計工具。
+UGII: NX 用戶界面和基礎功能。
+UGIMW: 整合材料管理工作台。
+UGMANAGER: 文件和專案管理工具。
+UGOPEN: 開發模組和API。
+UGOPENPP: C++ 開發模組。
+UGPCBXCHANGE: PCB數據交換工具。
+UGPHOTO: 高級著色和視覺工具。
+UGSTRUCTURES: 結構分析和設計工具。
+UGSTUDIO: 產品設計工作室。
+UGTIPS: 用戶提示和幫助文件。
+UGTO2D: 3D到2D轉換工具。
+UGWEB: Web 整合和協同工具。
+UGWELD: 焊接設計和分析工具。
+UNFOLD: 鈑金展開工具。</pre>
+<p class="whitespace-pre-wrap break-words">其中若只需要基本的零組件繪圖, 則只需要下列目錄, 容量約 7GB:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER : 33.09 MB
+DESIGN_TOOLS : 102.52 MB
+DIAGRAMCORE : 5.7 MB
+DIAGRAMMING : 131.4 MB
+DRAFTING : 70.16 MB
+DXFDWG : 57.4 MB
+IGES : 5.8 MB
+INSTALL : 48.9 KB
+LOCALIZATION : 1020.06 MB
+NX1872_AppData : 8.52 MB
+NXASSEMBLY : 71.65 MB
+NXBIN : 3.95 GB
+NXPARTS : 150.33 MB
+NXPLOT : 155.86 MB
+PSTUDIO : 33.64 MB
+PVTRANS : 79.39 KB
+REL_INFO : 36.92 KB
+STEP203UG : 1.27 MB
+STEP214UG : 1.26 MB
+temp : 960.16 KB
+TRANSLATORS : 512.79 KB
+UGFLEXLM : 38.82 MB
+UGII : 537.42 MB
+UGMANAGER : 73.5 MB
+UGOPEN : 179.85 MB
+UGOPENPP : 567.28 KB
+UGSTUDIO : 14.03 MB
+UGTIPS : 6.76 MB
+UGTO2D : 1.02 MB
+UGWEB : 9.08 MB
+total: 6.59 GB</pre>
+<p>除了零組件繪圖外, 若還需要 FEM 有限元素分析, 則額外需要 NXCAE_EXTRAS (706.06 MB)、NXNASTRAN (1.88GB)、NXREPORTS (8.25 MB)、POSTBUILD (37.53 MB) 以及 SIMULATION (2.24 GB) 等目錄. 總容量將達 12 GB.</p>
+<h4>可攜 NX1872 製作:</h4>
+<p><a href="/downloads/nx1872_from_installed_to_portable_batch_setup.7z">nx1872_from_installed_to_portable_batch_setup.7z</a> 中的檔案可以說明如何將 NX1872 安裝版轉為可攜啟動的設定過程. 從安裝版啟動後的 Menu - Help - Log File 可以取得系統系統過程的所有細節, 其中包括各對應 .bat 執行過程所設定的環境變數, 以及所啟動的 .dll 檔案.</p>
+<p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p>
+<p></p><h2>CoppeliaSim</h2>
 <p><a href="/downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="/downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
 <p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
-<h4>Webots</h4>
+<h2>Webots</h2>
 <p>Webots 自 R2019a 之後採開放源授權: <a href="https://cyberbotics.com/doc/blog/Webots-2019-a-release">https://cyberbotics.com/doc/blog/Webots-2019-a-release</a>, 採 <a href="https://apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權.</p>
 <p><a href="https://www.youtube.com/watch?v=-xBvcOhazeY">How to un simulation on cloud</a></p>
 <p><a href="https://www.youtube.com/watch?v=yi4e5FoVWbQ">Set up environment</a></p>
@@ -297,8 +393,7 @@ show([read_mesh])</pre>
 <p>Web:</p>
 <p><a href="https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b">https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b</a></p>
 <p><a href="https://github.com/cyberbotics/webots-server">https://github.com/cyberbotics/webots-server</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p>
-<h1>Python</h1>
+<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p><h1>Python</h1>
 <p>Python 3.12 版已經移除 distutils, 表示先前利用 MSYS2 編譯模組的<a href="https://raw.githubusercontent.com/KmolYuan/Pyslvs-UI/a838ec7bde9ebf0857ae8d4f00a272fcb2f57bb7/platform/set_pycompiler.bat">設定</a>, 已經不再適用:</p>
 <p style="padding-left: 30px;">The entire <code class="docutils literal notranslate"><span class="pre">distutils</span></code> package is deprecated, to be removed in Python 3.12. Its functionality for specifying package builds has already been completely replaced by third-party packages <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> and <code class="docutils literal notranslate"><span class="pre">packaging</span></code>, and most other commonly used APIs are available elsewhere in the standard library (such as <a class="reference internal" href="https://docs.python.org/3.10/library/platform.html#module-platform" title="platform: Retrieves as much platform identifying data as possible."><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code></a>, <a class="reference internal" href="https://docs.python.org/3.10/library/shutil.html#module-shutil" title="shutil: High-level file operations, including copying."><code class="xref py py-mod docutils literal notranslate"><span class="pre">shutil</span></code></a>, <a class="reference internal" href="https://docs.python.org/3.10/library/subprocess.html#module-subprocess" title="subprocess: Subprocess management."><code class="xref py py-mod docutils literal notranslate"><span class="pre">subprocess</span></code></a> or <a class="reference internal" href="https://docs.python.org/3.10/library/sysconfig.html#module-sysconfig" title="sysconfig: Python's configuration information"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sysconfig</span></code></a>). There are no plans to migrate any other functionality from <code class="docutils literal notranslate"><span class="pre">distutils</span></code>, and applications that are using other functions should plan to make private copies of the code. Refer to <span class="target" id="index-28"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0632"><strong>PEP 632</strong></a> for discussion.</p>
 <p style="padding-left: 30px;">The <code class="docutils literal notranslate"><span class="pre">bdist_wininst</span></code> command deprecated in Python 3.8 has been removed. The <code class="docutils literal notranslate"><span class="pre">bdist_wheel</span></code> command is now recommended to distribute binary packages on Windows. (Contributed by Victor Stinner in <a class="reference external" href="https://bugs.python.org/issue?@action=redirect&amp;bpo=42802">bpo-42802</a>.)</p>
