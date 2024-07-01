@@ -5,7 +5,7 @@
 <p style="padding-left: 30px;"><span>利用 CAD 套件 與 Python 程式協助執行機電整合系統設計</span></p>
 <p>課程教材: <a href="https://link.springer.com/book/10.1007/978-3-031-49780-3">2023_course_in_python.pdf</a></p>
 <p>CAD 套件: <a href="https://solvespace.com/">Solvespace</a>、<a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a>、<a href="https://www.onshape.com/">Onshape</a> and <a href="https://github.com/jimy-byerley/pymadcad">Pymadcad</a></p>
-<p>CAE 套件: <a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a></p>
+<p>CAE 套件: <a href="https://plm.sw.siemens.com/en-US/simcenter/mechanical-simulation/simcenter-3d/">Siemens Simcenter 3D</a></p>
 <p>機電模擬: <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a> and <a href="https://cyberbotics.com/">Webots</a></p>
 <p>課程評分:</p>
 <p style="padding-left: 30px;">全勤出席 (20%)</p>
@@ -235,35 +235,72 @@ show([read_mesh])</pre>
 <p>8. 開放API和集成:</p>
 <p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
 <h2>NX</h2>
-<p>cad2024 使用 NX1872, 也就是安裝在電腦輔助設計室電腦 C:\ SSD 中的 Siemens NX1872 版本, 若您需要在校外使用 NX1872, 請諮詢如何在自己的電腦安裝 NX1872 套件, 或自行配置可攜式 NX1872, 並透過網路連線認證後啟動.</p>
-<p><a href="https://docs.sw.siemens.com/zh-TW/documents/209349590/PL20190701134252622">NX1872 DOC</a></p>
-<p><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20190701134252622.exnx/tnx_modeling1">NX1872 建模</a></p>
-<p><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20190701134252622.exnx/tnx_assembly3">NX1872 組立</a></p>
-<p><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20190701134252622.exnx/tnx_assembly7">NX1872 分析</a></p>
+<p>cad2024 課程採用 NX2312 4001 版. 執行 NX2312 需要 Windows 操作系統帶有 Microsoft .Net Runtime 6.0.16.</p>
+<p>NX2312 client 連線到認證主機設定採 29000 時, client 端需要讓防火牆可以對 29000 與 29001 port 連外, 至於 server 端則需要讓防火牆可以對 29000 與 29001 port 連入.</p>
+<p>完整的 NX2312 總共有超過 11 萬個檔案, 總容量超過 33 GB.</p>
+<p>開啟 NX - NX2312\NXBIN\ugraf.exe -nx</p>
+<p>開啟 NX 2D Edit - NX2312\NXBIN\nx2dedit.exe</p>
+<p>開啟 NX Layout - NX2312\NXBIN\ugraf.exe -layout</p>
+<p>開啟 NX Viewer - NX2312\NXBIN\ugraf.exe -view</p>
+<p>開啟 Simcenter 3D - NX2312\NXBIN\simcenter3d.exe</p>
+<p>開啟 Sincenter 3D Results ㄒiewer - NX2312\NXBIN\simcenter3d.exe -simviewer</p>
+<p>開啟 Simens Mechatronics Concept Designer - NX2312\NXBIN\ugraf.exe -mechatronics</p>
+<p>開啟 NX Manufacturing - NX CAM - NX2312\NXBIN\ugraf.exe -nxcam</p>
+<p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.xid1851843/xid1851946">NX2312 DOC</a> (英文)</p>
+<p><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20230425446868577.xid1851843/xid1851946">NX2312 DOC</a> (中文)</p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20230425446868577.xid1849545/xid1849546">草圖</a> (Sketch)</p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20230425446868577.modeling/xid1852129">建模</a> (Modeling)</p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20230425446868577.xid851385/xid821812">創意塑型</a> (Realize Shape)</p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20230425446868577.assemblies/assem_intro">組立</a> (Assembly)</p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/zh-TW/doc/209349590/PL20230425446868577.xid2204268/xid2133740">效能預測器</a> (Performance Predictor)</p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/en-US/doc/289054037/PL20230419932494371.design/id636456">Design Simulation</a></p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/en-US/doc/289054037/PL20230419932494371.xid1853788/xid1853789">Simcenter 3D</a> (<a href="https://www.sciencedirect.com/book/9781569907122/simulations-with-nx-simcenter-3d">Simulation with NX / Simcenter 3D</a> or <a href="http://229.cycu.org/Simulations_with_NX_Simcenter_3D.zip">local download</a>)</p>
+<p><a href="https://www.sciencedirect.com/book/9780123985132/product-design-modeling-using-cad-cae">Product Design Modeling using CAD/CAE</a> or <a href="http://229.cycu.org/Product_design_modeling_using_CAD_CAE.zip">local download</a></p>
+<p><a href="https://www.sciencedirect.com/book/9780340645710/advanced-engineering-dynamics">Advanced Engineering Dynamics</a> or <a href="http://229.cycu.org/Advanced_engineering_dynamics.zip">local download</a></p>
+<p><a href="https://www.sciencedirect.com/book/9780128127506/vehicle-collision-dynamics">Vehicle Collision Dynamics</a> or <a href="http://229.cycu.org/Vehicle_collision_dynamics.zip">local download</a></p>
+<p><a href="https://www.sciencedirect.com/book/9780124058750/linear-feedback-controls">Linear Feedback Controls</a> or <a href="http://229.cycu.org/Linear_feedback_controls.zip">local download</a></p>
+<p><a href="https://www.sciencedirect.com/book/9780750663793/mechatronics">Mechatronics</a> or <a href="http://229.cycu.org/Mechatrolics.zip">local download</a></p>
 <p><a href="https://www.youtube.com/watch?v=J1I6fDGjKBA&amp;list=PLvjX0x1uNNLFLiRzEdnpgBjPmUhgo7Zas">NX CAD Tutorial</a></p>
 <p><a href="https://www.youtube.com/watch?v=jYmcd9Id48o">NX Surface Tutorial</a></p>
-<p class="whitespace-pre-wrap break-words">西門子NX的發展歷程可以追溯至1969年,當時麥道公司成立了自動化部門 McAuto, 開始發展內部CAD/CAM系統CADD。CADD 最初運行於 IBM 360/40 電腦上,並使用 IBM 2250 圖形顯示終端機。</p>
-<p class="whitespace-pre-wrap break-words">1976年,McAuto 收購了 United Computing, 獲得該公司開發的互動式 CAD 系統 Unigraphics。Unigraphics 最初運行於通用自動化 SPC-16 小型機上,並使用 Tektronix 顯示終端機。</p>
-<p class="whitespace-pre-wrap break-words">1982年, McAuto 開始開發新一代 Unigraphics II, 目標是打造更強大的三維設計、繪圖和 NC 加工系統。Unigraphics II 1.0 版於1983年發布,首次支援圖形著色。</p>
+<p>NX2312 安裝後, 透過 Local_Machine - Software - Siemens 登錄檔案除下列資料, 其中包括認證主機的埠號與 IP:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\Installed Products]
+"NX 2312"="[{\"ProductCode\":\"{BC25F476-AA6E-41ED-BBA3-F7CA7DE8EB92}\",\"ChannelType\":\"Main\"}]"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\NX 2312]
+@="D:\\NX2312\\"
+"NXOPEN_EXTENSIONS"=""
+"NXOPEN_INSTALL"="YES"
+"INSTALLDIR"="D:\\NX2312\\"
+"LANGUAGE"="english"
+"LICENSESERVER"="29000@your_license_server"
+"UGII_BASE_DIR"="D:\\NX2312"</pre>
+<hr/>
+<p>西門子NX的發展歷程可以追溯至 1969 年, 當時麥道公司成立了自動化部門 McAuto, 開始發展內部 CAD/CAM系統CADD。CADD 最初運行於 IBM 360/40 電腦上,並使用 IBM 2250 圖形顯示終端機。</p>
+<p class="whitespace-pre-wrap break-words">1976年, McAuto 收購了 United Computing, 獲得該公司開發的互動式 CAD 系統 Unigraphics。Unigraphics 最初運行於通用自動化 SPC-16 小型機上, 並使用 Tektronix 顯示終端機。</p>
+<p class="whitespace-pre-wrap break-words">1982年, McAuto 開始開發新一代 Unigraphics II, 目標是打造更強大的三維設計、繪圖和 NC 加工系統。Unigraphics II 1.0 版於 1983 年發布,首次支援圖形著色。</p>
 <p class="whitespace-pre-wrap break-words">1985年, 麥道公司將 McAuto 重組為 McDonnell Douglas Information Systems Company, Unigraphics 歸入其中。</p>
 <p class="whitespace-pre-wrap break-words">1988年, 麥道公司收購 Shape Data, 獲得其開發的 Parasolid 幾何造型核心。</p>
 <p class="whitespace-pre-wrap break-words">1989年, Unigraphics 7.0 版發布, 首次支援 Parasolid 造型核心。</p>
-<p class="whitespace-pre-wrap break-words">1991年, 電子資料系統公司收購 MISCO, Unigraphics 成為 EDS 的一部門,更名為 EDS Unigraphics。</p>
+<p class="whitespace-pre-wrap break-words">1991年, 電子資料系統公司收購 MISCO, Unigraphics 成為 EDS 的一部門, 更名為 EDS Unigraphics。</p>
 <p class="whitespace-pre-wrap break-words">1992年, Unigraphics 10.0 版發布, 強調參數化設計和三維造型。</p>
-<p class="whitespace-pre-wrap break-words">1996年, Unigraphics 12.0 版發布, 首次支援 Windows NT 平台,並加入 UG Scenario 分析軟體。</p>
-<p class="whitespace-pre-wrap break-words">1997年, Unigraphics 13.0 版發布,引入 WAVE 技術, 提高設計效率。</p>
+<p class="whitespace-pre-wrap break-words">1996年, Unigraphics 12.0 版發布, 首次支援 Windows NT 平台, 並加入 UG Scenario 分析軟體。</p>
+<p class="whitespace-pre-wrap break-words">1997年, Unigraphics 13.0 版發布, 引入 WAVE 技術, 提高設計效率。</p>
 <p class="whitespace-pre-wrap break-words">1998年, EDS 成立 Unigraphics Solutions, 完成對 Intergraph 機械部門的收購, 合併 Solid Edge 產品線。</p>
 <p class="whitespace-pre-wrap break-words">1999年, UGS 發布 Unigraphics 16.0 版, 強調基於網路的協同設計。</p>
 <p class="whitespace-pre-wrap break-words">2000年, EDS 將 UGS 拆分為獨立公司並上市。UGS 發布 Unigraphics 17.0 版, 首次支援 JT 數據交換格式。</p>
 <p class="whitespace-pre-wrap break-words">2001年, EDS 收購 SDRC, UGS 成為 EDS PLM Solutions 的一部分, 更名為 EDS PLM Solutions。</p>
 <p class="whitespace-pre-wrap break-words">2002年, UGS PLM Solutions 發布 NX 1.0 版, 旨在整合 Unigraphics 和 I-DEAS。</p>
 <p class="whitespace-pre-wrap break-words">2003年, UGS PLM Solutions 發布 NX 2.0 版, 改進使用者介面和知識庫設計。</p>
-<p class="whitespace-pre-wrap break-words">2004年, UGS 被 Bain Capital、Silver Lake Partners 和 Warburg Pincus 等三家私募股權公司收購,更名為UGS Corporation。同年發布 NX 3.0 版, 實現 Unigraphics 和 I-DEAS 的整合。</p>
+<p class="whitespace-pre-wrap break-words">2004年, UGS 被 Bain Capital、Silver Lake Partners 和 Warburg Pincus 等三家私募股權公司收購,更名為 UGS Corporation。同年發布 NX 3.0 版, 實現 Unigraphics 和 I-DEAS 的整合。</p>
 <p class="whitespace-pre-wrap break-words">2007年, 西門子公司收購 UGS Corporation, 更名為 Siemens PLM Software, NX 成為其旗艦產品。同年發布NX 5.0 版, 進一步最佳化使用者介面和模型編輯功能。</p>
 <p class="whitespace-pre-wrap break-words">2007年之後的版本請參考: <a href="https://en.wikipedia.org/wiki/Siemens_NX">https://en.wikipedia.org/wiki/Siemens_NX</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/mdecycu/nxlab">https://github.com/mdecycu/nxlab</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/me5763">https://github.com/me5763</a> </p>
-<p class="whitespace-pre-wrap break-words">透過 <a href="/downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 1872 版本各子目錄與總容量 (17.89GB):</p>
+<p class="whitespace-pre-wrap break-words">透過 <a href="/downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 各子目錄與總容量.</p>
 <p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
 CAPITALINTEGRATION: 與 Siemens Capital 軟件集成,用於電氣系統設計。
@@ -323,39 +360,97 @@ UGTO2D: 3D到2D轉換工具。
 UGWEB: Web 整合和協同工具。
 UGWELD: 焊接設計和分析工具。
 UNFOLD: 鈑金展開工具。</pre>
-<p class="whitespace-pre-wrap break-words">其中若只需要基本的零組件繪圖, 則只需要下列目錄, 容量約 7GB:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER : 33.09 MB
-DESIGN_TOOLS : 102.52 MB
-DIAGRAMCORE : 5.7 MB
-DIAGRAMMING : 131.4 MB
-DRAFTING : 70.16 MB
-DXFDWG : 57.4 MB
-IGES : 5.8 MB
-INSTALL : 48.9 KB
-LOCALIZATION : 1020.06 MB
-NX1872_AppData : 8.52 MB
-NXASSEMBLY : 71.65 MB
-NXBIN : 3.95 GB
-NXPARTS : 150.33 MB
-NXPLOT : 155.86 MB
-PSTUDIO : 33.64 MB
-PVTRANS : 79.39 KB
+<h4>NX2312 完整版各目錄容量:</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">ACOUSTICS : 1.28 GB
+AM_SIMULATION : 67.7 MB
+AUTOMATED_TESTING : 3.19 MB
+AUTOMATIC_UPDATE : 541.0 B
+AUTOMATION_DESIGNER : 336.83 MB
+CAPITALINTEGRATION : 2.04 MB
+CATIAV5 : 901.76 KB
+CLOUDDM : 13.18 KB
+CMM_INSPECTION : 319.18 MB
+COMPOSITES : 54.18 KB
+DESIGNSPACEEXPLORER : 8.04 KB
+DESIGN_TOOLS : 135.75 MB
+DIAGRAMCORE : 5.81 MB
+DIAGRAMMING : 118.67 MB
+DOCUMENT : 666.71 KB
+DRAFTING : 115.44 MB
+DXFDWG : 197.04 MB
+FABRICMODELER : 5.03 KB
+GCTOOLKIT : 230.19 MB
+IGES : 5.47 MB
+IMMERSIVEEXPERIENCE : 1016.81 MB
+INSTALL : 55.39 KB
+LOCALIZATION : 94.3 KB
+MACH : 2.41 GB
+MANUFACTURING_PLANNING : 160.74 MB
+MBD : 67.83 MB
+MECH : 871.99 MB
+MECHATRONICS : 278.23 MB
+MENDIXREPORTING : 1.05 MB
+MOLDCOOLING : 12.37 KB
+MOLDWIZARD : 236.79 MB
+MPA : 1.48 MB
+NX2DEDIT : 1.25 MB
+NXAECDESIGN : 70.86 MB
+NXASSEMBLY : 91.5 MB
+NXBIN : 6.47 GB
+NXCABLEROUTER : 29.51 KB
+NXCAE_EXTRAS : 4.55 GB
+NXCOATINGS : 632.24 KB
+NXCREO : 5.71 MB
+NXHUMAN : 247.74 MB
+NXJOIN : 24.34 MB
+NXNASTRAN : 3.23 GB
+NXPARTS : 64.96 MB
+NXPLOT : 246.92 MB
+NXREPORTS : 3.66 MB
+NXSHIP : 339.88 MB
+NXSTRUCTUREDESIGN : 119.29 MB
+NXVR : 534.04 MB
+NX_VSA : 12.73 MB
+PARTMFG : 32.08 MB
+PLASTIC_DESIGNER : 6.49 MB
+POSTBUILD : 35.08 MB
+PSTUDIO : 35.5 MB
+PVTRANS : 106.92 KB
 REL_INFO : 36.92 KB
-STEP203UG : 1.27 MB
-STEP214UG : 1.26 MB
-temp : 960.16 KB
-TRANSLATORS : 512.79 KB
-UGFLEXLM : 38.82 MB
-UGII : 537.42 MB
-UGMANAGER : 73.5 MB
-UGOPEN : 179.85 MB
-UGOPENPP : 567.28 KB
+ROUTING : 433.54 MB
+RULE : 306.25 KB
+SAFETY : 24.39 KB
+SIMULATION : 2.68 GB
+STAGE_MODEL : 4.06 MB
+STAMPING_TOOLS : 163.08 MB
+STEP203UG : 1.44 MB
+STEP214UG : 1.44 MB
+TDP : 219.56 MB
+TOOLING_BASE : 254.04 KB
+TRANSLATORS : 150.1 MB
+UGALLIANCE : 89.19 KB
+UGAUTOMOTIVE : 147.22 MB
+UGCATIA : 6.04 MB
+UGFLEXLM : 30.28 MB
+UGFPCD : 31.89 KB
+UGII : 550.7 MB
+UGIMW : 8.45 MB
+UGMANAGER : 127.12 MB
+UGOPEN : 530.1 MB
+UGOPENPP : 692.91 KB
+UGPCBX : 342.48 KB
+UGPCBXCHANGE : 102.96 MB
+UGPHOTO : 3.94 GB
+UGSTRUCTURES : 346.62 MB
 UGSTUDIO : 14.03 MB
-UGTIPS : 6.76 MB
-UGTO2D : 1.02 MB
+UGTIPS : 56.22 MB
+UGTO2D : 886.88 KB
 UGWEB : 9.08 MB
-total: 6.59 GB</pre>
-<p>除了零組件繪圖外, 若還需要 FEM 有限元素分析, 則額外需要 NXCAE_EXTRAS (706.06 MB)、NXNASTRAN (1.88GB)、NXREPORTS (8.25 MB)、POSTBUILD (37.53 MB) 以及 SIMULATION (2.24 GB) 等目錄. 總容量將達 12 GB.</p>
+UGWELD : 2.07 MB
+UNFOLD : 71.92 KB
+VDA : 26.31 KB
+VDV : 5.34 MB
+total: 33.32 GB</pre>
 <h4>可攜 NX1872 製作:</h4>
 <p><a href="/downloads/nx1872_from_installed_to_portable_batch_setup.7z">nx1872_from_installed_to_portable_batch_setup.7z</a> 中的檔案可以說明如何將 NX1872 安裝版轉為可攜啟動的設定過程. 從安裝版啟動後的 Menu - Help - Log File 可以取得系統系統過程的所有細節, 其中包括各對應 .bat 執行過程所設定的環境變數, 以及所啟動的 .dll 檔案.</p>
 <p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p>
