@@ -143,7 +143,7 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">CAD << <a href='CAD.html'>Previous</a> <a href='CoppeliaSim.html'>Next</a> >> CoppeliaSim<br /><h1>NX</h1>
-<p>cad2024 課程採用 NX2312 4001 版. 執行 NX2312 需要 Windows 操作系統帶有 Microsoft .Net Runtime 6.0.16.</p>
+<p>cad2024 課程採用 NX23.12.4001.00003 版. 執行 NX2312 需要 Windows 操作系統帶有 Microsoft .Net Runtime 6.0.16.</p>
 <p>NX2312 client 連線到認證主機設定採 29000 時, client 端需要讓防火牆可以對 29000 與 29001 port 連外, 至於 server 端則需要讓防火牆可以對 29000 與 29001 port 連入.</p>
 <p>完整的 NX2312 總共有超過 11 萬個檔案, 總容量超過 33 GB.</p>
 <p>開啟 NX - NX2312\NXBIN\ugraf.exe -nx</p>
@@ -366,6 +366,34 @@ UNFOLD : 71.92 KB
 VDA : 26.31 KB
 VDV : 5.34 MB
 total: 33.32 GB</pre>
+<h4>NX2312 各功能對應目錄:</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Simcenter Nastran - NXNASTRAN
+Simcenter 3D Acoustics - ACOUSTICS
+Programming Tools - UGALIANCE UGOPEN UGOPENPP
+Model Based Part Manufacturing - PARTMFG DOCUMENT DIAGRAMMING
+Ship Building - NXSHIP NXCABLEROUTER
+Greater China Tools - GCTOOLKIT
+Automated Testing Studio - AUTOMATED_TESTING
+Automotive - UGAUTOMOTIVE DESIGN_TOOLS STAMPING_TOOLS TOOLING_BASE UGWELD VDV VDA
+Composites - COMPOSITES
+Diagramming - DIAGRAMMING
+Drafting - DRAFTING NX2DEDIT
+Fabric Modeler - FABRICMODELER
+Immersive - IMMERSIVEEXPERIENCE
+Inductrial Electrical Design - AUTOMATION_DESIGNER
+Manufacturing - MACH CMM_INSPECTION MBD NX_VSA POSTBUILD PSTUDIO STAGE_MODEL UNFOLD
+Manufacturing Planning - MANUFACTURING_PLANNING
+Mechatronics Concept Designer - MECHATRONICS
+NX Reporting - MENDIXREPORTING
+Optimization Tools - DESIGNSPACEEXPLORER
+Molded Part Design - PLASTIC_DESIGNER
+Routing - ROUTING CAPITALINTEGRATION
+Simcenter 3D - COMPOSITES MECH MOLDCOOLING NXCAE_EXTRAS SAFETY SIMULATION UGSTRUCTURE UGPCBEXCHANGE UGPCBX UGFPCD
+Studio Render - UGSTUDIO UGPHOTO
+Tooling Design &amp; NX Joint - DESIGN_TOOLS MOLDWIZARD NXAECDESIGN NXCOATINGS NXJOIN NXREPORTS NXSTRUCTUREDESIGN STAMPING_TOOLS TOOLING_BASE UGAUTOMOTIVE UGWELD
+Translators - CATIAV5 DXFDWG IGES NXCREO STEP203UG STEP214UG UGCATIA UGMW UGTO2D TRANSLATORS
+Validation - DESIGN_TOOLS NXREPORTS MPA
+NX VR - NXVR</pre>
 <h4>可攜 NX1872 製作:</h4>
 <p><a href="./../downloads/nx1872_from_installed_to_portable_batch_setup.7z">nx1872_from_installed_to_portable_batch_setup.7z</a> 中的檔案可以說明如何將 NX1872 安裝版轉為可攜啟動的設定過程. 從安裝版啟動後的 Menu - Help - Log File 可以取得系統系統過程的所有細節, 其中包括各對應 .bat 執行過程所設定的環境變數, 以及所啟動的 .dll 檔案.</p>
 <p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p>
