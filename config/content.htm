@@ -262,7 +262,7 @@ show([read_mesh])</pre>
 <p><a href="https://www.sciencedirect.com/book/9780750651318/advanced-vehicle-technology">Advanced Vehicle Technology</a> or <a href="http://229.cycu.org/Advanced_Vehicle_Technology.zip">local download</a></p>
 <p><a href="https://www.sciencedirect.com/book/9780128127506/vehicle-collision-dynamics">Vehicle Collision Dynamics</a> or <a href="http://229.cycu.org/Vehicle_collision_dynamics.zip">local download</a></p>
 <p><a href="https://www.sciencedirect.com/book/9780124058750/linear-feedback-controls">Linear Feedback Controls</a> or <a href="http://229.cycu.org/Linear_feedback_controls.zip">local download</a></p>
-<p><a href="https://www.sciencedirect.com/book/9780750663793/mechatronics">Mechatronics</a> or <a href="http://229.cycu.org/Mechatrolics.zip">local download</a></p>
+<p><a href="https://www.sciencedirect.com/book/9780750663793/mechatronics">Mechatronics</a> or <a href="http://229.cycu.org/Mechatronics.zip">local download</a></p>
 <p><a href="https://www.sciencedirect.com/book/9780128138106/sensors-for-mechatronics">Sensors for Mechatronics</a> or <a href="http://229.cycu.org/Sensors_for_mechatronics.zip">local download</a></p>
 <p><a href="https://www.sciencedirect.com/book/9780750642347/analog-circuits-cookbook">Analog Circuits Design</a> or <a href="http://229.cycu.org/Analog_Circuits_Cookbook.zip">local download</a></p>
 <p><a href="https://www.sciencedirect.com/book/9780128116487/op-amps-for-everyone">Op Amps for Everyone</a> or <a href="http://229.cycu.org/Op_Amps_for_Everyone.zip">local download</a></p>
@@ -489,11 +489,125 @@ NX VR - NXVR</pre>
 <p><a href="/downloads/nx1872_from_installed_to_portable_batch_setup.7z">nx1872_from_installed_to_portable_batch_setup.7z</a> 中的檔案可以說明如何將 NX1872 安裝版轉為可攜啟動的設定過程. 從安裝版啟動後的 Menu - Help - Log File 可以取得系統系統過程的所有細節, 其中包括各對應 .bat 執行過程所設定的環境變數, 以及所啟動的 .dll 檔案.</p>
 <p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p>
 <p></p><h2>CoppeliaSim</h2>
+<p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
+<p>CoppeliaSim 在 2024.06.14 推出 <a href="https://manual.coppeliarobotics.com/en/versionInfo.htm#coppeliaSim4.7.0">4.7.0 版</a>, 其中沿用至 4.6.0 版的 zmqRemoteApi 模組已經改名為 coppeliasim_zmqremoteapi_client, 部分模組的內容也進行些微更動, 導致先前所編寫的 ZMQ Rempte API Python 程式都必須因應修改, 否則無法執行.</p>
+<p>KMOLab 在 4.5.1 版為了讓 CoppeliaSim 的 ZMQ Remote API Python 遠端控制程式能夠在 IPv6 網路協定中執行, 修改了 Server 與 Client 模組中的 ZMQ 程式設定, 若要讓 4.7.0 版也能相容於 IPv6, 則必須修改下列程式碼:</p>
+<p>lua\pythonWrapperV2.lua</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function initPython(prog)
+    local pyth = sim.getStringParam(sim.stringparam_defaultpython)
+    local pyth2 = sim.getNamedStringParam("python")
+    if pyth2 then pyth = pyth2 end
+    if pyth == nil or #pyth == 0 then
+        local p = sim.getInt32Param(sim.intparam_platform)
+        if p == 0 then
+            pyth = 'py'
+        else
+            pyth = 'python3'
+        end
+    end
+    local errMsg
+    if pythonExecutable then
+        pyth = pythonExecutable
+    end
+    if pyth and #pyth &gt; 0 then
+        subprocess, controlPort = startPythonClientSubprocess(pyth)
+        if controlPort then
+            pyContext = simZMQ.ctx_new()
+            pySocket = simZMQ.socket(pyContext, simZMQ.REQ)
+            -- enable IPv6 for ZMQ, default is false to IPv6 from KMOLab
+            simZMQ.setsockopt(pySocket,simZMQ.IPV6,sim.packUInt32Table{1})
+            simZMQ.setsockopt(pySocket,simZMQ.IPV4ONLY,sim.packUInt32Table{0})
+            -- end for enabling IPv6 for ZMQ
+            simZMQ.setsockopt(pySocket, simZMQ.LINGER, sim.packUInt32Table {0})
+            simZMQ.connect(pySocket, controlPort)
+            virtualPythonFilename = sim.getStringParam(sim.stringparam_scene_path_and_name)</pre>
+<p>另外必須注意的是 4.7.0 在 Windows 中使用虛擬硬碟代號 z:, 若控制程式的開發是在可攜程式系統中進行, 必須避開使用 z:.</p>
+<p>另外在 lua\motion.lua 中將封包傳送綁定在 localhost, 嘗試修改如下:</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sim.generateTimeOptimalTrajectory(...)
+    simZMQ = require 'simZMQ'
+    local path, pathLengths, minMaxVel, minMaxAccel, trajPtSamples, boundaryCondition, timeout =
+        checkargs({
+            {type = 'table', item_type = 'float', size = '2..*'},
+            {type = 'table', item_type = 'float', size = '2..*'},
+            {type = 'table', item_type = 'float', size = '2..*'},
+            {type = 'table', item_type = 'float', size = '2..*'},
+            {type = 'int', default = 1000},
+            {type = 'string', default = 'not-a-knot'},
+            {type = 'float', default = 5},
+    }, ...)
+
+    local confCnt = #pathLengths
+    local dof = math.floor(#path / confCnt)
+
+    if (dof * confCnt ~= #path) or dof &lt; 1 or confCnt &lt; 2 or dof ~= #minMaxVel / 2 or
+        dof ~= #minMaxAccel / 2 then error("Bad table size.") end
+    local lb = sim.setStepping(true)
+
+    local pM = Matrix(confCnt, dof, path)
+    local mmvM = Matrix(2, dof, minMaxVel)
+    local mmaM = Matrix(2, dof, minMaxAccel)
+
+    sim.addLog(sim.verbosity_scriptinfos,
+        "Trying to connect via ZeroMQ to the 'toppra' service... " ..
+        "make sure the 'docker-image-zmq-toppra' container is running. " ..
+        "Details can be found at https://github.com/CoppeliaRobotics/docker-image-zmq-toppra"
+    )
+    local context = simZMQ.ctx_new()
+    local socket = simZMQ.socket(context, simZMQ.REQ)
+    simZMQ.setsockopt(socket, simZMQ.RCVTIMEO, sim.packInt32Table {1000 * timeout})
+    simZMQ.setsockopt(socket, simZMQ.LINGER, sim.packInt32Table {500})
+    -- local result = simZMQ.connect(socket, 'tcp://localhost:22505')
+    -- try to make it IPv6 compatable
+    local result = simZMQ.connect(socket, 'tcp://*:22505')
+    if result == -1 then
+        local err = simZMQ.errnum()
+        error('connect failed: ' .. err .. ': ' .. simZMQ.strerror(err))
+    end</pre>
+<p>另外, 在 coppeliasim_zmqremoteapi_client 模組,  __init__.py 中, 也必須納入 IPv6 相容設定:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">class RemoteAPIClient:
+    """Client to connect to CoppeliaSim's ZMQ Remote API."""
+
+    def __init__(self, host='localhost', port=23000, cntport=None, *, verbose=None):
+        """Create client and connect to the ZMQ Remote API server."""
+        self.verbose = int(os.environ.get('VERBOSE', '0')) if verbose is None else verbose
+        self.context = zmq.Context()
+        self.socket = self.context.socket(zmq.REQ)
+        # Enable IPv6 on the socket
+        self.socket.setsockopt(zmq.IPV6, 1)
+        self.socket.connect(f'tcp://{host}:{port}')
+        self.uuid = str(uuid.uuid4())
+        self.callbackFuncs = {}
+        self.requiredItems = {}
+        self.VERSION = 2
+        self.timeout = 10 * 60
+        self.sendCnt = 0
+        main_globals = sys.modules['__main__'].__dict__
+        main_globals['require'] = self.require</pre>
+<p>最後 addOns\ZMQ remote API server.lua 中也必須改為 IPv6 相容:</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">--    if zmqRemoteApi.verbose() &gt; 0 then
+        sim.addLog(
+            sim.verbosity_scriptinfos,
+            string.format('ZeroMQ Remote API server starting (rpcPort=%d)...', rpcPort)
+        )
+--    end
+    cbor = require 'org.conman.cbor'
+    context = simZMQ.ctx_new()
+    rpcSocket = simZMQ.socket(context, simZMQ.REP)
+    -- enable IPv6 for ZMQ, default is false to IPv6
+    simZMQ.setsockopt(rpcSocket,simZMQ.IPV6,sim.packUInt32Table{1})
+    -- ZMQ IPv4ONLY default is true: http://api.zeromq.org/4-2:zmq-setsockopt
+    simZMQ.setsockopt(rpcSocket,simZMQ.IPV4ONLY,sim.packUInt32Table{0})
+    -- end enabling IPv6
+    simZMQ.bind(rpcSocket, string.format('tcp://*:%d', rpcPort))
+    if zmqRemoteApi.verbose() &gt; 0 then
+        sim.addLog(sim.verbosity_scriptinfos, 'ZeroMQ Remote API server started')
+    end</pre>
+<p></p>
+<hr/>
 <p><a href="/downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="/downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
-<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
-<h2>Webots</h2>
+<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p><h2>Webots</h2>
 <p>Webots 自 R2019a 之後採開放源授權: <a href="https://cyberbotics.com/doc/blog/Webots-2019-a-release">https://cyberbotics.com/doc/blog/Webots-2019-a-release</a>, 採 <a href="https://apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權.</p>
 <p><a href="https://www.youtube.com/watch?v=-xBvcOhazeY">How to un simulation on cloud</a></p>
 <p><a href="https://www.youtube.com/watch?v=yi4e5FoVWbQ">Set up environment</a></p>
