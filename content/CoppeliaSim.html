@@ -145,6 +145,9 @@ img.add_border {
     <div id="tipue_search_content">NX << <a href='NX.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ<br /><h1>CoppeliaSim</h1>
 <p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
 <p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="./../downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
+<p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="./../downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>
+<p>模擬場景範例: <a href="./../downloads/tricycle_ttt.7z">tricycle_ttt.7z</a></p>
+<hr/>
 <p>CoppeliaSim 在 2024.06.14 推出 <a href="https://manual.coppeliarobotics.com/en/versionInfo.htm#coppeliaSim4.7.0">4.7.0 版</a>, 其中沿用至 4.6.0 版的 zmqRemoteApi 模組已經改名為 coppeliasim_zmqremoteapi_client, 部分模組的內容也進行些微更動, 導致先前所編寫的 ZMQ Rempte API Python 程式都必須因應修改, 否則無法執行.</p>
 <p>KMOLab 在 4.5.1 版為了讓 CoppeliaSim 的 ZMQ Remote API Python 遠端控制程式能夠在 IPv6 網路協定中執行, 修改了 Server 與 Client 模組中的 ZMQ 程式設定, 若要讓 4.7.0 版也能相容於 IPv6, 則必須修改下列程式碼:</p>
 <p>lua\pythonWrapperV2.lua</p>
