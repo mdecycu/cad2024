@@ -26,7 +26,52 @@
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/Git_for_Electronic_Circuit_Design.pdf">Git for Electronic Circuit Design - CAD and Version Control for Electrical Engineers.pdf</a> (from <a href="https://link.springer.com/book/10.1007/978-1-4842-8124-6">Springer</a>)</p>
 <p>ODOO:</p>
 <p style="padding-left: 30px;"><a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a> </p>
-<p style="padding-left: 30px;"><a href="https://mde.tw/pj4101">https://mde.tw/pj4101</a> </p><h1>IDE</h1>
+<p style="padding-left: 30px;"><a href="https://mde.tw/pj4101">https://mde.tw/pj4101</a> </p><h2>meArm</h2>
+<p><a href="https://ucr-ee144.readthedocs.io/en/latest/">Foundation of Robotics</a> (Course document)</p>
+<p><a href="https://link.springer.com/content/pdf/10.1007/978-3-319-62533-1.pdf">Elements of Robotics</a> (Open ebook)</p>
+<p><a href="/downloads/uArm_manipulator_en.pdf">uArm_manipulator_en.pdf</a> (<a href="/downloads/uArm_manipulator_es.pdf">uArm_manipulator_es.pdf</a>)</p>
+<p><img alt="" height="672" src="/images/cd2022_flowchart.png" width="544"/></p>
+<hr/>
+<p>Forward Kinematics and Inverse Kinematics of uArm robot:</p>
+<p>Inverse Kinematics:</p>
+<p>利用 <a href="https://www.sympy.org">sympy</a> 根據 <a href="/downloads/MeArmPiTechnicalOverviewV0-3DRAFT.pdf">meArm Pi Technical Overview</a> 中的說明 (修正錯誤後), 解出 Inverse Kinematics 如下:</p>
+<p>當已知 manimpulator 端點的座標為 (x, y ,z) 時, 求 theta, ltheta (low arm link theta) 與 utheta (upper arm link theta). 利用 <a href="https://www.sympy.org">sympy</a> 之前必須先以 pip install sympy 安裝模組.</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import sympy as sp
+   
+# Define symbols
+theta, ltheta, utheta, r, x, y, z = sp.symbols("theta ltheta utheta r x y z")
+   
+# Define equations, rearranged so expressions equal 0
+eq1 = 15 + 50 + 80*sp.sin(ltheta) + 80*sp.sin(utheta) - r
+eq2 = 53 + 80*sp.cos(ltheta) - 80*sp.cos(utheta) - z
+# 從 eq3 與 eq4 可以得到 eq5 與 eq6, 將 r 及 theta 表示成 x, y 輸入的函式
+# 因此 r 與 theta 在得知 x, y, z 時就可視為已知
+eq3 = r*sp.cos(theta) - x
+eq4 = r*sp.sin(theta) - y
+eq5 = sp.sqrt(x*x + y*y) - r
+eq6 = sp.atan(y/x) - theta
+   
+# Solve for theta1 &amp; theta3
+solution = sp.solve([eq1, eq2], [ltheta, utheta], dict=True)
+print(solution)
+   
+'''
+[{ltheta: pi - asin(r/80 + sin(2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))) - 13/16), 
+   
+utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}, 
+   
+{ltheta: asin(-r/80 + sin(2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) - 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))) + 13/16) + pi, 
+   
+utheta: 2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) - 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}, 
+   
+{ltheta: -asin(-r/80 + sin(2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) - 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))) + 13/16), 
+   
+utheta: 2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) - 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}, 
+   
+{ltheta: asin(r/80 + sin(2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))) - 13/16), 
+   
+utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}]</pre>
+<p></p><h1>IDE</h1>
 <p><a href="http://229.cycu.org/Python_for_NX1872.7z">Python_for_NX1872.7z</a></p>
 <h4>Replit</h4>
 <p><a href="https://replit.com">https://replit.com</a> </p>
@@ -40,8 +85,7 @@
 <p dir="auto">password generator: <a href="https://mde.tw/cmsite/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/b92b16621dd0246c352cf13d6463b333/raw/0bfa669750aba3abe48554509bbd43d65b6e5c82/hashlib_password_generator.py">https://mde.tw/cmsite/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/b92b16621dd0246c352cf13d6463b333/raw/0bfa669750aba3abe48554509bbd43d65b6e5c82/hashlib_password_generator.py</a> </p>
 <p dir="auto">for IPv6 only Ubuntu:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.com<br/>ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p<br/><br/>for Replit:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.co<br/>#since Replit works for IPv4, therefore no ProxyCommand setting needed<br/>#ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</p>
 <h4>Codespaces</h4>
-<p><a href="https://github.com/features/codespaces">https://github.com/features/codespaces</a> </p>
-<h1>CAD</h1>
+<p><a href="https://github.com/features/codespaces">https://github.com/features/codespaces</a> </p><h1>CAD</h1>
 <p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
 <p>Computer Aided Design:</p>
 <p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Polygon_mesh">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>
@@ -486,7 +530,29 @@ NX VR - NXVR</pre>
 <h4>可攜 NX1872 製作:</h4>
 <p><a href="/downloads/nx1872_from_installed_to_portable_batch_setup.7z">nx1872_from_installed_to_portable_batch_setup.7z</a> 中的檔案可以說明如何將 NX1872 安裝版轉為可攜啟動的設定過程. 從安裝版啟動後的 Menu - Help - Log File 可以取得系統系統過程的所有細節, 其中包括各對應 .bat 執行過程所設定的環境變數, 以及所啟動的 .dll 檔案.</p>
 <p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p>
-<p></p><h2>CoppeliaSim</h2>
+<h3>NXOpen</h3>
+<p>若使用 NX2312, 其中需要設計並繪製減速機中的正齒輪組 (Spur Gear Train), 若採 UGOPEN C 編寫延伸程式, 可以利用 MSYS2 中的 gcc 進行編譯與連結:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">mkdir build
+ 
+mkdir dist
+ 
+REM compile gear.c
+gcc.exe -c -g -IC:\nx2312_portable\data\nx2312\UGOPEN -MMD -MP -MF build/gear.o.d -o build/gear.o gear.c
+ 
+REM link with libufun.lib and libugopenint.lib
+gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGOPEN\libufun.lib C:\nx2312_portable\data\nx2312\UGOPEN\libugopenint.lib</pre>
+<p>取得 gear.dll 後, 可開啟 new Model file 後, 以 File -&gt; Execute -&gt; NX Open 執行 gear.dll.</p>
+<p>UGOpen C 程式架構請參考 <a href="http://wcm.cycu.org:88/github/cd2022_guide/downloads/nxopen/UG_Open-API_Programming.pdf">UG_Open-API_Programming.pdf</a></p>
+<p>UGOpen C 程式架構請參考 <a href="http://wcm.cycu.org:88/github/cd2022_guide/downloads/nxopen/UG_Open-API_Programming.pdf">UG_Open-API_Programming.pdf</a></p>
+<p>UGOpen 技術文件請參考:</p>
+<p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/apiprog/index.htm">Open C Programmer's Guide</a> (for internal use only)</p>
+<p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/ugopen_doc/main.html">Open C Reference Manual</a> (for internal use only)</p>
+<p></p>
+<!-- 接下來將 mp4 檔案從 downloads 目錄取出 -->
+<div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="winkVideoData_gear_design" height="630" muted="true" width="1008">
+<source src="/downloads/nxopen_gear_design.mp4" type="video/mp4"/></video></div>
+<div class="winkVideoContainerClass"><a href="/downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
+<div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div><h2>CoppeliaSim</h2>
 <p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
 <p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="/downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
 <p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="/downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>
@@ -919,7 +985,51 @@ if __name__ == "__main__":
 <p>若希望在 Windows 環境中利用 Visual Studio C++ 編譯 Python 模組, 可以下載  <a href="https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/">https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/</a> 安裝後, 重新開機即可.</p>
 <p>若要將 visual-cpp-build-tools 配置為可攜套件模組, 則可透過 <a href="https://github.com/Data-Oriented-House/PortableBuildTools">https://github.com/Data-Oriented-House/PortableBuildTools</a> 完成.</p>
 <p><a href="/downloads/nxopen_base_and_center_pole_python.txt">nxopen_base_and_center_pole_python.txt</a></p>
-<h1>Brython</h1>
+<p>split_pdf.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># pypdf2_split.py
+# pip install pypdf2 pycryptodome
+import os
+from PyPDF2 import PdfWriter, PdfReader
+ 
+pdfReader = PdfReader(open("parm.pdf", "rb"))
+information = [("151.pdf",1,300)]
+  
+for page in range(len(information)):
+    pdf_writer = PdfWriter()
+    start = information[page][1]
+    end = information[page][2]
+    while start&lt;=end:
+        pdf_writer.add_page(pdfReader.pages[start-1])
+        start+=1
+    if not os.path.exists("./"):
+        os.makedirs(savepath)
+    output_filename = '{}_{}_page_{}.pdf'.format(information[page][0],information[page][1], information[page][2])
+    with open(output_filename,'wb') as out:
+        pdf_writer.write(out)
+print("已經完成 pdf 切割與存檔")</pre>
+<p>combine_pdf.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># pip install pypdf2 pycryptodome
+import os
+from PyPDF2 import PdfWriter, PdfReader
+ 
+pdf_write_object = PdfWriter()
+ 
+pdfFileNames = ["1.pdf", "2.pdf", "3.pdf"]
+newFileName = "Programming_Process_in_NX_CAM_en"
+filenameString = ""
+ 
+for filename in pdfFileNames:
+    pdf_read_object = PdfReader(open(filename, "rb"))
+    filenameString += filename + ", "
+    for page in range(len(pdf_read_object.pages)):
+        pdf_write_object.add_page(pdf_read_object.pages[page])
+  
+final_file_object = open(newFileName + ".pdf", 'wb')
+pdf_write_object.write(final_file_object)
+final_file_object.close()
+ 
+print("已經將 " + filenameString+ " 合併為: "+ newFileName + ".pdf")</pre>
+<p></p><h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
