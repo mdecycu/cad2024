@@ -543,7 +543,6 @@ REM link with libufun.lib and libugopenint.lib
 gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGOPEN\libufun.lib C:\nx2312_portable\data\nx2312\UGOPEN\libugopenint.lib</pre>
 <p>取得 gear.dll 後, 可開啟 new Model file 後, 以 File -&gt; Execute -&gt; NX Open 執行 gear.dll.</p>
 <p>UGOpen C 程式架構請參考 <a href="http://wcm.cycu.org:88/github/cd2022_guide/downloads/nxopen/UG_Open-API_Programming.pdf">UG_Open-API_Programming.pdf</a></p>
-<p>UGOpen C 程式架構請參考 <a href="http://wcm.cycu.org:88/github/cd2022_guide/downloads/nxopen/UG_Open-API_Programming.pdf">UG_Open-API_Programming.pdf</a></p>
 <p>UGOpen 技術文件請參考:</p>
 <p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/apiprog/index.htm">Open C Programmer's Guide</a> (for internal use only)</p>
 <p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/ugopen_doc/main.html">Open C Reference Manual</a> (for internal use only)</p>
@@ -552,7 +551,9 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="winkVideoData_gear_design" height="630" muted="true" width="1008">
 <source src="/downloads/nxopen_gear_design.mp4" type="video/mp4"/></video></div>
 <div class="winkVideoContainerClass"><a href="/downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
-<div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div><h2>CoppeliaSim</h2>
+<div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
+<div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="/downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div><h3>MSYS2</h3>
+<p>由於 Visual Studio C++ 較不容易製作為可攜套件, 在此利用 USB 隨身碟中的 MSYS2 來編譯 NXOpen C</p><h2>CoppeliaSim</h2>
 <p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
 <p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="/downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
 <p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="/downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>
