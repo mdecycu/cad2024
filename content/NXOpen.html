@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='Topics.html'>Topics</a><ul class='dropdown'><li><a href='meArm.html'>meArm</a></li></ul><li><a href='IDE.html'>IDE</a><li class='has-children'><a href='CAD.html'>CAD</a><ul class='dropdown'><li class='has-children'><a href='NX.html'>NX</a><ul class='dropdown'><li><a href='NXOpen.html'>NXOpen</a><li><a href='MSYS2.html'>MSYS2</a></li></ul><li class='has-children'><a href='CoppeliaSim.html'>CoppeliaSim</a><ul class='dropdown'><li><a href='ZMQ.html'>ZMQ</a></li></ul><li><a href='Webots.html'>Webots</a></li></ul><li><a href='Python.html'>Python</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li class='has-children'><a href='Topics.html'>Topics</a><ul class='dropdown'><li><a href='meArm.html'>meArm</a></li></ul><li><a href='IDE.html'>IDE</a><li class='has-children'><a href='CAD.html'>CAD</a><ul class='dropdown'><li class='has-children'><a href='NX.html'>NX</a><ul class='dropdown'><li><a href='NXOpen.html'>NXOpen</a><li><a href='Open C.html'>Open C</a><li><a href='MSYS2.html'>MSYS2</a></li></ul><li class='has-children'><a href='CoppeliaSim.html'>CoppeliaSim</a><ul class='dropdown'><li><a href='ZMQ.html'>ZMQ</a></li></ul><li><a href='Webots.html'>Webots</a></li></ul><li><a href='Python.html'>Python</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,7 +142,12 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">NX << <a href='NX.html'>Previous</a> <a href='MSYS2.html'>Next</a> >> MSYS2<br /><h1>NXOpen</h1>
+    <div id="tipue_search_content">NX << <a href='NX.html'>Previous</a> <a href='Open C.html'>Next</a> >> Open C<br /><h1>NXOpen</h1>
+<p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.xid1968491/xid2091711">Browse Programming Tools Help</a></p>
+<p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">Overview of Programmer's Guide</a></p>
+<p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.apiprog/intro_intro_overview">Open C Programmer's Guide</a></p>
+<p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.ugopen_doc">Open C Reference Guide</a></p>
+<p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref">NXOpen Python Reference Guide</a></p>
 <p>若使用 NX2312, 其中需要設計並繪製減速機中的正齒輪組 (Spur Gear Train), 若採 UGOPEN C 編寫延伸程式, 可以利用 MSYS2 中的 gcc 進行編譯與連結:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">mkdir build
  
@@ -156,8 +161,8 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <p>取得 gear.dll 後, 可開啟 new Model file 後, 以 File -&gt; Execute -&gt; NX Open 執行 gear.dll.</p>
 <p>UGOpen C 程式架構請參考 <a href="http://wcm.cycu.org:88/github/cd2022_guide/downloads/nxopen/UG_Open-API_Programming.pdf">UG_Open-API_Programming.pdf</a></p>
 <p>UGOpen 技術文件請參考:</p>
-<p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/apiprog/index.htm">Open C Programmer's Guide</a> (for internal use only)</p>
-<p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/ugopen_doc/main.html">Open C Reference Manual</a> (for internal use only)</p>
+<p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/apiprog/index.htm">Open C Programmer's Guide</a> (for internal IPv6 users only)</p>
+<p style="padding-left: 30px;"><a href="http://wcm.cycu.org:88/nx3doc/ugopen_doc/main.html">Open C Reference Manual</a> (for internal IPv6 users only)</p>
 <p></p>
 <!-- 接下來將 mp4 檔案從 downloads 目錄取出 -->
 <div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="winkVideoData_gear_design" height="630" muted="true" width="1008">
@@ -165,7 +170,7 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><a href="./../downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
 <div class="winkVideoContainerClass"><a href="./../downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
 <div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="./../downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div>
-<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><br />NX << <a href='NX.html'>Previous</a> <a href='MSYS2.html'>Next</a> >> MSYS2</div>
+<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><br />NX << <a href='NX.html'>Previous</a> <a href='Open C.html'>Next</a> >> Open C</div>
         
     <!-- footer -->
       <div class="container">
