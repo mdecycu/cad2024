@@ -3,7 +3,17 @@
 <p>Site: <a href="https://mde.tw/cad2024">https://mde.tw/cad2024</a></p>
 <p>課程目標:</p>
 <p style="padding-left: 30px;"><span>利用 CAD 套件 與 Python 程式協助執行機電整合系統設計</span></p>
-<p>課程教材: <a href="https://link.springer.com/book/10.1007/978-3-031-49780-3">2023_course_in_python.pdf</a></p>
+<p>Python 課程教材:</p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/Intro_to_Mechatronics.pdf">Intro_to_Mechatronics.pdf</a> (<a href="http://engineering.nyu.edu/mechatronics/Control_Lab/bck/VKapila/Intro2EngLect/">Source</a>)</p>
+<p style="padding-left: 30px;"><a href="https://github.com/Asabeneh/30-Days-Of-Python">https://github.com/Asabeneh/30-Days-Of-Python</a></p>
+<p style="padding-left: 60px;"><a href="https://www.youtube.com/watch?v=LbPawGKOJoE&amp;list=PLbvhRHYrmshRSX00KYKtG2czimpEjoYO5">Python for Begineers</a> (Video PlayList)</p>
+<p style="padding-left: 30px;"><a href="https://pythontutor.com/">https://pythontutor.com/</a></p>
+<p style="padding-left: 30px;"><a href="https://cs50.harvard.edu/python/2022/">https://cs50.harvard.edu/python/2022/</a></p>
+<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-3-031-49780-3">2023_course_in_python.pdf</a> (255頁)</p>
+<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-1-84996-537-8">2011 Python programming fundamentals.pdf</a> (243頁)</p>
+<p style="padding-left: 60px;"><a href="https://web.archive.org/web/20160412022935/http://knuth.luther.edu/~leekent/IntroToComputing">Intro to Computing</a></p>
+<p style="padding-left: 30px;"><a href="https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/Index.html">Python Programming And Numerical Methods: A Guide For Engineers And Scientists</a></p>
+<p style="padding-left: 30px;"><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/">https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/</a></p>
 <p>CAD 套件: <a href="https://solvespace.com/">Solvespace</a>、<a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a>、<a href="https://www.onshape.com/">Onshape</a> and <a href="https://github.com/jimy-byerley/pymadcad">Pymadcad</a></p>
 <p>CAE 套件: <a href="https://plm.sw.siemens.com/en-US/simcenter/mechanical-simulation/simcenter-3d/">Siemens Simcenter 3D</a></p>
 <p>機電模擬: <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a> and <a href="https://cyberbotics.com/">Webots</a></p>
@@ -17,6 +27,8 @@
 <p>行事曆</p>
 <p><a href="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei"> 全頁檢視 </a></p>
 <p><iframe height="600" src="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei" width="800"></iframe></p><h1>Topics</h1>
+<p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
+<p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p>CAD:</p>
 <p style="padding-left: 30px;"><a href="https://www.tmt.unze.ba/zbornik/TMT2010/Keynote-Tornincasa.pdf">2010 THE FUTURE AND THE EVOLUTION OF CAD</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/cadbook.pdf">cadbook.pdf</a> (from cadp2018 course)</p>
@@ -71,7 +83,8 @@ utheta: 2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*
 {ltheta: asin(r/80 + sin(2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))) - 13/16), 
    
 utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}]</pre>
-<p></p><h1>IDE</h1>
+<p></p>
+<h1>IDE</h1>
 <p><a href="http://229.cycu.org/Python_for_NX1872.7z">Python_for_NX1872.7z</a></p>
 <h4>Replit</h4>
 <p><a href="https://replit.com">https://replit.com</a> </p>
@@ -85,7 +98,8 @@ utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 536
 <p dir="auto">password generator: <a href="https://mde.tw/cmsite/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/b92b16621dd0246c352cf13d6463b333/raw/0bfa669750aba3abe48554509bbd43d65b6e5c82/hashlib_password_generator.py">https://mde.tw/cmsite/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/b92b16621dd0246c352cf13d6463b333/raw/0bfa669750aba3abe48554509bbd43d65b6e5c82/hashlib_password_generator.py</a> </p>
 <p dir="auto">for IPv6 only Ubuntu:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.com<br/>ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p<br/><br/>for Replit:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.co<br/>#since Replit works for IPv4, therefore no ProxyCommand setting needed<br/>#ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</p>
 <h4>Codespaces</h4>
-<p><a href="https://github.com/features/codespaces">https://github.com/features/codespaces</a> </p><h1>CAD</h1>
+<p><a href="https://github.com/features/codespaces">https://github.com/features/codespaces</a> </p>
+<h1>CAD</h1>
 <p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
 <p>Computer Aided Design:</p>
 <p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Polygon_mesh">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>
@@ -275,7 +289,8 @@ show([read_mesh])</pre>
 <p>7. 雲端計算和存儲:</p>
 <p style="padding-left: 30px;">- 無需安裝軟體<br/> - 所有設計都存儲在雲端<br/> - 可隨時隨地訪問</p>
 <p>8. 開放API和集成:</p>
-<p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p><h2>NX</h2>
+<p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
+<h2>NX</h2>
 <p>cad2024 課程採用 NX23.12.4001.00003 版. 執行 NX2312 需要 Windows 操作系統帶有 Microsoft .Net Runtime 6.0.16.</p>
 <p>NX2312 client 連線到認證主機設定採 29000 時, client 端需要讓防火牆可以對 29000 與 29001 port 連外, 至於 server 端則需要讓防火牆可以對 29000 與 29001 port 連入.</p>
 <p>完整的 NX2312 總共有超過 11 萬個檔案, 總容量超過 33 GB.</p>
@@ -531,7 +546,9 @@ Validation - DESIGN_TOOLS NXREPORTS MPA
 NX VR - NXVR</pre>
 <h4>可攜 NX1872 製作:</h4>
 <p><a href="/downloads/nx1872_from_installed_to_portable_batch_setup.7z">nx1872_from_installed_to_portable_batch_setup.7z</a> 中的檔案可以說明如何將 NX1872 安裝版轉為可攜啟動的設定過程. 從安裝版啟動後的 Menu - Help - Log File 可以取得系統系統過程的所有細節, 其中包括各對應 .bat 執行過程所設定的環境變數, 以及所啟動的 .dll 檔案.</p>
-<p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p><h3>NXOpen</h3>
+<p>上列 .7z 檔案即包括從此 Log File 中的環境變數註記, 經過 Python 程式轉為 .bat 設定外, 還利用 %cd% 取代原先安裝版本的 C:\NX1872, 並且以 %USERNAME% 取代安裝時的使用者 pj2022, 之後只要再納入 NX1872 的認證伺服器與所購買的 bundles, 就可以將安裝版 NX1872 轉為可存入 USB 隨身碟的可攜版本.</p>
+<h3>NXOpen</h3>
+<p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.xid1968491/xid2091711">Browse Programming Tools Help</a></p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">Overview of Programmer's Guide</a></p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.apiprog/intro_intro_overview">Open C Programmer's Guide</a></p>
 <p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.ugopen_doc">Open C Reference Guide</a></p>
@@ -558,7 +575,8 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><a href="/downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
 <div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
 <div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="/downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div>
-<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><h3>Open C</h3>
+<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div>
+<h3>Open C</h3>
 <p>The following table lists the Open C functions that have been wrapped for use in NXOpen.NET. The list provides the Open C function name and the corresponding C# method.</p>
 <table border="1" cellpadding="6" frame="box" width="438"><colgroup span="1"><col span="1" width="233*"/><col span="1" width="339*"/></colgroup>
 <thead>
@@ -776,8 +794,10 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <p>The following are the non-wrapped NX Open C functions:</p>
 <pre class="code-text">UF_ASSEM_free_deform_warnings_data<br/>UF_ASSEM_free_prev16_aligns<br/>UF_CLONE_free_validation_options<br/>UF_CUT_LEVELS_free<br/>UF_DRF_free_comp_data<br/>UF_FAM_free_class_data<br/>UF_FBM_GEOM_free_classified_set_list<br/>UF_GDT_free<br/>UF_KF_free_list_object_contents<br/>UF_KF_free_rule_value<br/>UF_LIB_free_rset_map<br/>UF_MODL_free_bsurf_data<br/>UF_MODL_free_compare_data<br/>UF_MODL_free_compare_data_3<br/>UF_MODL_free_law<br/>UF_MODL_free_law_extension<br/>UF_MODL_free_refit_face_feature_data<br/>UF_MODL_free_rough_offset_data<br/>UF_MODL_free_silhouette_flange<br/>UF_MODL_free_snip_surface_feature_data<br/>UF_MODL_free_string_list<br/>UF_MODL_shape_pattern_free_client_data<br/>UF_MODL_SWEEP_free_trim_data<br/>UF_MODL_udf_free_exp_data<br/>UF_NXSM_free_closed_corner_data<br/>UF_NXSM_free_flange_data<br/>UF_NXSM_free_flange_sketch_data<br/>UF_NXSM_free_rebend_data<br/>UF_NXSM_free_unbend_data<br/>UF_PART_free_load_status<br/>UF_PD_free_business_modifier_data<br/>UF_PD_free_product_attribute_data<br/>UF_PD_free_product_attribute_data_2<br/>UF_PD_free_product_attribute_value_data<br/>UF_ROUTE_free_places<br/>UF_SF_free_defeature_parms<br/>UF_SF_free_idealize_parms<br/>UF_SF_free_idealize_region<br/>UF_SF_free_midsrf_user_parms<br/>UF_SF_LEGEND_free_attr<br/>UF_SUBDIV_free<br/>UF_WAVE_free_linked_feature_info<br/>UF_WEIGHT_free_exceptions</pre>
 </div>
-</div><h3>MSYS2</h3>
-<p>由於 Visual Studio C++ 較不容易製作為可攜套件, 在此利用 USB 隨身碟中的 MSYS2 來編譯 NXOpen C</p><h2>CoppeliaSim</h2>
+</div>
+<h3>MSYS2</h3>
+<p><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (183MB)</p>
+<h2>CoppeliaSim</h2>
 <p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
 <p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="/downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
 <p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="/downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>
@@ -977,7 +997,8 @@ sim.stopSimulation()</pre>
 <p><a href="/downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="/downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
-<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p><h3>ZMQ</h3>
+<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
+<h3>ZMQ</h3>
 <p><a href="https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html">https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html</a></p>
 <p style="padding-left: 30px;">ØMQ is a neat messaging library that allows you to build your own messaging infrastructure. ØMQ does not provide out of box messaging system experience like ActiveMQ or RabbitMQ. It is higher level concept than sockets and provides as low level conceptual framework as possible to build messaging systems. It can help build framework that scales where services could be handled by different applications that does one job well.</p>
 <p style="padding-left: 30px;">Distributed applications are also easier to change compared to a monolithic applications. It’s expensive to try to define the behavior of each of many software applications that work together in a large network. It’s much cheaper, and more flexible, to define the interfaces between them: the APIs. Messaging is an API that can be stretched across a network.<br/><br/>ØMQ 是一個精簡的訊息傳遞程式庫 (messaging library)，允許使用者自行建立訊息傳遞基礎架構。ØMQ 不像 ActiveMQ 或 RabbitMQ 那樣提供開箱即用的訊息系統體驗。ØMQ 是比封包更高層級的概念，同時提供了儘可能低階的概念框架來構建訊息傳遞系統。它能夠幫助構建可擴展的框架 (framework)，使得這個框架中，不同的服務可以由專注於單一任務的獨立應用程式來處理。</p>
@@ -1170,7 +1191,8 @@ if __name__ == "__main__":
 </ol>
 <p>這個例子展示了如何使用 pyzmq 來實現一個分散式計算系統，用於解決複雜的數值問題。它將一個大問題分解成多個小問題，利用多台機器或多個處理器並行計算，從而提高計算效率。</p>
 <p>注意：這個實現使用了自然邊界條件（Neumann邊界條件）來處理子區間的邊界。在實際應用中，可能需要根據具體問題調整邊界條件的處理方式。</p>
-<p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p><h2>Webots</h2>
+<p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p>
+<h2>Webots</h2>
 <p>Webots 自 R2019a 之後採開放源授權: <a href="https://cyberbotics.com/doc/blog/Webots-2019-a-release">https://cyberbotics.com/doc/blog/Webots-2019-a-release</a>, 採 <a href="https://apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權.</p>
 <p><a href="https://www.youtube.com/watch?v=-xBvcOhazeY">How to un simulation on cloud</a></p>
 <p><a href="https://www.youtube.com/watch?v=yi4e5FoVWbQ">Set up environment</a></p>
@@ -1203,7 +1225,8 @@ if __name__ == "__main__":
 <p>Web:</p>
 <p><a href="https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b">https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b</a></p>
 <p><a href="https://github.com/cyberbotics/webots-server">https://github.com/cyberbotics/webots-server</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p><h1>Python</h1>
+<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p>
+<h1>Python</h1>
 <p>2024 Fall 開始採用的 <a href="http://229.cycu.org/python_2025.7z">python_2025.7z</a> (1.14GB), 包含下列模組:</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/python_2025_batch_files.7z">python_2025_batch_files.7z</a> (2.64KB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a> (492MB)</p>
@@ -1263,7 +1286,8 @@ pdf_write_object.write(final_file_object)
 final_file_object.close()
  
 print("已經將 " + filenameString+ " 合併為: "+ newFileName + ".pdf")</pre>
-<p></p><h1>Brython</h1>
+<p></p>
+<h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
@@ -1511,4 +1535,7 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></div></div></div>
+</p>
+</div>
+</div>
+</div>
