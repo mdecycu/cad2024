@@ -44,7 +44,7 @@
 <p style="padding-left: 30px;"><a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a> </p>
 <p style="padding-left: 30px;"><a href="https://mde.tw/pj4101">https://mde.tw/pj4101</a> </p>
 <h2>Quadruped</h2>
-<p><a href="/downloads/quadruped robot_pj40922.7z">quadruped robot_pj40922.7z</a></p>
+<p><a href="http://229.cycu.org/pj40922_downloads.7z">pj40922_downloads.7z</a></p>
 <p><img caption="false" height="269" src="/images/quadruped_robot_pj40922.png" width="400"/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/STmAWqYgiw8?si=PcL_jl5fn5_5cxTW" title="YouTube video player" width="560"></iframe></p><h2>meArm</h2>
 <p><a href="https://ucr-ee144.readthedocs.io/en/latest/">Foundation of Robotics</a> (Course document)</p>
@@ -804,7 +804,27 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 </div>
 <h3>MSYS2</h3>
 <p><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (183MB)</p>
-<h2>CoppeliaSim</h2>
+<h2>Solvespace</h2>
+<p>Solvespace 採 C++ 編寫, 原始碼位於 <a href="https://github.com/solvespace/solvespace">https://github.com/solvespace/solvespace</a>, 以下將採用可攜程式系統 python_2025 中的 msys2 (<a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a>) 以及 cmake 3.20.1 進行編譯 (若採用目前最新版的 cmake 3.30.2, 必須對 Solvespace v3.1 中的 CMakeLists.txt 進行修改).</p>
+<p>舊版的 cmake 3.21.0 可以利用下列連結取得:</p>
+<p><a href="https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-windows-x86_64.zip">https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-windows-x86_64.zip</a> </p>
+<p><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> 則必須安裝 mingw32-make:</p>
+<p>pacman -S mingw-w64-ucrt-x86_64-make</p>
+<p>接著取得 Solvespace v3.1 的原始碼, 可以直接從 <a href="https://github.com/solvespace/solvespace/releases">https://github.com/solvespace/solvespace/releases</a> 取得, 或以 以 git clone --recurse-submodules <a href="https://github.com/solvespace/solvespace.git">https://github.com/solvespace/solvespace.git</a> 之後,</p>
+<p>cd solvespace</p>
+<p>git checkout v3.1</p>
+<p>接下來則必須修改 solvespace\extlib\angle\src\libANGLE\HandleAllocator.cpp 加入標頭檔案:</p>
+<p>#include &lt;limits&gt;</p>
+<p>接著就可以進行程式碼的編譯與連結:</p>
+<p>mkdir build</p>
+<p>cd build</p>
+<p>cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release</p>
+<p>mingw32-make</p>
+<p>完成編譯後, solvespace.exe 即位於 build\bin 目錄中, 執行時則需要 libwinpthread-1.dll 動態連結程式庫.</p>
+<p>進行上述流程編譯的 <a href="http://229.cycu.org/solvespace_v3.1_src.7z">solvespace_v3.1_src.7z</a></p>
+<p></p>
+<p></p>
+<p></p><h2>CoppeliaSim</h2>
 <p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
 <p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="/downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
 <p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="/downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>

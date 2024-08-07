@@ -142,208 +142,27 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Solvespace << <a href='Solvespace.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ<br /><h1>CoppeliaSim</h1>
-<p>下載相容於 IPv6 的 CoppeliaSim 4.7.0 rev4: <a href="http://229.cycu.org/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a></p>
-<p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="./../downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
-<p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="./../downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>
-<p>模擬場景範例: <a href="./../downloads/tricycle_ttt.7z">tricycle_ttt.7z</a></p>
-<hr/>
-<p>CoppeliaSim 在 2024.06.14 推出 <a href="https://manual.coppeliarobotics.com/en/versionInfo.htm#coppeliaSim4.7.0">4.7.0 版</a>, 其中沿用至 4.6.0 版的 zmqRemoteApi 模組已經改名為 coppeliasim_zmqremoteapi_client, 部分模組的內容也進行些微更動, 導致先前所編寫的 ZMQ Rempte API Python 程式都必須因應修改, 否則無法執行.</p>
-<p>KMOLab 在 4.5.1 版為了讓 CoppeliaSim 的 ZMQ Remote API Python 遠端控制程式能夠在 IPv6 網路協定中執行, 修改了 Server 與 Client 模組中的 ZMQ 程式設定, 若要讓 4.7.0 版也能相容於 IPv6, 則必須修改下列程式碼:</p>
-<p>lua\pythonWrapperV2.lua</p>
-<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function initPython(prog)
-    local pyth = sim.getStringParam(sim.stringparam_defaultpython)
-    local pyth2 = sim.getNamedStringParam("python")
-    if pyth2 then pyth = pyth2 end
-    if pyth == nil or #pyth == 0 then
-        local p = sim.getInt32Param(sim.intparam_platform)
-        if p == 0 then
-            pyth = 'py'
-        else
-            pyth = 'python3'
-        end
-    end
-    local errMsg
-    if pythonExecutable then
-        pyth = pythonExecutable
-    end
-    if pyth and #pyth &gt; 0 then
-        subprocess, controlPort = startPythonClientSubprocess(pyth)
-        if controlPort then
-            pyContext = simZMQ.ctx_new()
-            pySocket = simZMQ.socket(pyContext, simZMQ.REQ)
-            -- enable IPv6 for ZMQ, default is false to IPv6 from KMOLab
-            simZMQ.setsockopt(pySocket,simZMQ.IPV6,sim.packUInt32Table{1})
-            simZMQ.setsockopt(pySocket,simZMQ.IPV4ONLY,sim.packUInt32Table{0})
-            -- end for enabling IPv6 for ZMQ
-            simZMQ.setsockopt(pySocket, simZMQ.LINGER, sim.packUInt32Table {0})
-            simZMQ.connect(pySocket, controlPort)
-            virtualPythonFilename = sim.getStringParam(sim.stringparam_scene_path_and_name)</pre>
-<p>另外必須注意的是 4.7.0 在 Windows 中使用虛擬硬碟代號 z:, 若控制程式的開發是在可攜程式系統中進行, 必須避開使用 z:.</p>
-<p>另外在 lua\motion.lua 中將封包傳送綁定在 localhost, 嘗試修改如下:</p>
-<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sim.generateTimeOptimalTrajectory(...)
-    simZMQ = require 'simZMQ'
-    local path, pathLengths, minMaxVel, minMaxAccel, trajPtSamples, boundaryCondition, timeout =
-        checkargs({
-            {type = 'table', item_type = 'float', size = '2..*'},
-            {type = 'table', item_type = 'float', size = '2..*'},
-            {type = 'table', item_type = 'float', size = '2..*'},
-            {type = 'table', item_type = 'float', size = '2..*'},
-            {type = 'int', default = 1000},
-            {type = 'string', default = 'not-a-knot'},
-            {type = 'float', default = 5},
-    }, ...)
-
-    local confCnt = #pathLengths
-    local dof = math.floor(#path / confCnt)
-
-    if (dof * confCnt ~= #path) or dof &lt; 1 or confCnt &lt; 2 or dof ~= #minMaxVel / 2 or
-        dof ~= #minMaxAccel / 2 then error("Bad table size.") end
-    local lb = sim.setStepping(true)
-
-    local pM = Matrix(confCnt, dof, path)
-    local mmvM = Matrix(2, dof, minMaxVel)
-    local mmaM = Matrix(2, dof, minMaxAccel)
-
-    sim.addLog(sim.verbosity_scriptinfos,
-        "Trying to connect via ZeroMQ to the 'toppra' service... " ..
-        "make sure the 'docker-image-zmq-toppra' container is running. " ..
-        "Details can be found at https://github.com/CoppeliaRobotics/docker-image-zmq-toppra"
-    )
-    local context = simZMQ.ctx_new()
-    local socket = simZMQ.socket(context, simZMQ.REQ)
-    simZMQ.setsockopt(socket, simZMQ.RCVTIMEO, sim.packInt32Table {1000 * timeout})
-    simZMQ.setsockopt(socket, simZMQ.LINGER, sim.packInt32Table {500})
-    -- local result = simZMQ.connect(socket, 'tcp://localhost:22505')
-    -- try to make it IPv6 compatable
-    local result = simZMQ.connect(socket, 'tcp://*:22505')
-    if result == -1 then
-        local err = simZMQ.errnum()
-        error('connect failed: ' .. err .. ': ' .. simZMQ.strerror(err))
-    end</pre>
-<p>另外, 在 coppeliasim_zmqremoteapi_client 模組,  __init__.py 中, 也必須納入 IPv6 相容設定:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">class RemoteAPIClient:
-    """Client to connect to CoppeliaSim's ZMQ Remote API."""
-
-    def __init__(self, host='localhost', port=23000, cntport=None, *, verbose=None):
-        """Create client and connect to the ZMQ Remote API server."""
-        self.verbose = int(os.environ.get('VERBOSE', '0')) if verbose is None else verbose
-        self.context = zmq.Context()
-        self.socket = self.context.socket(zmq.REQ)
-        # Enable IPv6 on the socket
-        self.socket.setsockopt(zmq.IPV6, 1)
-        self.socket.connect(f'tcp://{host}:{port}')
-        self.uuid = str(uuid.uuid4())
-        self.callbackFuncs = {}
-        self.requiredItems = {}
-        self.VERSION = 2
-        self.timeout = 10 * 60
-        self.sendCnt = 0
-        main_globals = sys.modules['__main__'].__dict__
-        main_globals['require'] = self.require</pre>
-<p>最後 addOns\ZMQ remote API server.lua 中也必須改為 IPv6 相容:</p>
-<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">--    if zmqRemoteApi.verbose() &gt; 0 then
-        sim.addLog(
-            sim.verbosity_scriptinfos,
-            string.format('ZeroMQ Remote API server starting (rpcPort=%d)...', rpcPort)
-        )
---    end
-    cbor = require 'org.conman.cbor'
-    context = simZMQ.ctx_new()
-    rpcSocket = simZMQ.socket(context, simZMQ.REP)
-    -- enable IPv6 for ZMQ, default is false to IPv6
-    simZMQ.setsockopt(rpcSocket,simZMQ.IPV6,sim.packUInt32Table{1})
-    -- ZMQ IPv4ONLY default is true: http://api.zeromq.org/4-2:zmq-setsockopt
-    simZMQ.setsockopt(rpcSocket,simZMQ.IPV4ONLY,sim.packUInt32Table{0})
-    -- end enabling IPv6
-    simZMQ.bind(rpcSocket, string.format('tcp://*:%d', rpcPort))
-    if zmqRemoteApi.verbose() &gt; 0 then
-        sim.addLog(sim.verbosity_scriptinfos, 'ZeroMQ Remote API server started')
-    end</pre>
-<p>在 4.7.0 中執行的 ZMQ Remote API Python 測試程式:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># zmqRemoteApi_IPv6 為將 zmq 通訊協定修改為 IPv4 與 IPv6 相容
-# pip install pyzmq cbor keyboard
-# for 4.5.1
-#from zmqRemoteApi_IPv6 import RemoteAPIClient
-# for 4.7.1
-from coppeliasim_zmqremoteapi_client import RemoteAPIClient
-import time
-import math
-import keyboard
- 
-# 利用 zmqRemoteAPI 以 23000 對場景伺服器進行連線
-client = RemoteAPIClient('[::1]', 23000)
-# 以 getObject 方法取得場景物件
-sim = client.getObject('sim')
-box = sim.getObject('/box')
- 
-# 啟動模擬
-sim.startSimulation()
-# 建立尺寸數列, 分別定義 x, y, z 方向尺寸
-x = 0.2
-y = 0.2
-z = 0.1
-size = [x, y, z]
- 
-# 利用 size 數列, 建立圓柱物件, 2 代表 cylinder
-# 8 表示 respondable, 1 為 質量
-digit1_handle = sim.createPureShape(2, 8, size, 1, None)
-# 將圓柱物件命名為 digit1, 若用於機械計分可做為個位數轉盤
-# 之後可再導入帶有數字組立的外型零件
-sim.setObjectAlias(digit1_handle, 'digit1')
-# 轉角單位為徑度
-sim.setObjectOrientation(digit1_handle, -1, [0, math.pi/2, 0])
-# 起始物件中心位於 [0, 0, 0], 為了位於地板, 往 z 提升一個半徑高度
-sim.setObjectPosition(digit1_handle, -1, [0, 0, x/2])
- 
-# 建立 revolute joint 命名為 joint, 且將 joint mode 設為 dynamic, control mode 設為 velocity
-joint1_handle = sim.createJoint(sim.joint_revolute_subtype, sim.jointmode_dynamic, 0, None)
-sim.setObjectInt32Param(joint1_handle, sim.jointintparam_dynctrlmode, sim.jointdynctrl_velocity)
-sim.setObjectAlias(joint1_handle, 'joint1')
- 
-# 取得 cylinder 的位置座標
-digit1_pos = sim.getObjectPosition(digit1_handle, -1)
-joint1_pos = [digit1_pos[0], digit1_pos[1], digit1_pos[2]]
- 
-# 將 joint1 至於 cylinder 中心
-sim.setObjectPosition(joint1_handle, -1, joint1_pos)
-# 取得 digit1_handle 的方位
-digit1_ori = sim.getObjectOrientation(digit1_handle, -1)
-# 將 joint1_handle 方位與 digit1 對齊
-sim.setObjectOrientation(joint1_handle, -1, digit1_ori)
- 
-# 將 joint1 置於 box 上
-sim.setObjectParent(joint1_handle, box, True)
-# 將 cylinder 置於 joint1 上
-sim.setObjectParent(digit1_handle, joint1_handle, True)
- 
-# 鎖定 joint1
-# for 4.5.1
-#sim.setJointForce(joint1_handle, float('inf'))
-# for 4.7.1
-sim.setJointTargetForce(joint1_handle, float('inf'))
- 
-print("基本場景建立完成!")
- 
-# 設定主迴圈
-while True:
-    # 設定 joint1 目標速度
-    sim.setJointTargetVelocity(joint1_handle, 10)
-    # 讓 coppeliasim 有時間按照設定讓 joint1 旋轉
-    time.sleep(0.01) 
- 
-    if keyboard.is_pressed('q'):
-        # 可以按下 q 鍵跳出重複執行迴圈
-        break
- 
-# 終止模擬
-sim.stopSimulation()</pre>
-<hr/>
-<p><a href="./../downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
-<p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
-<p><a href="./../downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
-<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
-<br />Solvespace << <a href='Solvespace.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ</div>
+    <div id="tipue_search_content">MSYS2 << <a href='MSYS2.html'>Previous</a> <a href='CoppeliaSim.html'>Next</a> >> CoppeliaSim<br /><h1>Solvespace</h1>
+<p>Solvespace 採 C++ 編寫, 原始碼位於 <a href="https://github.com/solvespace/solvespace">https://github.com/solvespace/solvespace</a>, 以下將採用可攜程式系統 python_2025 中的 msys2 (<a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a>) 以及 cmake 3.20.1 進行編譯 (若採用目前最新版的 cmake 3.30.2, 必須對 Solvespace v3.1 中的 CMakeLists.txt 進行修改).</p>
+<p>舊版的 cmake 3.21.0 可以利用下列連結取得:</p>
+<p><a href="https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-windows-x86_64.zip">https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-windows-x86_64.zip</a> </p>
+<p><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> 則必須安裝 mingw32-make:</p>
+<p>pacman -S mingw-w64-ucrt-x86_64-make</p>
+<p>接著取得 Solvespace v3.1 的原始碼, 可以直接從 <a href="https://github.com/solvespace/solvespace/releases">https://github.com/solvespace/solvespace/releases</a> 取得, 或以 以 git clone --recurse-submodules <a href="https://github.com/solvespace/solvespace.git">https://github.com/solvespace/solvespace.git</a> 之後,</p>
+<p>cd solvespace</p>
+<p>git checkout v3.1</p>
+<p>接下來則必須修改 solvespace\extlib\angle\src\libANGLE\HandleAllocator.cpp 加入標頭檔案:</p>
+<p>#include &lt;limits&gt;</p>
+<p>接著就可以進行程式碼的編譯與連結:</p>
+<p>mkdir build</p>
+<p>cd build</p>
+<p>cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release</p>
+<p>mingw32-make</p>
+<p>完成編譯後, solvespace.exe 即位於 build\bin 目錄中, 執行時則需要 libwinpthread-1.dll 動態連結程式庫.</p>
+<p>進行上述流程編譯的原始碼 <a href="http://229.cycu.org/solvespace_v3.1_src.7z">solvespace_v3.1_src.7z</a>, 以及編譯完成的 <a href="http://229.cycu.org/solvespace_v3.1_msys2.7z">solvespace_v3.1_msys2.7z</a>.</p>
+<p></p>
+<p></p>
+<p></p><br />MSYS2 << <a href='MSYS2.html'>Previous</a> <a href='CoppeliaSim.html'>Next</a> >> CoppeliaSim</div>
         
     <!-- footer -->
       <div class="container">
