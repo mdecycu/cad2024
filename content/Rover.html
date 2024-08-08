@@ -142,64 +142,16 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">ZMQ << <a href='ZMQ.html'>Previous</a> <a href='Webots-tut1.html'>Next</a> >> Webots-tut1<br /><h1>Webots</h1>
-<p><a href="https://github.com/cyberbotics/webots-cloud">https://github.com/cyberbotics/webots-cloud</a> </p>
-<p>Webots is an open-source three-dimensional mobile robot simulator.</p>
-<p>It was originally developed as a research tool to investigate various control algorithms in mobile robotics. Since December 2018, Webots is released as an open source software under the Apache 2.0 license.</p>
-<p>To effectively use Webots, the reader is expected to have a minimal knowledge in mobile robotics, in C, C++, Java, <span style="background-color: #ffff99;">Python</span> or MATLAB programming, and in <span style="background-color: #ffff99;">VRML97</span> (Virtual Reality Modeling Language).</p>
-<p>Python language setup: <a href="https://cyberbotics.com/doc/guide/using-python">https://cyberbotics.com/doc/guide/using-python</a> </p>
-<hr/>
-<p>start_webots.bat</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
-%cd%\msys64\mingw64\bin\webotsw.exe</pre>
-<p>可攜 Webots: <a href="http://229.cycu.org/Webots_2023b.7z">Webots_2023b.7z</a></p>
-<p>Webots 自 R2019a 之後採開放源授權: <a href="https://cyberbotics.com/doc/blog/Webots-2019-a-release">https://cyberbotics.com/doc/blog/Webots-2019-a-release</a>, 採 <a href="https://apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權.</p>
-<p><a href="https://www.youtube.com/watch?v=-xBvcOhazeY">How to un simulation on cloud</a></p>
-<p><a href="https://www.youtube.com/watch?v=yi4e5FoVWbQ">Set up environment</a></p>
-<p><a href="https://www.youtube.com/watch?v=wOHXOg2jLmU">Webots and ROS2</a></p>
-<p><a href="https://www.cyberbotics.com/doc/guide/webots-cloud?version=master">Webots.cloud</a> (<a href="https://webots.cloud/">https://webots.cloud/</a>)</p>
-<p><a href="https://github.com/cyberbotics/webots-cloud-simulation-examples">Simulation examples</a></p>
-<p><a href="https://webots.cloud/proto">Webots cloud proto</a></p>
-<p><a href="http://www.graphics.stanford.edu/courses/cs248-98-fall/Assignments/Assignment3/VRML2_Specification/">VRML 2.0 Specification</a></p>
-<h4>Webots_doc</h4>
-<p><a href="./../downloads/A Systematic Comparison of Simulation Software for Robotic Arm Manipulation using ROS2.pdf">A Systematic Comparison of Simulation Software for Robotic Arm Manipulation using ROS2.pdf</a> (<a href="https://arxiv.org/pdf/2204.06433">source</a>)</p>
-<p><a href="https://cyberbotics.com/doc/guide/tutorials">https://cyberbotics.com/doc/guide/tutorials</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots">https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots</a></p>
-<p>Tutorial 1:</p>
-<p>滑鼠左鍵拖曳可以旋轉視圖</p>
-<p>滑鼠中鍵前後滑動可以拉近或拉遠視圖</p>
-<p>滑鼠右鍵移動則可拖曳視圖</p>
-<p>Shift + 滑鼠左鍵選擇 Object, 可以移動物件<br/><br/><span>When a Webots world is modified with the intention of being saved, it is fundamental that the simulation is first paused and reloaded to its initial state, i.e. the virtual time counter on the main toolbar should show 0:00:00:000. Otherwise at each save, the position of each 3D object can accumulate errors. Therefore, any modification of the world should be performed in that order: pause, reset, modify and save the simulation.</span></p>
-<p>Programming:</p>
-<p><a href="https://cyberbotics.com/doc/guide/language-setup">https://cyberbotics.com/doc/guide/language-setup</a> <span><br/></span></p>
-<p><a href="https://github.com/cyberbotics/urdf2webots">https://github.com/cyberbotics/urdf2webots</a></p>
-<p><a href="https://github.com/cyberbotics/wrestling">https://github.com/cyberbotics/wrestling</a></p>
-<p>Controller Programming:</p>
-<p><a href="https://cyberbotics.com/doc/guide/controller-programming">https://cyberbotics.com/doc/guide/controller-programming</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/starting-webots-remotely-ssh">https://cyberbotics.com/doc/guide/starting-webots-remotely-ssh</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip">https://cyberbotics.com/doc/guide/interfacing-webots-to-third-party-software-with-tcp-ip</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/running-extern-robot-controllers">https://cyberbotics.com/doc/guide/running-extern-robot-controllers</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/web-interface">https://cyberbotics.com/doc/guide/web-interface</a></p>
-<p><a href="https://cyberbotics.com/animations/soccer_example/soccer.html">https://cyberbotics.com/animations/soccer_example/soccer.html</a></p>
-<p><a href="https://github.com/guisalmon/webots-remote-control">https://github.com/guisalmon/webots-remote-control</a></p>
-<p>Web:</p>
-<p><a href="https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b">https://www.cyberbotics.com/doc/guide/web-streaming?version=R2023b</a></p>
-<p><a href="https://github.com/cyberbotics/webots-server">https://github.com/cyberbotics/webots-server</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p>
-<p>Tutorial:</p>
-<p style="padding-left: 30px;">Repository: <a href="https://github.com/cyberbotics/webots">https://github.com/cyberbotics/webots</a> </p>
-<p style="padding-left: 30px;">User Guide: <a href="https://cyberbotics.com/doc/guide/index">https://cyberbotics.com/doc/guide/index</a> </p>
-<p style="padding-left: 30px;">Reference Manual: <a href="https://cyberbotics.com/doc/reference/index">https://cyberbotics.com/doc/reference/index</a> </p>
-<p style="padding-left: 30px;">Webots for Automobile: <a href="https://cyberbotics.com/doc/automobile/index">https://cyberbotics.com/doc/automobile/index</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/getting-started-with-webots">https://cyberbotics.com/doc/guide/getting-started-with-webots</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots">https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-2-modification-of-the-environment">https://cyberbotics.com/doc/guide/tutorial-2-modification-of-the-environment</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-3-appearance">https://cyberbotics.com/doc/guide/tutorial-3-appearance</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers">https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-5-compound-solid-and-physics-attributes">https://cyberbotics.com/doc/guide/tutorial-5-compound-solid-and-physics-attributes</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-6-4-wheels-robot">https://cyberbotics.com/doc/guide/tutorial-6-4-wheels-robot</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-7-your-first-proto">https://cyberbotics.com/doc/guide/tutorial-7-your-first-proto</a> </p>
-<p style="padding-left: 30px;"><a href="https://cyberbotics.com/doc/guide/tutorial-8-the-supervisor">https://cyberbotics.com/doc/guide/tutorial-8-the-supervisor</a> </p><br />ZMQ << <a href='ZMQ.html'>Previous</a> <a href='Webots-tut1.html'>Next</a> >> Webots-tut1</div>
+    <div id="tipue_search_content">Quadruped << <a href='Quadruped.html'>Previous</a> <a href='meArm.html'>Next</a> >> meArm<br /><h1>Rover</h1>
+<p><a href="./../downloads/40723221_2019_rover.7z">40723221_2019_rover.7z</a></p>
+<p><a href="./../downloads/40723221_2019_curiosity.7z">40723221_2019_curiosity.7z</a></p>
+<p>1996 <a href="./../downloads/Rocky_Mars_Rover_Prototyp.pdf">Rocky_Mars_Rover_Prototyp.pdf</a> (<a href="https://web.archive.org/web/20190228211544id_/http://pdfs.semanticscholar.org/a9c3/e7058d5374b3efc2112ba5570917c76a8db5.pdf">Source</a>)</p>
+<p><a href="https://science.nasa.gov/mars/">https://science.nasa.gov/mars/</a> </p>
+<p><a href="https://science.nasa.gov/mission/msl-curiosity/">https://science.nasa.gov/mission/msl-curiosity/</a> </p>
+<p><a href="https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Curiosity%20Rover/Curiosity%20Rover%203D%20Printed%20Model">Curiosity mars rover 3D model</a></p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0094114X1830171X">Design and terramechanics analysis of a Mars rover utilising active suspension</a></p>
+<p><a href="http://229.cycu.org/2004_Design_of_a_Mars_Rover_Suspension_Mechanism.pdf">2004_Design_of_a_Mars_Rover_Suspension_Mechanism.pdf</a></p>
+<p><img alt="" height="246" src="./../images/mars_rover_design.png" width="400"/></p><br />Quadruped << <a href='Quadruped.html'>Previous</a> <a href='meArm.html'>Next</a> >> meArm</div>
         
     <!-- footer -->
       <div class="container">
