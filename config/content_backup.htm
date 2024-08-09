@@ -29,7 +29,7 @@
 <p><iframe height="600" src="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei" width="800"></iframe></p><h2>Mechatronics</h2>
 <p>機電整合 (Mechatronics) 一詞將機械 (mecha) 和電子 (tronics) 結合在一起。意即在產品的設計與製造流程中，將機械工程、電子技術和智能計算機控制的相關技術加以結合。機電整合產品經常利用電子元件取代傳統的機械功能，從而<span style="background-color: #ffff99;">實現更大的靈活性、更簡單的重新設計與重新編程，並提升自動化數據收集與報告生成的能力</span>。</p>
 <p><a href="https://github.com/s40723210/cd2020/tree/master/downloads">https://github.com/s40723210/cd2020/tree/master/downloads</a> </p>
-<p></p>
+<p><a href="http://229.cycu.org/40723210_2020.7z">40723210_2020.7z</a></p>
 <p><a href="https://github.com/s40723221/cd2020/tree/master/downloads">https://github.com/s40723221/cd2020/tree/master/downloads</a> </p>
 <p><a href="https://s40723221.github.io/cd2020/downloads/MechaFutureAndChallenges.pdf">機電整合未來發展與挑戰</a> (<a href="https://s40723210.github.io/cd2020/downloads/MechaFutureAndChallenges%E7%BF%BB%E8%AD%AF.pdf">version 2</a>)</p>
 <p><a href="http://229.cycu.org/40723221_2020.7z">40723221_2020.7z</a></p><h1>Topics</h1>
@@ -598,7 +598,62 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><a href="/downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
 <div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
 <div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="/downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div>
-<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><h3>Open C</h3>
+<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><h3>NXOpen_Python</h3>
+<p>NX2312 必須配合 Python 3.10 使用, 這裡利用 gen_python_for_nx2312.py 如下, 建立 Python310 備用:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
+import os
+    
+dir_path = os.path.dirname(os.path.realpath(__file__))
+# basic files for Python installation
+# before 3.12.0
+py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
+# 3.12.1 no tools.msi
+#py_list = ["core", "dev", "exe", "lib", "tcltk"]
+# Python version 3.10.11 for NX2312
+version = "3.10.11"
+# Python msi download URL
+ftp = "https://www.python.org/ftp/python/" + version + "/amd64/"
+# location for Portable Python
+path = "y:\\tmp\\Python310"
+# create directory
+try:
+    os.mkdir(path)
+except:
+    # path exists
+    pass
+# get Python installation msi files and extract into target dir
+for i in py_list:
+    filename = i + ".msi"
+    url = ftp + filename
+    # download basic python msi file
+    urllib.request.urlretrieve(url, filename)
+    os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
+    # delete msi file
+    os.remove(dir_path + "\\" + i + ".msi")
+    os.remove(path + "\\" + i + ".msi")</pre>
+<p>其中可攜程式系統啟動批次檔, 必須將 NX\NXbin\python 納入 PYTHONPATH 設定, 因為 NXOptn 相關的動態連結程式庫 *.pyd 都放在這個目錄.</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">set PYTHONPATH=%Disk%:\Python310\DLLs;%Disk%:\Python310\Lib;%Disk%:\Python310\Lib\site-packages;%Disk%:\NX\NXBIN\python;</pre>
+<p>在可攜啟動批次檔案中的 path 指令搜尋路徑之後, 讓 NX2312 取得使用授權後啟動:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for NX2312, must after path setup 
+set SPLM_LICENSE_SERVER=29000@192.168.56.3
+set UGII_LANG=english
+set UGS_LICENSE_BUNDLE=ACD11,ACD10
+set UGII_BASE_DIR=%Disk%:\NX\
+set UGII_TMP_DIR=%Disk%:\NX\temp
+set UGII_LIB_PATH=%Disk%:\NX\NXBIN\python
+set ugii=%Disk%:\NX\ugii;%Disk%:\NX\nxbin;
+path = %ugii%;%path%
+Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData\Local\Siemens\NX2312 /E /H /C /I /Y</pre>
+<p>AppData\Local\Siemens\NX2312\NX_user.dpv 內容設定:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;?xml-stylesheet type="text/xsl" href="NX_user.xsl"?&gt;
+&lt;PrefValues defaultLockStatus="unlocked"&gt;
+&lt;Pref Application="Gateway" Category="General" Tab="Data Privacy" displayValue="No" modified="2024-08-09T08:48:09" name="NX_ProductExcellenceProgram" title="Product Excellence Program - Participate" value="false"/&gt;
+&lt;Pref Application="Gateway" Category="General" Tab="Miscellaneous" displayValue="No" modified="2024-08-09T08:25:55" name="NX_ProductExcellenceProgramMessage" title="Product Excellence Program - Display Initial Startup Message" value="false"/&gt;
+&lt;Pref Application="Gateway" Category="User Interface" Tab="Journal" displayValue="Python" modified="2024-08-09T08:26:17" name="UG_journalLanguage" title="Journal Language" value="4"/&gt;
+&lt;/PrefValues&gt;</pre>
+<p></p><h3>Open C</h3>
 <p>The following table lists the Open C functions that have been wrapped for use in NXOpen.NET. The list provides the Open C function name and the corresponding C# method.</p>
 <table border="1" cellpadding="6" frame="box" width="438"><colgroup span="1"><col span="1" width="233*"/><col span="1" width="339*"/></colgroup>
 <thead>
@@ -817,7 +872,9 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <pre class="code-text">UF_ASSEM_free_deform_warnings_data<br/>UF_ASSEM_free_prev16_aligns<br/>UF_CLONE_free_validation_options<br/>UF_CUT_LEVELS_free<br/>UF_DRF_free_comp_data<br/>UF_FAM_free_class_data<br/>UF_FBM_GEOM_free_classified_set_list<br/>UF_GDT_free<br/>UF_KF_free_list_object_contents<br/>UF_KF_free_rule_value<br/>UF_LIB_free_rset_map<br/>UF_MODL_free_bsurf_data<br/>UF_MODL_free_compare_data<br/>UF_MODL_free_compare_data_3<br/>UF_MODL_free_law<br/>UF_MODL_free_law_extension<br/>UF_MODL_free_refit_face_feature_data<br/>UF_MODL_free_rough_offset_data<br/>UF_MODL_free_silhouette_flange<br/>UF_MODL_free_snip_surface_feature_data<br/>UF_MODL_free_string_list<br/>UF_MODL_shape_pattern_free_client_data<br/>UF_MODL_SWEEP_free_trim_data<br/>UF_MODL_udf_free_exp_data<br/>UF_NXSM_free_closed_corner_data<br/>UF_NXSM_free_flange_data<br/>UF_NXSM_free_flange_sketch_data<br/>UF_NXSM_free_rebend_data<br/>UF_NXSM_free_unbend_data<br/>UF_PART_free_load_status<br/>UF_PD_free_business_modifier_data<br/>UF_PD_free_product_attribute_data<br/>UF_PD_free_product_attribute_data_2<br/>UF_PD_free_product_attribute_value_data<br/>UF_ROUTE_free_places<br/>UF_SF_free_defeature_parms<br/>UF_SF_free_idealize_parms<br/>UF_SF_free_idealize_region<br/>UF_SF_free_midsrf_user_parms<br/>UF_SF_LEGEND_free_attr<br/>UF_SUBDIV_free<br/>UF_WAVE_free_linked_feature_info<br/>UF_WEIGHT_free_exceptions</pre>
 </div>
 </div>
-<h3>MSYS2</h3>
+</div>
+</div>
+</div><h3>MSYS2</h3>
 <p><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (183MB)</p>
 <h2>Solvespace</h2>
 <p>Solvespace 採 C++ 編寫, 原始碼位於 <a href="https://github.com/solvespace/solvespace">https://github.com/solvespace/solvespace</a>, 以下將採用可攜程式系統 python_2025 中的 msys2 (<a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a>) 以及 cmake 3.20.1 進行編譯 (若採用目前最新版的 cmake 3.30.2, 必須對 Solvespace v3.1 中的 CMakeLists.txt 進行修改).</p>
@@ -825,6 +882,8 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <p><a href="https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-windows-x86_64.zip">https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-windows-x86_64.zip</a> </p>
 <p><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> 則必須安裝 mingw32-make:</p>
 <p>pacman -S mingw-w64-ucrt-x86_64-make</p>
+<p>最新版的 python_2025 可攜程式環境架構位於: <a href="https://github.com/mdecycu/pyhton_2025">https://github.com/mdecycu/pyhton_2025</a>, 各目錄套件可自行根據 <a href="https://mde.tw/cad2024/content/Python.html">https://mde.tw/cad2024/content/Python.html</a> 中的說明下載, 或者自行配置.</p>
+<p>機械設計工程師採用可攜程式套件的原因, 是希望能彈性配置 Python 版本, 因為大多數主流 CAD/E/M 套件都非開源軟體, 各版本的 API 相關的動態連結程式庫, 都採用特定的 Python 版本程式碼編譯而成. 例如: Siemens NX12 採用 Python 3.6.5, NX1872 採用 Python 3.7.1, NX1980 採用 Python 3.8.8, NX2312 使用 Python 3.10.12. 假如採用可攜程式套件, 除了可以如虛擬 Python 環境一樣, 將能配合 NXOpen 程式開發, 將所需的 Python 版本與相關模組放在同一目錄, 且能夠在不同的 64 位元 Windows 操作系統中執行.</p>
 <p>接著取得 Solvespace v3.1 的原始碼, 可以直接從 <a href="https://github.com/solvespace/solvespace/releases">https://github.com/solvespace/solvespace/releases</a> 取得, 或以 以 git clone --recurse-submodules <a href="https://github.com/solvespace/solvespace.git">https://github.com/solvespace/solvespace.git</a> 之後,</p>
 <p>cd solvespace</p>
 <p>git checkout v3.1</p>
@@ -1313,13 +1372,14 @@ if __name__ == "__main__":
 <p>選擇 floorTileSize 欄位，將其值設置為 0.25 0.25，而不是 0.5 0.5。輸入後應該會立即在3D視圖中看到效果。<br/>選擇wallHeight 欄位，將其值更改為 0.05，而不是 0.1。競技場的牆壁應該會變得更矮。<br/>這些操作允許你即時修改矩形競技場的屬性，並在 3D 視圖中看到相應的變化。</p>
 <p></p>
 <p></p><h1>Python</h1>
-<p><a href="https://github.com/mdecycu/python_2025">https://github.com/mdecycu/python_2025</a></p>
+<p>以 Python 為主的可攜程式環境架構:</p>
+<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/python_2025">https://github.com/mdecycu/python_2025</a></p>
 <p>2024 Fall 開始採用的 python_2025.7z (5.2GB), 包含下列模組:</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/python_2025_batch_files.7z">python_2025_batch_files.7z</a> (2.64KB)</p>
 <p style="padding-left: 30px;">nx2312_portable_cad_cae.7z (4.3GB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z">CoppeliaSim_Edu_4.7.0_rev4_for_2024Fall.7z</a> (190MB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/homes_and_tmp.7z">homes_and_tmp.7z</a> (84MB)</p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (183MB)</p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (188MB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/git_putty_python.7z">git_putty_python.7z</a> (559MB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/sharex_wscite_wink3.7z">sharex_wscite_wink3.7z</a> (44.2MB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/solvespace_and_utilities.7z">solvespace_and_utilities.7z</a> (7.28MB)</p>
@@ -1375,7 +1435,39 @@ pdf_write_object.write(final_file_object)
 final_file_object.close()
  
 print("已經將 " + filenameString+ " 合併為: "+ newFileName + ".pdf")</pre>
-<p></p><h1>Brython</h1>
+<p>gen_python_3.10.11.py for NX2312</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
+import os
+   
+dir_path = os.path.dirname(os.path.realpath(__file__))
+# basic files for Python installation
+# before 3.12.0
+py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
+# 3.12.1 no tools.msi
+#py_list = ["core", "dev", "exe", "lib", "tcltk"]
+# Python version 3.10.11 for NX2312
+version = "3.10.11"
+# Python msi download URL
+ftp = "https://www.python.org/ftp/python/" + version + "/amd64/"
+# location for Portable Python
+path = "y:\\tmp\\Python310"
+# create directory
+try:
+    os.mkdir(path)
+except:
+    # path exists
+    pass
+# get Python installation msi files and extract into target dir
+for i in py_list:
+    filename = i + ".msi"
+    url = ftp + filename
+    # download basic python msi file
+    urllib.request.urlretrieve(url, filename)
+    os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
+    # delete msi file
+    os.remove(dir_path + "\\" + i + ".msi")
+    os.remove(path + "\\" + i + ".msi")
+</pre><h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
@@ -1624,6 +1716,3 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
 </p>
-</div>
-</div>
-</div>
