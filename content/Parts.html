@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -142,28 +142,12 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Webots << <a href='Webots.html'>Previous</a> <a href='Python.html'>Next</a> >> Python<br /><h1>Webots-tut1</h1>
-<p><a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots">https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots</a> </p>
-<p><a href="https://www.cs.columbia.edu/~feiner/courses/csw4160/vrml97/vrml97.html">https://www.cs.columbia.edu/~feiner/courses/csw4160/vrml97/vrml97.html</a> </p>
-<p><a href="http://229.cycu.org/vrml97.pdf">vrml97.pdf</a></p>
-<p><a href="http://229.cycu.org/vrml97.zip">vrml97.zip</a></p>
-<p>導引1：在Webots中進行第一個模擬（30分鐘）</p>
-<p>這個教程的目標是讓使用者熟悉用戶界面和 Webots 的基本概念。所創建的第一個模擬，包含一個簡單的環境：一個帶有地板和牆壁的場景，幾個方塊，一個 e-puck 機器人和一個控制程式，並利用控制程式讓機器人移動。</p>
-<p>啟動 Webots - 雙點擊 start_webots.bat 就可以開啟可攜環境中的 Webots.</p>
-<p>建立新的世界 (World)</p>
-<p>一個世界 (World) 是一個包含物體位置、外觀、彼此如何互動、天空顏色，以及重力、摩擦、物體質量等定義訊息的文件。它定義了模擬的初始狀態。不同的物體被稱為節點 (Nodes)，並以層次結構的方式組織在場景樹中。因此，一個節點可以包含子節點。世界文件以 .wbt 副檔名存儲。這個文件格式源自 VRML97 語言，可讓人直接閱讀。世界文件必須直接存儲在名為 worlds 的目錄中。</p>
-<p>實作 #2：點擊 3D 視圖中的暫停按鈕，暫停當前的模擬。如果主工具欄上的虛擬時間計數器停止運作，則模擬即暫停。</p>
-<p>從「文件 / 新建 / 新建項目目錄...」菜單項目創建一個新項目，並按照以下指示操作：</p>
-<p>將項目目錄命名為 my_first_simulation，而不是建議的 my_project。<br/>將世界文件命名為 my_first_simulation.wbt，而不是建議的 empty.wbt。<br/>點擊所有核取方塊，包括默認未選中的「添加一個矩形場景」。</p>
-<p>Webots 顯示了它剛建立的目錄和文件列表，這對應於 Webots 項目的標準文件層次結構。點擊「完成」按鈕來關閉這個窗口。</p>
-<p>恭喜你，你剛創建了你的第一個 Webots 世界！3D 視圖應該顯示一個帶有方格地板的方形競技場。你可以使用鼠標在 3D 視圖中移動視點：左鍵、右鍵和滾輪。</p>
-<p>存儲在世界文件中的 Webots 節點以一種稱為場景樹的樹狀結構進行組織。場景樹可以在主窗口的兩個子窗口中查看：中間的 3D 視圖是場景樹的 3D 表示，左側的場景樹視圖是場景樹的層次表示。場景樹視圖是節點和字段可以修改的地方。它目前應列出以下節點：</p>
-<p>WorldInfo：包含模擬的全局參數。<br/>Viewpoint：定義主視點相機的參數。<br/>TexturedBackground：定義場景的背景（如果稍微旋轉視點，你應該可以看到遠處的山脈）。<br/>TexturedBackgroundLight：定義與上述背景相關的光源。<br/>RectangleArena：定義這個場景中目前看到的唯一對象。</p>
-<p>每個節點都有一些可自定義的屬性，稱為欄位 (Fields)。讓我們修改這些欄位內容來改變矩形場景：</p>
-<p>實作 #3：在場景樹中雙擊 RectangleArena 節點。這應該會打開節點並顯示其字段。</p>
-<p>選擇 floorTileSize 欄位，將其值設置為 0.25 0.25，而不是 0.5 0.5。輸入後應該會立即在3D視圖中看到效果。<br/>選擇wallHeight 欄位，將其值更改為 0.05，而不是 0.1。競技場的牆壁應該會變得更矮。<br/>這些操作允許你即時修改矩形競技場的屬性，並在 3D 視圖中看到相應的變化。</p>
+    <div id="tipue_search_content">Topics << <a href='Topics.html'>Previous</a> <a href='Quadruped.html'>Next</a> >> Quadruped<br /><h1>Parts</h1>
+<p><img alt="" height="363" src="./../images/cad2024_part_ex1.png" width="400"/></p>
+<p><img alt="" height="374" src="./../images/cad2024_part_ex1_solvespace.png" width="400"/></p>
+<p><a href="./../downloads/cad2024_part_ex1_solvespace.7z">cad2024_part_ex1_solvespace.7z</a></p>
 <p></p>
-<p></p><br />Webots << <a href='Webots.html'>Previous</a> <a href='Python.html'>Next</a> >> Python</div>
+<p></p><br />Topics << <a href='Topics.html'>Previous</a> <a href='Quadruped.html'>Next</a> >> Quadruped</div>
         
     <!-- footer -->
       <div class="container">
