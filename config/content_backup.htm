@@ -62,6 +62,23 @@
 <p>Sketch In Workplane (2)</p>
 <p>Toggle construction (G)</p>
 <p>Sketch in new workplane (Shift + W) - one point and specific orientation, origin and two lines</p>
+<p>NX 零件繪圖:</p>
+<p>Shift + mouse middle button pressed and move = Pane</p>
+<p>Ctrl + f key = Fit</p>
+<p>Sketch</p>
+<p style="padding-left: 30px;">Rectangle From Center</p>
+<p style="padding-left: 30px;">Fillet</p>
+<p style="padding-left: 30px;">Circle</p>
+<p style="padding-left: 30px;">Line</p>
+<p style="padding-left: 30px;">Arc</p>
+<p style="padding-left: 30px;">Center mouse click = Finish</p>
+<p style="padding-left: 30px;">Include - Includes and projects external objects into the sketch</p>
+<p style="padding-left: 30px;">Dimension - Display as PMI</p>
+<p>Datum Plane</p>
+<p style="padding-left: 30px;">Two Lines</p>
+<p>Extrude</p>
+<p style="padding-left: 30px;">Width - Value, Symmetric Value</p>
+<p><img alt="" height="339" src="/images/cad2024_part_ex1_nx2312.png" width="400"/></p>
 <p></p>
 <p></p>
 <p></p><h2>Quadruped</h2>
@@ -142,11 +159,11 @@ utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 536
 <p>利用 replit.com 維護課程網站的步驟:</p>
 <ol>
 <li>以 wcms At mde 登入, 此帳號與 mdecycu At github 帳號綁定</li>
-<li>進入 cad2024 repl 後, tabs 包含三個 Shell 以及一個 Networking</li>
-<li>在其中一個 Shell 執行 python main.py 可以啟動網站編輯, 使用 external port 80 執行</li>
-<li>若要檢視 replit 上 cad2024 的靜態網站內容, 則使用另一個 Shell 執行 python main2.py, 使用 external port 3001 執行</li>
+<li>進入 cad2024 repl 後, tabs 包含三個 Shell 以及一個 Networking tab</li>
+<li>在其中一個 Shell 執行 <span style="background-color: #ffff99;">python main.py</span> 可以啟動網站編輯, 使用 external port 80 執行</li>
+<li>若要檢視 replit 上 cad2024 的靜態網站內容, 則使用另一個 Shell 執行 <span style="background-color: #ffff99;">python main2.py</span>, 使用 external port 3001 執行</li>
 <li>動態網頁內容編輯告一段落後, 利用 Convert 功能將動態內容轉為靜態網站資料</li>
-<li>最後利用第三個 Shell, 以 ./acp "輸入提交註記說明字串" 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到 mdecycu 對應的 cad2024 倉儲中</li>
+<li>最後利用第三個 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到 mdecycu 對應的 cad2024 倉儲中</li>
 </ol>
 <p>以上 replit 所使用的 .replit:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">modules = ["python-3.10:v18-20230807-322e88b"]
