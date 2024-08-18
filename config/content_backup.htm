@@ -61,7 +61,7 @@
 <p>Sketch line segment (S)</p>
 <p>Sketch In Workplane (2)</p>
 <p>Toggle construction (G)</p>
-<p>Sketch in new workplane (Shift + W)</p>
+<p>Sketch in new workplane (Shift + W) - one point and specific orientation, origin and two lines</p>
 <p></p>
 <p></p>
 <p></p><h2>Quadruped</h2>
@@ -138,7 +138,85 @@ utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 536
 <p dir="auto">for IPv6 only Ubuntu:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.com<br/>ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p<br/><br/>for Replit:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.co<br/>#since Replit works for IPv4, therefore no ProxyCommand setting needed<br/>#ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</p>
 <h4>Codespaces</h4>
 <p><a href="https://github.com/features/codespaces">https://github.com/features/codespaces</a> </p>
-<h1>CAD</h1>
+<h2>Replit</h2>
+<p>利用 replit.com 維護課程網站的步驟:</p>
+<ol>
+<li>以 wcms At mde 登入, 此帳號與 mdecycu At github 帳號綁定</li>
+<li>進入 cad2024 repl 後, tabs 包含三個 Shell 以及一個 Networking</li>
+<li>在其中一個 Shell 執行 python main.py 可以啟動網站編輯, 使用 external port 80 執行</li>
+<li>若要檢視 replit 上 cad2024 的靜態網站內容, 則使用另一個 Shell 執行 python main2.py, 使用 external port 3001 執行</li>
+<li>動態網頁內容編輯告一段落後, 利用 Convert 功能將動態內容轉為靜態網站資料</li>
+<li>最後利用第三個 Shell, 以 ./acp "輸入提交註記說明字串" 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到 mdecycu 對應的 cad2024 倉儲中</li>
+</ol>
+<p>以上 replit 所使用的 .replit:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">modules = ["python-3.10:v18-20230807-322e88b"]
+
+hidden = [".pythonlibs"]
+run = "python3 main.py"
+entrypoint = "main.py"
+
+[nix]
+channel = "stable-23_05"
+
+[unitTest]
+language = "python3"
+
+[deployment]
+run = ["sh", "-c", "python3 main.py"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 80
+
+[[ports]]
+localPort = 443
+
+[[ports]]
+localPort = 8080
+externalPort = 80
+
+[[ports]]
+localPort = 8081
+externalPort = 3001
+</pre>
+<p>main.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from cmsimde import flaskapp
+from gevent.pywsgi import WSGIServer
+
+#flaskapp.app.run(host="0.0.0.0", debug=True)
+http_server = WSGIServer(('0.0.0.0', 8080), flaskapp.app)
+http_server.serve_forever()</pre>
+<p>main2.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Run static server
+import static
+from gevent.pywsgi import WSGIServer
+
+http_server = WSGIServer(('0.0.0.0', 8081), static.app)
+http_server.serve_forever()</pre>
+<p>以及與 main2.py 結合使用的 static.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, send_from_directory
+
+app = Flask(__name__)
+
+# Route to serve the index.html file
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+# Route to serve static files from the ./cmsimde/static directory
+@app.route('/cmsimde/static/&lt;path:filename&gt;')
+def serve_static(filename):
+    return send_from_directory('cmsimde/static', filename)
+
+# Route to serve other HTML files from the root directory
+@app.route('/&lt;path:filename&gt;')
+def serve_html(filename):
+    return send_from_directory('.', filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</pre>
+<p></p><h1>CAD</h1>
 <p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
 <p>Computer Aided Design:</p>
 <p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Polygon_mesh">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>
@@ -328,8 +406,7 @@ show([read_mesh])</pre>
 <p>7. 雲端計算和存儲:</p>
 <p style="padding-left: 30px;">- 無需安裝軟體<br/> - 所有設計都存儲在雲端<br/> - 可隨時隨地訪問</p>
 <p>8. 開放API和集成:</p>
-<p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
-<h2>NX</h2>
+<p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p><h2>NX</h2>
 <p>cad2024 課程採用 NX23.12.4001.00003 版. 執行 NX2312 需要 Windows 操作系統帶有 Microsoft .Net Runtime 6.0.16.</p>
 <p>NX2312 client 連線到認證主機設定採 29000 時, client 端需要讓防火牆可以對 29000 與 29001 port 連外, 至於 server 端則需要讓防火牆可以對 29000 與 29001 port 連入.</p>
 <p>完整的 NX2312 總共有超過 11 萬個檔案, 總容量超過 33 GB.</p>
