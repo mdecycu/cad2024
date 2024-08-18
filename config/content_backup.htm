@@ -79,12 +79,23 @@
 <p>Extrude</p>
 <p style="padding-left: 30px;">Width - Value, Symmetric Value</p>
 <p><img alt="" height="339" src="/images/cad2024_part_ex1_nx2312.png" width="400"/></p>
-<p></p>
+<p><a href="/downloads/cad2024_part_ex1_nx2312.7z">cad2024_part_ex1_nx2312.7z</a></p>
 <p></p>
 <p></p><h2>Quadruped</h2>
 <p><a href="http://229.cycu.org/pj40922_downloads.7z">pj40922_downloads.7z</a></p>
 <p><img caption="false" height="269" src="/images/quadruped_robot_pj40922.png" width="400"/></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/STmAWqYgiw8?si=PcL_jl5fn5_5cxTW" title="YouTube video player" width="560"></iframe></p><h2>Rover</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/STmAWqYgiw8?si=PcL_jl5fn5_5cxTW" title="YouTube video player" width="560"></iframe></p>
+<p><img alt="" height="332" src="/images/quadruped_8dof_v2.png" width="400"/></p>
+<p>Actuator module:</p>
+<p><img alt="" height="274" src="/images/quadruped_8dof_v2_actuator_module_2.png" width="400"/></p>
+<p><img alt="" height="230" src="/images/quadruped_8dof_v2_actuator_module.png" width="400"/></p>
+<p><a href="http://229.cycu.org/quadruped_8dof_v2_sw_nx.7z">quadruped_8dof_v2_sw_nx.7z</a> (built with Solidworks and open under NX2312) (<a href="https://github.com/open-dynamic-robot-initiative/open_robot_actuator_hardware/tree/master/mechanics/quadruped_robot_8dof_v2">File source</a>, <a href="https://open-dynamic-robot-initiative.github.io/">site</a>)</p>
+<p><a href="https://arxiv.org/pdf/1910.00093">2020 An Open Torque-Controlled Modular Robot Architecture for Legged Locomotion Research</a> (<a href="https://ieeexplore.ieee.org/abstract/document/9015985">Journal</a>)</p>
+<p><a href="https://arxiv.org/pdf/2406.01152">2024 Learning-based legged locomotion state of the art and future perspectives</a></p>
+<p><a href="https://link.springer.com/chapter/10.1007/978-3-031-47272-5_15">2024 Planar Motion Control of a Quadruped Robot</a></p>
+<p><a href="https://github.com/mdecycu/quadruped">https://github.com/mdecycu/quadruped</a> </p>
+<p><a href="https://github.com/mdecycu/Eklavya-QuadrupedMotionSimulation">https://github.com/mdecycu/Eklavya-QuadrupedMotionSimulation</a> </p>
+<p></p><h2>Rover</h2>
 <p><a href="https://github.com/Roger-random/Sawppy_Rover">https://github.com/Roger-random/Sawppy_Rover</a> (<a href="https://cad.onshape.com/documents/0c757e42f113318abade702c/w/83a3818a1aef5d4234265d9c/e/0284daee1c8866acdbcf0b9d">in Onshape</a>)</p>
 <p><img caption="false" height="221" src="/images/sawppy_the_rover_in_onshape.png" width="300"/></p>
 <p><a href="/downloads/40723221_2019_rover.7z">40723221_2019_rover.7z</a></p>
@@ -1013,6 +1024,8 @@ Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData
 <p>ZMQ Remote API Python Examples: <a href="https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api">https://github.com/benzr/cdfrob2024-coppeliasim-zeromq-remote-api</a> (修改為 4.7.0 相容範例: <a href="/downloads/cdfrob2024-coppeliasim-zeromq-remote-api.7z">cdfrob2024-coppeliasim-zeromq-remote-api.7z</a>)</p>
 <p>官方 4.7.0 Visualization Stream 瀏覽器前端允許使用者變動場景中的物件位置與方位, 若要移除此一功能, 必須修改 threejsFrontend.html 與 threejsFrontend.js. (下載已經修改後的<a href="/downloads/CoppeliaSim_Edu_4.7.0_rev4_threejsFrontend_for_2024Fall.7z">超文件與 js 檔案</a>)</p>
 <p>模擬場景範例: <a href="/downloads/tricycle_ttt.7z">tricycle_ttt.7z</a></p>
+<p><a href="https://www.youtube.com/playlist?list=PLjzuoBhdtaXOoqkJUqhYQletLLnJP8vjZ">CoppeliaSim Tutorial Videos</a></p>
+<p><a href="https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator">Get started with CoppeliaSim</a></p>
 <hr/>
 <p>CoppeliaSim 在 2024.06.14 推出 <a href="https://manual.coppeliarobotics.com/en/versionInfo.htm#coppeliaSim4.7.0">4.7.0 版</a>, 其中沿用至 4.6.0 版的 zmqRemoteApi 模組已經改名為 coppeliasim_zmqremoteapi_client, 部分模組的內容也進行些微更動, 導致先前所編寫的 ZMQ Rempte API Python 程式都必須因應修改, 否則無法執行.</p>
 <p>KMOLab 在 4.5.1 版為了讓 CoppeliaSim 的 ZMQ Remote API Python 遠端控制程式能夠在 IPv6 網路協定中執行, 修改了 Server 與 Client 模組中的 ZMQ 程式設定, 若要讓 4.7.0 版也能相容於 IPv6, 則必須修改下列程式碼:</p>
@@ -1208,8 +1221,7 @@ sim.stopSimulation()</pre>
 <p><a href="/downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="/downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
-<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
-<h3>ZMQ</h3>
+<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p><h3>ZMQ</h3>
 <p><a href="https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html">https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html</a></p>
 <p style="padding-left: 30px;">ØMQ is a neat messaging library that allows you to build your own messaging infrastructure. ØMQ does not provide out of box messaging system experience like ActiveMQ or RabbitMQ. It is higher level concept than sockets and provides as low level conceptual framework as possible to build messaging systems. It can help build framework that scales where services could be handled by different applications that does one job well.</p>
 <p style="padding-left: 30px;">Distributed applications are also easier to change compared to a monolithic applications. It’s expensive to try to define the behavior of each of many software applications that work together in a large network. It’s much cheaper, and more flexible, to define the interfaces between them: the APIs. Messaging is an API that can be stretched across a network.<br/><br/>ØMQ 是一個精簡的訊息傳遞程式庫 (messaging library)，允許使用者自行建立訊息傳遞基礎架構。ØMQ 不像 ActiveMQ 或 RabbitMQ 那樣提供開箱即用的訊息系統體驗。ØMQ 是比封包更高層級的概念，同時提供了儘可能低階的概念框架來構建訊息傳遞系統。它能夠幫助構建可擴展的框架 (framework)，使得這個框架中，不同的服務可以由專注於單一任務的獨立應用程式來處理。</p>
