@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -142,198 +142,205 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Replit << <a href='Replit.html'>Previous</a> <a href='NX.html'>Next</a> >> NX<br /><h1>CAD</h1>
-<p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
-<p>Computer Aided Design:</p>
-<p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Polygon_mesh">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>
-<p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Constructive_solid_geometry">https://en.wikipedia.org/wiki/Constructive_solid_geometry</a></p>
-<p style="padding-left: 30px;"><a href="https://fr.wikipedia.org/wiki/B-Rep">https://fr.wikipedia.org/wiki/B-Rep</a></p>
-<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-3-319-03862-9">2015 Space Modeling with SolidWorks and NX</a></p>
-<p style="padding-left: 30px;">Pymadcad (執行的電腦需要配置獨立顯卡):</p>
-<p style="padding-left: 60px;"><a href="https://madcad.netlify.app/">https://madcad.netlify.app/</a></p>
-<p style="padding-left: 60px;"><a href="https://pymadcad.readthedocs.io/en/latest/reference/index.html">https://pymadcad.readthedocs.io/en/latest/reference/index.html</a></p>
-<p style="padding-left: 60px;"><a href="https://github.com/jimy-byerley/pymadcad">https://github.com/jimy-byerley/pymadcad</a> (<a href="https://github.com/mdecycu/pymadcad">https://github.com/mdecycu/pymadcad</a>)</p>
-<p style="padding-left: 90px;">Modification: <a href="https://pymadcad.readthedocs.io/en/latest/reference/text.html">Render Text</a> using UTF-8 encoding</p>
-<p style="padding-left: 60px;"><a href="https://pymadcad.readthedocs.io/en/latest/algorithms/gearprofile.html">https://pymadcad.readthedocs.io/en/latest/algorithms/gearprofile.html</a></p>
-<p style="padding-left: 60px;"><a href="https://github.com/jimy-byerley/uimadcad">https://github.com/jimy-byerley/uimadcad</a> (<a href="https://github.com/mdecycu/uimadcad">https://github.com/mdecycu/uimadcad</a>)</p>
-<p style="padding-left: 60px;">.ply io.read and io.write - <a href="https://github.com/dranjan/python-plyfile">https://github.com/dranjan/python-plyfile</a> (<a href="https://github.com/mdecycu/python-plyfile">https://github.com/mdecycu/python-plyfile</a>)</p>
-<p style="padding-left: 60px;">.stl io.read and io.write - <a href="https://github.com/WoLpH/numpy-stl">https://github.com/WoLpH/numpy-stl</a> (<a href="https://github.com/mdecycu/numpy-stl">https://github.com/mdecycu/numpy-stl</a>)</p>
-<p style="padding-left: 60px;">.obj io.read and io.write - <a href="https://github.com/pywavefront/PyWavefront">https://github.com/pywavefront/PyWavefront</a> (<a href="https://github.com/mdecycu/PyWavefront">https://github.com/mdecycu/PyWavefront</a>)</p>
-<p style="padding-left: 60px;">系統先安裝 <a href="https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/">https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/</a></p>
-<p style="padding-left: 60px;">重新開機後, 啟動可攜程式系統, 利用 pip install pymadcad numpy numpy-stl plyfile pywavefront uimadcad</p>
-<p style="padding-left: 60px;">git clone <a href="https://github.com/mdecycu/pymadcad.git">https://github.com/mdecycu/pymadcad.git</a></p>
-<p style="padding-left: 60px;">利用可攜系統中的 SciTE 開啟 examples 目錄中的 axis-holder.py 修改 write() 如下後, 利用 Tools - Go 執行.</p>
-<p style="padding-left: 60px;">啟動 uimadcad: python -m uimadcad</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from madcad import *
+    <div id="tipue_search_content">NX2008 << <a href='NX2008.html'>Previous</a> <a href='NX2406.html'>Next</a> >> NX2406<br /><h1>NX2312</h1>
+<p><span>NX2312 NXOpen Python 動態連結程式庫採用 Python</span><span> 3.10.12 版本編譯</span><span>.</span></p>
+<p>NX2312 安裝後, 透過 Local_Machine - Software - Siemens 登錄檔案儲存下列資料, 其中包括認證主機的埠號與 IP:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Windows Registry Editor Version 5.00
 
-# define a base of vectors: origin and directions
-O = vec3(0,0,0)
-X = vec3(1,0,0)
-Y = vec3(0,1,0)
-Z = vec3(0,0,1)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens]
 
-# part parameters
-dint = 20
-dext = 100
-h = 30
-rvis = dext/3
-dvis = 3
-hvis = 3
+[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\Installed Products]
+"NX 2312"="[{\"ProductCode\":\"{BC25F476-AA6E-41ED-BBA3-F7CA7DE8EB92}\",\"ChannelType\":\"Main\"}]"
 
-
-# create the revolution profile, called 'cone'
-# --------------------------------------------
-
-B = vec3(dint/2, 0, 0)
-S = vec3(dint/2, 0, h)
-E = vec3(dext/2, 0, 0)
-Eh = E+2*Z
-Se = S+5*X
-# sketch a profile
-line = [
-	Segment(B,S),
-	ArcCentered(((Se+S)/2, Y), S, Se),
-	Segment(Se, Eh),
-	Segment(Eh, E),
-	Segment(E, B),
-	]
-# mutate the profile to fit some geometrical constraints
-solve([
-		Tangent(line[0], line[1], S),
-		Tangent(line[1], line[2], Se),
-		Radius(line[1], 5),
-		Distance(E, Eh, 10),
-		OnPlane((O,Y), [B,S,E,Eh,Se]),
-		],
-	fixed=[O,X,Y,Z,B,S,E],
-	precision=1e-12
-	)
-# generate the cone
-cone = revolution(
-			radians(360), 
-			(O,Z), 
-			web(line))
-# merge the start and end sections of the revolution (because its a 360° revolution)
-cone.mergeclose()
-# chamfer the lower edge: this is a chamfer over a circular edge
-chamfer(cone, cone.frontiers((0,4)), ('depth', 3))
-
-
-
-# create the slots for screws
-# ---------------------------
-# we remove a partially defined volume
-
-rplace = dvis*3+2
-C = vec3(rvis,0,hvis)
-A = vec3(rvis, rplace,hvis)
-B = vec3(rvis,-rplace,hvis)
-Ae = A+vec3(dext/2, 60,0)
-Be = B+vec3(dext/2,-60,0)
-# sketch its line
-line = [
-	Segment(Ae, A),
-	ArcCentered((C,Z), A, B),
-	Segment(B, Be),
-	]
-solve([
-		Tangent(line[0], line[1], A),
-		Tangent(line[2], line[1], B),
-		Radius(line[1], 3*dvis),
-		Distance(Ae, O, dext),
-		Distance(Be, O, dext),
-		Angle(Segment(Ae,A), Segment(Be,B), radians(60)),
-		OnPlane((C,Z), [A,B,Ae,Be]),
-		],
-	fixed=[O,X,Y,Z,C],
-	precision=1e-12,
-	)
-# extrude that base line and add a bottom face
-place = (	extrusion(vec3(0,0,h), line) 
-		+	flatsurface(wire(line).flip())
-		)
-# merge outlines of both generated faces
-place.mergeclose()
-# round the cutting edge to have smooth transition
-bevel(
-	place, 	
-	(   place.frontiers(0,3) 	# this is the frontier line between group 0 and group 3
-	  + place.frontiers(1,3) 	# this is the frontier line between group 1 and group 3
-	  + place.frontiers(2,3) ), 
-	('depth', 2))
-
-# make the screw holes:
-# a cylinder (not necessarily closed on its ends as we don't care of that surfaces)
-vis = extrusion(vec3(0,0,-2*h), web(Circle((C+vec3(0,0,h),-Z), dvis)))
-
-
-# assemble everything
-# -------------------
-# get 6 shapes with the slot and the hole for the scren
-big = repeat(
-		union(place, vis), 	# this union cuts the slot to add the hole
-		6, rotatearound(radians(60), (O,Z)))
-# cut the cone to put the slots and holes
-part = difference(cone, big)
-# this is the final touch for parts: optimize the buffers and check mesh validity
-part.finish()
-
-
-
-
-# if we want we can at any moment place some fancy notes
-notes = [
-	note_leading(part.group(2), text="conic surface"),
-	note_leading(part.group(11), vec3(-5,0,-10), text='ø'+str(dvis)),
-	]
-
-# write the part to a ply file
-#write(part, 'tests/axis-holder.ply')
-with open('tests/axis-holder.ply', 'w') as f:
-    f.write(str(part))
-
-# display what we want
-show([part, notes])
-</pre>
-<p>pymatcad solid read and write to stl, obj and ply:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from madcad import *
-s = screw(10, 20) # s is a `Solid`
-# Write
-io.write(s["part"], "screw.stl")
-# Read
-read_mesh = io.read("screw.stl")
-read_mesh.mergeclose()
-show([read_mesh])</pre>
-<h4>Solvespace</h4>
-<p>SolveSpace 所提供的主要功能:</p>
-<p>1. 2D 草圖設計:<br/> - 繪製基本 2D 形狀(線、矩形、圓等)<br/> - 添加約束(長度、距離、角度等)<br/> - 完全參數化設計</p>
-<p>2. 3D 實體建模:<br/> - 通過擠出、旋轉等方式從 2D 草圖生成 3D 實體<br/> - 支持 3D 實體的布林運算(並集、差集、交集)<br/> - 提供渲染和陰影視覺效果</p>
-<p>3. 參數化和約束求解:<br/> - 可添加各種幾何和代數約束<br/> - 支持尺寸驅動設計<br/> - 自動求解過約束或過約定系統</p>
-<p>4. 分析工具:<br/> - 質量屬性分析(體積、表面積、質心等)<br/> - 公差分析<br/> - 運動學模擬(僅限簡單機構)</p>
-<p>5. 輔助建模工具:<br/> - 添加工程參考幾何(平面、軸線等)<br/> - 支持配置不同的草圖視圖和投影視圖</p>
-<p>6. 開發者擴展性:<br/> - 開源代碼,支持定製化擴展<br/> - 可通過 C++、Python 等語言擴充功能</p>
-<p>7. 操作界面:<br/> - 傳統的圖形用戶界面<br/> - 支持鍵盤快捷鍵和命令行輸入</p>
-<p>8. 導入導出格式:<br/> - 支持導入/導出 STEP、STL、DXF 等 CAD 文件格式<br/> - 可嵌入網頁或其他應用程序</p>
-<h4>Onshape</h4>
-<p>Onshape 是一款基於雲端的3D CAD軟體,它提供了許多功能來協助設計和工程工作。Onshape 作為全功能的雲端CAD工具,提供了建模、協作、分析、數據管理等全面的功能,適合用於產品設計、工程項目等領域。</p>
-<p>以下是 Onshape 提供的主要功能:</p>
-<p>1. 全功能3D參數式建模工具:</p>
-<p style="padding-left: 30px;">- 實體和曲面建模<br/> - 參數化和約束幾何體<br/> - 自動生成製造製圖<br/> - 直覺式草圖工具</p>
-<p>2. 直接編輯功能:</p>
-<p style="padding-left: 30px;">- 不需要返回設計樹狀結構<br/> - 可以直接編輯和修改現有幾何體</p>
-<p>3. 版本控制和分支:</p>
-<p style="padding-left: 30px;">- 類似 Git 的版本控制系統<br/> - 可以創建分支和合併分支<br/> - 方便協作和跟踪修改歷史</p>
-<p>4. 數據管理和整合:</p>
-<p style="padding-left: 30px;">- 整合PDM/PLM系統<br/> - 材料庫和標準件庫<br/> - Onshape App Store 提供各種插件</p>
-<p>5. 實時協作和評註:</p>
-<p style="padding-left: 30px;">- 多人同時編輯同一個文件<br/> - 添加評註和討論設計細節</p>
-<p>6. 模擬和分析工具:</p>
-<p style="padding-left: 30px;">- 有限元分析(FEA)<br/> - 運動學模擬<br/> - 碰撞檢測</p>
-<p>7. 雲端計算和存儲:</p>
-<p style="padding-left: 30px;">- 無需安裝軟體<br/> - 所有設計都存儲在雲端<br/> - 可隨時隨地訪問</p>
-<p>8. 開放API和集成:</p>
-<p style="padding-left: 30px;">- 可與其他軟體系統集成<br/> - 提供API進行自動化和定製</p>
-<br />Replit << <a href='Replit.html'>Previous</a> <a href='NX.html'>Next</a> >> NX</div>
+[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\NX 2312]
+@="D:\\NX2312\\"
+"NXOPEN_EXTENSIONS"=""
+"NXOPEN_INSTALL"="YES"
+"INSTALLDIR"="D:\\NX2312\\"
+"LANGUAGE"="english"
+"LICENSESERVER"="29000@your_license_server"
+"UGII_BASE_DIR"="D:\\NX2312"</pre>
+<hr/>
+<p>透過 <a href="./../downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 各子目錄與總容量.</p>
+<p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
+CAPITALINTEGRATION: 與 Siemens Capital 軟件集成,用於電氣系統設計。
+CATIAV5: CATIA V5 文件的轉換器和介面。
+CMM_INSPECTION: 座標測量機(CMM)檢測功能。
+DESIGN_TOOLS: 各種輔助設計工具和功能。
+DIAGRAMCORE: 圖表和示意圖的核心功能。
+DIAGRAMMING: 用於創建各種工程和系統圖表。
+DRAFTING: 2D製圖和文檔創建工具。
+IGES: 初始圖形交換規範(IGES)文件的導入/導出。
+INSTALL: 安裝相關文件和腳本。
+LOCALIZATION: 多語言支持和本地化文件。
+MACH: 工具機加工和 CNC 編程功能。
+MANUFACTURING_PLANNING: 製造規劃和工藝設計工具。
+MECH: 機械設計和工程功能。
+MECHATRONICS: 機電整合設計工具。
+MOLDWIZARD: 模具設計和分析工具。
+MPA: 運動模擬和分析功能。
+NXASSEMBLY: 零件裝配和管理工具。
+NXBIN: NX 的核心檔案和執行檔。
+NXCAE_EXTRAS: 額外的電腦輔助工程(CAE)工具和功能。
+NXHUMAN: 人體工程學和人因工程設計工具。
+NXJOIN: 零件連接和焊接功能。
+NXNASTRAN: 有限元素分析(FEA)求解器。
+NXPARTS: 零件設計和模擬工具。
+NXPLOT: 繪圖和可視化工具。
+NXPROE: Pro/ENGINEER 文件的轉換器和介面。
+NXREPORTS: 報告生成和管理工具。
+NXSHIP: 船舶設計專用工具。
+POSTBUILD: 後處理和結果分析工具。
+PSTUDIO: 產品工作室, 用於產品設計和管理。
+PVTRANS: 產品視覺化轉換工具。
+REL_INFO: 發布資訊和檔案。
+SIMULATION: 各種模擬和分析工具。
+STAMPING_TOOLS: 沖壓工具設計功能。
+STEP203UG 和 STEP214UG: STEP 文件格式的導入/導出。
+TDP: Technical Data Package 創建和管理工具。
+Temp 和 temp_module: 臨時文件存儲目錄。
+TOOLING_BASE: 工具設計的基礎功能。
+TRANSLATORS: 各種文件格式轉換器。
+UGALLIANCE: 與其他 CAD 系統的集成工具。
+UGAUTOMOTIVE: 汽車行業專用設計工具。
+UGCATIA: CATIA文件的轉換器和介面。
+UGFLEXLM: FlexLM許可證管理系統。
+UGFPCD: 印刷電路板(PCB)設計工具。
+UGII: NX 用戶界面和基礎功能。
+UGIMW: 整合材料管理工作台。
+UGMANAGER: 文件和專案管理工具。
+UGOPEN: 開發模組和API。
+UGOPENPP: C++ 開發模組。
+UGPCBXCHANGE: PCB數據交換工具。
+UGPHOTO: 高級著色和視覺工具。
+UGSTRUCTURES: 結構分析和設計工具。
+UGSTUDIO: 產品設計工作室。
+UGTIPS: 用戶提示和幫助文件。
+UGTO2D: 3D到2D轉換工具。
+UGWEB: Web 整合和協同工具。
+UGWELD: 焊接設計和分析工具。
+UNFOLD: 鈑金展開工具。</pre>
+<h4>NX2312 完整版各目錄容量:</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">ACOUSTICS : 1.28 GB
+AM_SIMULATION : 67.7 MB
+AUTOMATED_TESTING : 3.19 MB
+AUTOMATIC_UPDATE : 541.0 B
+AUTOMATION_DESIGNER : 336.83 MB
+CAPITALINTEGRATION : 2.04 MB
+CATIAV5 : 901.76 KB
+CLOUDDM : 13.18 KB
+CMM_INSPECTION : 319.18 MB
+COMPOSITES : 54.18 KB
+DESIGNSPACEEXPLORER : 8.04 KB
+DESIGN_TOOLS : 135.75 MB
+DIAGRAMCORE : 5.81 MB
+DIAGRAMMING : 118.67 MB
+DOCUMENT : 666.71 KB
+DRAFTING : 115.44 MB
+DXFDWG : 197.04 MB
+FABRICMODELER : 5.03 KB
+GCTOOLKIT : 230.19 MB
+IGES : 5.47 MB
+IMMERSIVEEXPERIENCE : 1016.81 MB
+INSTALL : 55.39 KB
+LOCALIZATION : 94.3 KB
+MACH : 2.41 GB
+MANUFACTURING_PLANNING : 160.74 MB
+MBD : 67.83 MB
+MECH : 871.99 MB
+MECHATRONICS : 278.23 MB
+MENDIXREPORTING : 1.05 MB
+MOLDCOOLING : 12.37 KB
+MOLDWIZARD : 236.79 MB
+MPA : 1.48 MB
+NX2DEDIT : 1.25 MB
+NXAECDESIGN : 70.86 MB
+NXASSEMBLY : 91.5 MB
+NXBIN : 6.47 GB
+NXCABLEROUTER : 29.51 KB
+NXCAE_EXTRAS : 4.55 GB
+NXCOATINGS : 632.24 KB
+NXCREO : 5.71 MB
+NXHUMAN : 247.74 MB
+NXJOIN : 24.34 MB
+NXNASTRAN : 3.23 GB
+NXPARTS : 64.96 MB
+NXPLOT : 246.92 MB
+NXREPORTS : 3.66 MB
+NXSHIP : 339.88 MB
+NXSTRUCTUREDESIGN : 119.29 MB
+NXVR : 534.04 MB
+NX_VSA : 12.73 MB
+PARTMFG : 32.08 MB
+PLASTIC_DESIGNER : 6.49 MB
+POSTBUILD : 35.08 MB
+PSTUDIO : 35.5 MB
+PVTRANS : 106.92 KB
+REL_INFO : 36.92 KB
+ROUTING : 433.54 MB
+RULE : 306.25 KB
+SAFETY : 24.39 KB
+SIMULATION : 2.68 GB
+STAGE_MODEL : 4.06 MB
+STAMPING_TOOLS : 163.08 MB
+STEP203UG : 1.44 MB
+STEP214UG : 1.44 MB
+TDP : 219.56 MB
+TOOLING_BASE : 254.04 KB
+TRANSLATORS : 150.1 MB
+UGALLIANCE : 89.19 KB
+UGAUTOMOTIVE : 147.22 MB
+UGCATIA : 6.04 MB
+UGFLEXLM : 30.28 MB
+UGFPCD : 31.89 KB
+UGII : 550.7 MB
+UGIMW : 8.45 MB
+UGMANAGER : 127.12 MB
+UGOPEN : 530.1 MB
+UGOPENPP : 692.91 KB
+UGPCBX : 342.48 KB
+UGPCBXCHANGE : 102.96 MB
+UGPHOTO : 3.94 GB
+UGSTRUCTURES : 346.62 MB
+UGSTUDIO : 14.03 MB
+UGTIPS : 56.22 MB
+UGTO2D : 886.88 KB
+UGWEB : 9.08 MB
+UGWELD : 2.07 MB
+UNFOLD : 71.92 KB
+VDA : 26.31 KB
+VDV : 5.34 MB
+total: 33.32 GB</pre>
+<h4>NX2312 各功能對應目錄:</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Simcenter Nastran - NXNASTRAN
+Simcenter 3D Acoustics - ACOUSTICS
+Programming Tools - UGALIANCE UGOPEN UGOPENPP
+Model Based Part Manufacturing - PARTMFG DOCUMENT DIAGRAMMING
+Ship Building - NXSHIP NXCABLEROUTER
+Greater China Tools - GCTOOLKIT
+Automated Testing Studio - AUTOMATED_TESTING
+Automotive - UGAUTOMOTIVE DESIGN_TOOLS STAMPING_TOOLS TOOLING_BASE UGWELD VDV VDA
+Composites - COMPOSITES
+Diagramming - DIAGRAMMING
+Drafting - DRAFTING NX2DEDIT
+Fabric Modeler - FABRICMODELER
+Immersive - IMMERSIVEEXPERIENCE
+Inductrial Electrical Design - AUTOMATION_DESIGNER
+Manufacturing - MACH CMM_INSPECTION MBD NX_VSA POSTBUILD PSTUDIO STAGE_MODEL UNFOLD
+Manufacturing Planning - MANUFACTURING_PLANNING
+Mechatronics Concept Designer - MECHATRONICS
+NX Reporting - MENDIXREPORTING
+Optimization Tools - DESIGNSPACEEXPLORER
+Molded Part Design - PLASTIC_DESIGNER
+Routing - ROUTING CAPITALINTEGRATION
+Simcenter 3D - COMPOSITES MECH MOLDCOOLING NXCAE_EXTRAS SAFETY SIMULATION UGSTRUCTURE UGPCBEXCHANGE UGPCBX UGFPCD
+Studio Render - UGSTUDIO UGPHOTO
+Tooling Design &amp; NX Joint - DESIGN_TOOLS MOLDWIZARD NXAECDESIGN NXCOATINGS NXJOIN NXREPORTS NXSTRUCTUREDESIGN STAMPING_TOOLS TOOLING_BASE UGAUTOMOTIVE UGWELD
+Translators - CATIAV5 DXFDWG IGES NXCREO STEP203UG STEP214UG UGCATIA UGMW UGTO2D TRANSLATORS
+Validation - DESIGN_TOOLS NXREPORTS MPA
+NX VR - NXVR</pre>
+<hr/><br />NX2008 << <a href='NX2008.html'>Previous</a> <a href='NX2406.html'>Next</a> >> NX2406</div>
         
     <!-- footer -->
       <div class="container">
