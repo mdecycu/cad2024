@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -142,63 +142,39 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">NXOpen << <a href='NXOpen.html'>Previous</a> <a href='Open C.html'>Next</a> >> Open C<br /><h1>NXOpen_Python</h1>
-<p>NX2312 與 NX2406 必須配合 Python 3.10 使用 (以 Python 3.10.12 編譯 .pyd), 這裡利用 gen_python_for_nx2312.py 如下, 建立 Python310 備用 (由於 Python 3.10.12 可攜目錄無法使用下列程式建立, 因此退至 Python 3.10.11):</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
-import os
-    
-dir_path = os.path.dirname(os.path.realpath(__file__))
-# basic files for Python installation
-# before 3.12.0
-py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
-# 3.12.1 no tools.msi
-#py_list = ["core", "dev", "exe", "lib", "tcltk"]
-# Python version 3.10.11 for NX2312
-version = "3.10.11"
-# Python msi download URL
-ftp = "https://www.python.org/ftp/python/" + version + "/amd64/"
-# location for Portable Python
-path = "y:\\tmp\\Python310"
-# create directory
-try:
-    os.mkdir(path)
-except:
-    # path exists
-    pass
-# get Python installation msi files and extract into target dir
-for i in py_list:
-    filename = i + ".msi"
-    url = ftp + filename
-    # download basic python msi file
-    urllib.request.urlretrieve(url, filename)
-    os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
-    # delete msi file
-    os.remove(dir_path + "\\" + i + ".msi")
-    os.remove(path + "\\" + i + ".msi")</pre>
-<p>其中可攜程式系統啟動批次檔, 必須將 NX\NXbin\python 納入 PYTHONPATH 設定, 因為 NXOptn 相關的動態連結程式庫 *.pyd 都放在這個目錄.</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">set PYTHONPATH=%Disk%:\Python310\DLLs;%Disk%:\Python310\Lib;%Disk%:\Python310\Lib\site-packages;%Disk%:\NX\NXBIN\python;</pre>
-<p>在可攜啟動批次檔案中的 path 指令搜尋路徑之後, 讓 NX2312 取得使用授權後啟動:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for NX2312, must after path setup 
-set SPLM_LICENSE_SERVER=29000@192.168.56.3
-set UGII_LANG=english
-set UGS_LICENSE_BUNDLE=ACD11,ACD10
-set UGII_BASE_DIR=%Disk%:\NX\
-set UGII_TMP_DIR=%Disk%:\NX\temp
-set UGII_LIB_PATH=%Disk%:\NX\NXBIN\python
-set ugii=%Disk%:\NX\ugii;%Disk%:\NX\nxbin;
-path = %ugii%;%path%
-Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData\Local\Siemens\NX2312 /E /H /C /I /Y</pre>
-<p>AppData\Local\Siemens\NX2312\NX_user.dpv 內容設定:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-
-&lt;?xml-stylesheet type="text/xsl" href="NX_user.xsl"?&gt;
-&lt;PrefValues defaultLockStatus="unlocked"&gt;
-&lt;Pref Application="Gateway" Category="General" Tab="Data Privacy" displayValue="No" modified="2024-08-09T08:48:09" name="NX_ProductExcellenceProgram" title="Product Excellence Program - Participate" value="false"/&gt;
-&lt;Pref Application="Gateway" Category="General" Tab="Miscellaneous" displayValue="No" modified="2024-08-09T08:25:55" name="NX_ProductExcellenceProgramMessage" title="Product Excellence Program - Display Initial Startup Message" value="false"/&gt;
-&lt;Pref Application="Gateway" Category="User Interface" Tab="Journal" displayValue="Python" modified="2024-08-09T08:26:17" name="UG_journalLanguage" title="Journal Language" value="4"/&gt;
-&lt;/PrefValues&gt;</pre>
-<p><a href="./../downloads/nxopen_ex.7z">nxopen_ex.7z</a></p>
-<br />NXOpen << <a href='NXOpen.html'>Previous</a> <a href='Open C.html'>Next</a> >> Open C</div>
+    <div id="tipue_search_content">Topics << <a href='Topics.html'>Previous</a> <a href='References.html'>Next</a> >> References<br /><h1>Topic 1</h1>
+<p><span>主題: </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
+<p><span>主題摘要:</span></p>
+<p style="padding-left: 30px;">What are Github and Replit?</p>
+<p style="padding-left: 30px;"><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world">Hello World - GitHub Docs</a></p>
+<p style="padding-left: 30px;"><a href="https://replit.com/learn/100-days-of-python">100 Days of Code - The Complete Python Course - Replit</a></p>
+<p style="padding-left: 30px;">利用包含學號的字串作為帳號, 申請免費使用 Github.</p>
+<p style="padding-left: 30px;">利用電子郵箱作為帳號, 申請免費使用 Replit.</p>
+<p>Demo:</p>
+<p style="padding-left: 30px;">連線至 <a href="https://replit.com/@wcms/Jupyter-Notebook">https://replit.com/@wcms/Jupyter-Notebook</a> fork 一個 repl 在各自的 Replit 帳號下.</p>
+<p style="padding-left: 30px;">參考: <a href="https://docs.poppy-project.org/en/programming/notebooks">https://docs.poppy-project.org/en/programming/notebooks</a> </p>
+<p style="padding-left: 30px;">由於 Replit 限制免費帳號環境的 port 封包傳送資料, 因此必須自行建立 Jupyter Notebook 才能與 CoppeliaSim 中的系統進行互動.</p>
+<p style="padding-left: 30px;">在 stud.cycu (Linux) 伺服器安裝 Jupyter Notebook:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip3 install jupyter
+sudo apt install jupyter-notebook
+# 建立 ./jupyter/jupyter_notebook_config.py
+jupyter notebook --generate-config
+# 設法修改 .jupyter/jupyter_notebook_config.py 中的 c.ServerApp.ip 與 c.ServerApp.port
+# 若使用 IPv6, 設定 c.ServerApp.ip = '2001:288:6004:XX::1'
+# 以 jupyter notebook list 取得登入 token, 並據以改變登入密碼
+# 啟動 jupyter notebook
+jupyter-notebook
+</pre>
+<p style="padding-left: 30px;">在 Windows 安裝 Jupyter Notebook:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip install jupyter
+# 建立 home_ipv4/.jupyter/jupyter_notebook_config.py
+jupyter notebook --generate-config
+# 設法修改 .jupyter/jupyter_notebook_config.py 中的 c.ServerApp.ip 與 c.ServerApp.port
+# 若使用 IPv6, 設定 c.ServerApp.ip = '2001:288:6004:XX::1'
+# 以 jupyter server list 取得登入 token, 並據以改變登入密碼
+# 啟動 jupyter notebook
+jupyter notebook</pre>
+<p style="padding-left: 30px;">完成設定後, 多名系統設計者可以利用瀏覽器連接 Jupyter Notebook, 編寫 ZMQ Remote API Python 程式, 控制位於 CoppeliaSim server 上的機電系統, 並透過瀏覽器觀測控制結果.</p><br />Topics << <a href='Topics.html'>Previous</a> <a href='References.html'>Next</a> >> References</div>
         
     <!-- footer -->
       <div class="container">
