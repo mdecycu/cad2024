@@ -81,7 +81,16 @@ jupyter notebook --generate-config
 # 以 jupyter server list 取得登入 token, 並據以改變登入密碼
 # 啟動 jupyter notebook
 jupyter notebook</pre>
-<p style="padding-left: 30px;"></p><h1>References</h1>
+<p style="padding-left: 30px;">完成設定後, 多名系統設計者可以利用瀏覽器連接 Jupyter Notebook, 編寫 ZMQ Remote API Python 程式, 控制位於 CoppeliaSim server 上的機電系統, 並透過瀏覽器觀測控制結果.</p>
+<p>Jupyter server:</p>
+<p style="padding-left: 30px;">pip install jupyter-server</p>
+<p style="padding-left: 30px;">jupyter server --generate-config</p>
+<p style="padding-left: 30px;">pip install jupyter-collaboration</p>
+<p style="padding-left: 30px;">jupyter lab --collaborative</p>
+<p style="padding-left: 30px;">針對 cp2024.ipynb 進行 <a href="https://datasciencenotebook.org/jupyter-realtime-collaboration">realtime 協同編輯</a></p>
+<p style="padding-left: 30px;">http://[2001:288:6004:xx::1]:8888/lab/workspaces/auto-v/tree/RTC%3Acp2024.ipynb</p>
+<p style="padding-left: 30px;"><a href="https://deepnote.com/pricing">https://deepnote.com/pricing</a> </p>
+<p><a href="https://jupyterhub.readthedocs.io">https://jupyterhub.readthedocs.io</a> </p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
