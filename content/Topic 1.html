@@ -184,7 +184,18 @@ jupyter notebook</pre>
 <p style="padding-left: 30px;">http://[2001:288:6004:xx::1]:8888/lab/workspaces/auto-v/tree/RTC%3Acp2024.ipynb</p>
 <p style="padding-left: 30px;"><a href="https://colab.research.google.com/">https://colab.research.google.com/</a> </p>
 <p style="padding-left: 30px;"><a href="https://deepnote.com/pricing">https://deepnote.com/pricing</a> </p>
-<p><a href="https://jupyterhub.readthedocs.io">https://jupyterhub.readthedocs.io</a> </p><br />Topics << <a href='Topics.html'>Previous</a> <a href='References.html'>Next</a> >> References</div>
+<p><a href="https://jupyterhub.readthedocs.io">https://jupyterhub.readthedocs.io</a> </p>
+<p>Use <a href="https://www.stunnel.org/">Stunnel</a> to serve jupyter notebook or jupyter lab under https:</p>
+<p>Use openssl.exe to generate self-signed key.pem and cert.pem:</p>
+<p>openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem</p>
+<p>stunnel.conf:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">[https]
+accept = [2001:288:6004:XX::1]:443
+connect = [2001:288:6004:xx::1]:8888
+cert = cert.pem
+key = key.pem
+TIMEOUTclose = 0</pre>
+<p></p><br />Topics << <a href='Topics.html'>Previous</a> <a href='References.html'>Next</a> >> References</div>
         
     <!-- footer -->
       <div class="container">
