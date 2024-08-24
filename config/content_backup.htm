@@ -91,7 +91,20 @@ jupyter notebook</pre>
 <p style="padding-left: 30px;">http://[2001:288:6004:xx::1]:8888/lab/workspaces/auto-v/tree/RTC%3Acp2024.ipynb</p>
 <p style="padding-left: 30px;"><a href="https://colab.research.google.com/">https://colab.research.google.com/</a> </p>
 <p style="padding-left: 30px;"><a href="https://deepnote.com/pricing">https://deepnote.com/pricing</a> </p>
-<p><a href="https://jupyterhub.readthedocs.io">https://jupyterhub.readthedocs.io</a> </p><h1>References</h1>
+<p><a href="https://jupyterhub.readthedocs.io">https://jupyterhub.readthedocs.io</a> </p>
+<p>Use <a href="https://www.stunnel.org/">Stunnel</a> to serve jupyter notebook or jupyter lab under https:</p>
+<p>Use openssl.exe to generate self-signed key.pem and cert.pem:</p>
+<p>openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem</p>
+<p>stunnel.conf:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">[https]
+accept = [2001:288:6004:XX::1]:443
+connect = [2001:288:6004:xx::1]:8888
+cert = cert.pem
+key = key.pem
+TIMEOUTclose = 0</pre>
+<p>利用系統管理員身分執行批次檔案指令, 設定防火牆允許 TCP 封包對 CoppeliaSim zmq server 連線 (in 權限開啟 23000-23050):</p>
+<p><a href="/downloads/allow_23000-23050_tcp_in_firewall_setting.7z">allow_23000-23050_tcp_in_firewall_setting.7z</a></p>
+<p></p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
