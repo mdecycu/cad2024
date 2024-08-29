@@ -104,6 +104,11 @@ key = key.pem
 TIMEOUTclose = 0</pre>
 <p>利用系統管理員身分執行批次檔案指令, 設定防火牆允許 TCP 封包對 CoppeliaSim zmq server 連線 (in 權限開啟 23000-23050):</p>
 <p><a href="/downloads/allow_23000-23050_tcp_in_firewall_setting.7z">allow_23000-23050_tcp_in_firewall_setting.7z</a></p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">echo off
+REM netsh advfirewall firewall add rule name="RULENAME" dir=[in/out] action=[allow/block/bypass] protocol=[tcp/udp] localip=[any] remoteip=[any]
+REM allow tcp in for port 23000-23050
+netsh advfirewall firewall add rule name="allow_23000-23050" dir=in action=allow protocol=TCP localport=23000-23050
+netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allow protocol=TCP localport=23000-23050</pre>
 <p></p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
