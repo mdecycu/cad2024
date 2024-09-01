@@ -8,7 +8,9 @@
 <p style="padding-left: 30px;"><a href="https://github.com/Asabeneh/30-Days-Of-Python">https://github.com/Asabeneh/30-Days-Of-Python</a></p>
 <p style="padding-left: 60px;"><a href="https://www.youtube.com/watch?v=LbPawGKOJoE&amp;list=PLbvhRHYrmshRSX00KYKtG2czimpEjoYO5">Python for Begineers</a> (Video PlayList)</p>
 <p style="padding-left: 30px;"><a href="https://pythontutor.com/"></a><a href="https://link.springer.com/book/10.1007/978-3-031-57148-0">Programming with Python for Engineers</a></p>
+<p style="padding-left: 30px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a></p>
 <p>CAD 套件: <a href="https://solvespace.com/">Solvespace</a> and <a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a></p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/NX2312_CAD.7z">下載</a> NX2312 可攜 CAD 壓縮檔案 (1.85 GB, 解開後約 9 GB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/NX2406_CAD.7z">下載</a><span> NX2406 可攜 CAD 壓縮檔案 (1.76 GB, 解開後約 9 GB)</span></p>
 <p>機電模擬: <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a></p>
 <p>課程評分:</p>
@@ -226,7 +228,6 @@ utheta: 2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*
 utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}]</pre>
 <p></p>
 <h1>IDE</h1>
-<p><a href="http://229.cycu.org/Python_for_NX1872.7z">Python_for_NX1872.7z</a> (old)</p>
 <p>On <a href="https://github.com/features/codespaces">Codespaces</a>:</p>
 <p dir="auto">chmod u+x cms init_replit</p>
 <p dir="auto">python3 main.py</p>
@@ -237,44 +238,13 @@ utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 536
 <p dir="auto">for IPv6 only Ubuntu:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.com<br/>ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p<br/><br/>for Replit:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.co<br/>#since Replit works for IPv4, therefore no ProxyCommand setting needed<br/>#ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</p><h2>Codespaces</h2>
 <p>利用 Codespaces 維護課程網站的步驟:</p>
 <ol>
-<li>以 wcms At mde 登入, 此帳號與 mdecycu At github 帳號綁定</li>
-<li>進入 cad2024 repl 後, tabs 包含三個 Shell 以及一個 Networking tab</li>
-<li>在其中一個 Shell 執行 <span style="background-color: #ffff99;">python main.py</span> 可以啟動網站編輯, 使用 external port 80 執行</li>
-<li>若要檢視 replit 上 cad2024 的靜態網站內容, 則使用另一個 Shell 執行 <span style="background-color: #ffff99;">python main2.py</span>, 使用 external port 3001 執行</li>
+<li>chmod u+x init_replit</li>
+<li>./init_replit</li>
+<li>python3 main.py</li>
+<li>以瀏覽器開啟動態網站進行網站內容編輯</li>
 <li>動態網頁內容編輯告一段落後, 利用 Convert 功能將動態內容轉為靜態網站資料</li>
-<li>最後利用第三個 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到 mdecycu 對應的 cad2024 倉儲中</li>
+<li>最後利用 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到對應的倉儲中</li>
 </ol>
-<p>以上 replit 所使用的 .replit:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">modules = ["python-3.10:v18-20230807-322e88b"]
-
-hidden = [".pythonlibs"]
-run = "python3 main.py"
-entrypoint = "main.py"
-
-[nix]
-channel = "stable-23_05"
-
-[unitTest]
-language = "python3"
-
-[deployment]
-run = ["sh", "-c", "python3 main.py"]
-deploymentTarget = "cloudrun"
-
-[[ports]]
-localPort = 80
-
-[[ports]]
-localPort = 443
-
-[[ports]]
-localPort = 8080
-externalPort = 80
-
-[[ports]]
-localPort = 8081
-externalPort = 3001
-</pre>
 <p>main.py:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from cmsimde import flaskapp
 from gevent.pywsgi import WSGIServer

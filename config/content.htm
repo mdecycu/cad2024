@@ -8,7 +8,9 @@
 <p style="padding-left: 30px;"><a href="https://github.com/Asabeneh/30-Days-Of-Python">https://github.com/Asabeneh/30-Days-Of-Python</a></p>
 <p style="padding-left: 60px;"><a href="https://www.youtube.com/watch?v=LbPawGKOJoE&amp;list=PLbvhRHYrmshRSX00KYKtG2czimpEjoYO5">Python for Begineers</a> (Video PlayList)</p>
 <p style="padding-left: 30px;"><a href="https://pythontutor.com/"></a><a href="https://link.springer.com/book/10.1007/978-3-031-57148-0">Programming with Python for Engineers</a></p>
+<p style="padding-left: 30px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a></p>
 <p>CAD 套件: <a href="https://solvespace.com/">Solvespace</a> and <a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a></p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/NX2312_CAD.7z">下載</a> NX2312 可攜 CAD 壓縮檔案 (1.85 GB, 解開後約 9 GB)</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/NX2406_CAD.7z">下載</a><span> NX2406 可攜 CAD 壓縮檔案 (1.76 GB, 解開後約 9 GB)</span></p>
 <p>機電模擬: <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a></p>
 <p>課程評分:</p>
@@ -226,7 +228,6 @@ utheta: 2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*
 utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}]</pre>
 <p></p>
 <h1>IDE</h1>
-<p><a href="http://229.cycu.org/Python_for_NX1872.7z">Python_for_NX1872.7z</a> (old)</p>
 <p>On <a href="https://github.com/features/codespaces">Codespaces</a>:</p>
 <p dir="auto">chmod u+x cms init_replit</p>
 <p dir="auto">python3 main.py</p>
@@ -810,6 +811,7 @@ NX VR - NXVR</pre>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">Overview of Programmer's Guide</a></p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.apiprog/intro_intro_overview">Open C Programmer's Guide</a></p>
 <p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.ugopen_doc">Open C Reference Guide</a></p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (183MB)</p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref">NXOpen Python Reference Guide</a></p>
 <p>若使用 NX2312, 其中需要設計並繪製減速機中的正齒輪組 (Spur Gear Train), 若採 UGOPEN C 編寫延伸程式, 可以利用 MSYS2 中的 gcc 進行編譯與連結:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">mkdir build
@@ -833,8 +835,7 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><a href="/downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
 <div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
 <div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="/downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div>
-<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div>
-<h3>NXOpen_Python</h3>
+<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><h3>NXOpen_Python</h3>
 <p>NX2312 與 NX2406 必須配合 Python 3.10 使用 (以 Python 3.10.12 編譯 .pyd), 這裡利用 gen_python_for_nx2312.py 如下, 建立 Python310 備用 (由於 Python 3.10.12 可攜目錄無法使用下列程式建立, 因此退至 Python 3.10.11):</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
 import os
