@@ -14,10 +14,10 @@
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/NX2406_CAD.7z">下載</a><span> NX2406 可攜 CAD 壓縮檔案 (1.76 GB, 解開後約 9 GB)</span></p>
 <p>機電模擬: <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a></p>
 <p>課程評分:</p>
-<p style="padding-left: 30px;">全勤出席 (20%)</p>
-<p style="padding-left: 30px;">隔週採網頁紀錄學習心得 (30%)</p>
-<p style="padding-left: 30px;">期中口頭專題簡報 (25%)</p>
-<p style="padding-left: 30px;">期末口頭專題簡報 (25%)</p>
+<p style="padding-left: 30px;">全勤出席 (10%)</p>
+<p style="padding-left: 30px;">隔週採網頁紀錄學習心得 (40%)</p>
+<p style="padding-left: 30px;">期中口頭與書面專題報告 (25%)</p>
+<p style="padding-left: 30px;">期末口頭與書面專題報告 (25%)</p>
 <p></p>
 <hr/>
 <p>行事曆</p>
@@ -576,7 +576,7 @@ VENDOR saltd saltd PORT=29001</pre>
 "LANGUAGE"="english"
 "LICENSESERVER"="29000@your_license_server"
 "UGII_BASE_DIR"="D:\\NX2312"</pre>
-<hr/>
+<hr>
 <p>透過 <a href="/downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 各子目錄與總容量.</p>
 <p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
@@ -811,6 +811,7 @@ NX VR - NXVR</pre>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">Overview of Programmer's Guide</a></p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.apiprog/intro_intro_overview">Open C Programmer's Guide</a></p>
 <p style="padding-left: 30px;"><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.ugopen_doc">Open C Reference Guide</a></p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/python_2025/data/msys64_20240507.7z">msys64_20240507.7z</a> (183MB)</p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref">NXOpen Python Reference Guide</a></p>
 <p>若使用 NX2312, 其中需要設計並繪製減速機中的正齒輪組 (Spur Gear Train), 若採 UGOPEN C 編寫延伸程式, 可以利用 MSYS2 中的 gcc 進行編譯與連結:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">mkdir build
@@ -834,8 +835,7 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><a href="/downloads/gear_model2.c.txt">gear_model2.c.txt</a></div>
 <div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
 <div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="/downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div>
-<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div>
-<h3>NXOpen_Python</h3>
+<div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><h3>NXOpen_Python</h3>
 <p>NX2312 與 NX2406 必須配合 Python 3.10 使用 (以 Python 3.10.12 編譯 .pyd), 這裡利用 gen_python_for_nx2312.py 如下, 建立 Python310 備用 (由於 Python 3.10.12 可攜目錄無法使用下列程式建立, 因此退至 Python 3.10.11):</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
 import os
@@ -1962,4 +1962,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p>
+</p></hr>
