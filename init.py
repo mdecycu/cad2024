@@ -12,8 +12,8 @@ class Init(object):
     uwsgi = False
     site_title = "cad2024"
     ip = "127.0.0.1"
-    dynamic_port = 9445
-    static_port = 8445
+    dynamic_port = 9446
+    static_port = 8446
     def __init__(self):
         # hope to create downloads and images directories　
         if not os.path.isdir(_curdir + "/downloads"):

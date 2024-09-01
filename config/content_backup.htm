@@ -29,11 +29,9 @@
 <p><a href="http://229.cycu.org/40723221_2020.7z">40723221_2020.7z</a></p>
 <h1>Topics</h1>
 <p>Topic 1:<span> </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
-<p style="padding-left: 30px;">What are Github and Replit?</p>
+<p style="padding-left: 30px;">What are Github and Codespace?</p>
 <p style="padding-left: 30px;"><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world">Hello World - GitHub Docs</a></p>
-<p style="padding-left: 30px;"><a href="https://replit.com/learn/100-days-of-python">100 Days of Code - The Complete Python Course - Replit</a></p>
 <p style="padding-left: 30px;">利用包含學號的字串作為帳號, 申請免費使用 Github.</p>
-<p style="padding-left: 30px;">利用電子郵箱作為帳號, 申請免費使用 Replit.</p>
 <p>Topic 2:<span> </span><span>計算機程式課程作業與學員網頁 (複習)</span></p>
 <p style="padding-left: 30px;">What is Github Classroom?</p>
 <p style="padding-left: 30px;"><a href="https://classroom.github.com/">GitHub Classroom</a></p>
@@ -52,15 +50,10 @@
 <p>Topic 5: 自選期末專案題目</p><h2>Topic 1</h2>
 <p><span>主題: </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
 <p><span>主題摘要:</span></p>
-<p style="padding-left: 30px;">What are Github and Replit?</p>
+<p style="padding-left: 30px;">What are Github and Codespaces?</p>
 <p style="padding-left: 30px;"><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world">Hello World - GitHub Docs</a></p>
-<p style="padding-left: 30px;"><a href="https://replit.com/learn/100-days-of-python">100 Days of Code - The Complete Python Course - Replit</a></p>
 <p style="padding-left: 30px;">利用包含學號的字串作為帳號, 申請免費使用 Github.</p>
-<p style="padding-left: 30px;">利用電子郵箱作為帳號, 申請免費使用 Replit.</p>
 <p>Demo:</p>
-<p style="padding-left: 30px;">連線至 <a href="https://replit.com/@wcms/Jupyter-Notebook">https://replit.com/@wcms/Jupyter-Notebook</a> fork 一個 repl 在各自的 Replit 帳號下.</p>
-<p style="padding-left: 30px;">參考: <a href="https://docs.poppy-project.org/en/programming/notebooks">https://docs.poppy-project.org/en/programming/notebooks</a> </p>
-<p style="padding-left: 30px;">由於 Replit 限制免費帳號環境的 port 封包傳送資料, 因此必須自行建立 Jupyter Notebook 才能與 CoppeliaSim 中的系統進行互動.</p>
 <p style="padding-left: 30px;">在 stud.cycu (Linux) 伺服器安裝 Jupyter Notebook:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip3 install jupyter
 sudo apt install jupyter-notebook
@@ -125,6 +118,7 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p>ODOO:</p>
 <p style="padding-left: 30px;"><a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a> </p>
 <p style="padding-left: 30px;"><a href="https://mde.tw/pj4101">https://mde.tw/pj4101</a> </p><h2>Parts</h2>
+<p><a href="https://support.industrysoftware.automation.siemens.com/training/se/en/ST3/pdf/spse01550.pdf">https://support.industrysoftware.automation.siemens.com/training/se/en/ST3/pdf/spse01550.pdf</a> </p>
 <p><img alt="" height="363" src="/images/cad2024_part_ex1.png" width="400"/></p>
 <p><img alt="" height="374" src="/images/cad2024_part_ex1_solvespace.png" width="400"/></p>
 <p><a href="/downloads/cad2024_part_ex1_solvespace.7z">cad2024_part_ex1_solvespace.7z</a></p>
@@ -233,20 +227,15 @@ utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 536
 <p></p>
 <h1>IDE</h1>
 <p><a href="http://229.cycu.org/Python_for_NX1872.7z">Python_for_NX1872.7z</a> (old)</p>
-<h4>Replit</h4>
-<p><a href="https://replit.com">https://replit.com</a> </p>
-<p dir="auto">On Replit:</p>
-<p dir="auto">.replit: python3 main.py</p>
+<p>On <a href="https://github.com/features/codespaces">Codespaces</a>:</p>
 <p dir="auto">chmod u+x cms init_replit</p>
+<p dir="auto">python3 main.py</p>
 <p dir="auto">./init_replit</p>
 <p dir="auto" style="padding-left: 30px;">for cmsite: git submodule update --init --recursive</p>
 <p dir="auto" style="padding-left: 30px;">for cmsimde_site: cmsimde is as directory not submodule</p>
 <p dir="auto" style="padding-left: 30px;">for cmsimde: pip install flask flask_cors bs4 lxml pelican markdown gevent</p>
-<p dir="auto">password generator: <a href="https://mde.tw/cmsite/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/b92b16621dd0246c352cf13d6463b333/raw/0bfa669750aba3abe48554509bbd43d65b6e5c82/hashlib_password_generator.py">https://mde.tw/cmsite/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/b92b16621dd0246c352cf13d6463b333/raw/0bfa669750aba3abe48554509bbd43d65b6e5c82/hashlib_password_generator.py</a> </p>
-<p dir="auto">for IPv6 only Ubuntu:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.com<br/>ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p<br/><br/>for Replit:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.co<br/>#since Replit works for IPv4, therefore no ProxyCommand setting needed<br/>#ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</p>
-<h4>Codespaces</h4>
-<p><a href="https://github.com/features/codespaces">https://github.com/features/codespaces</a> </p><h2>Replit</h2>
-<p>利用 replit.com 維護課程網站的步驟:</p>
+<p dir="auto">for IPv6 only Ubuntu:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.com<br/>ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p<br/><br/>for Replit:<br/><br/>.ssh 目錄中的 config, 將 SSH session 名稱設為 github.com:<br/><br/>Host github.com<br/>User git<br/>Hostname github.co<br/>#since Replit works for IPv4, therefore no ProxyCommand setting needed<br/>#ProxyCommand /usr/bin/ncat --proxy p4.cycu.org:3128 --proxy-type http %h %p</p><h2>Codespaces</h2>
+<p>利用 Codespaces 維護課程網站的步驟:</p>
 <ol>
 <li>以 wcms At mde 登入, 此帳號與 mdecycu At github 帳號綁定</li>
 <li>進入 cad2024 repl 後, tabs 包含三個 Shell 以及一個 Networking tab</li>
@@ -323,8 +312,7 @@ def serve_html(filename):
 if __name__ == '__main__':
     app.run(debug=True)
 </pre>
-<p></p>
-<h1>CAD</h1>
+<p></p><h1>CAD</h1>
 <p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
 <p>Computer Aided Design:</p>
 <p style="padding-left: 30px;"><a href="https://en.wikipedia.org/wiki/Polygon_mesh">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>

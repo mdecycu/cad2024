@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='Mechatronics.html'>Mechatronics</a></li></ul><li class='has-children'><a href='Topics.html'>Topics</a><ul class='dropdown'><li><a href='Topic 1.html'>Topic 1</a></li></ul><li class='has-children'><a href='References.html'>References</a><ul class='dropdown'><li><a href='Parts.html'>Parts</a><li><a href='Quadruped.html'>Quadruped</a><li><a href='Rover.html'>Rover</a><li><a href='meArm.html'>meArm</a></li></ul><li class='has-children'><a href='IDE.html'>IDE</a><ul class='dropdown'><li><a href='Replit.html'>Replit</a></li></ul><li class='has-children'><a href='CAD.html'>CAD</a><ul class='dropdown'><li class='has-children'><a href='NX.html'>NX</a><ul class='dropdown'><li><a href='Ebooks.html'>Ebooks</a><li><a href='NX3.html'>NX3</a><li><a href='NX12.html'>NX12</a><li><a href='NX1872.html'>NX1872</a><li><a href='NX1980.html'>NX1980</a><li><a href='NX2008.html'>NX2008</a><li><a href='NX2312.html'>NX2312</a><li><a href='NX2406.html'>NX2406</a><li><a href='NXOpen.html'>NXOpen</a><li><a href='NXOpen_Python.html'>NXOpen_Python</a><li><a href='Open C.html'>Open C</a><li><a href='MSYS2.html'>MSYS2</a></li></ul><li><a href='Solvespace.html'>Solvespace</a><li class='has-children'><a href='CoppeliaSim.html'>CoppeliaSim</a><ul class='dropdown'><li><a href='ZMQ.html'>ZMQ</a></li></ul><li class='has-children'><a href='Webots.html'>Webots</a><ul class='dropdown'><li><a href='Webots-tut1.html'>Webots-tut1</a></li></li></ul></ul><li><a href='Python.html'>Python</a><li><a href='Brython.html'>Brython</a></li>
+                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='Mechatronics.html'>Mechatronics</a></li></ul><li class='has-children'><a href='Topics.html'>Topics</a><ul class='dropdown'><li><a href='Topic 1.html'>Topic 1</a></li></ul><li class='has-children'><a href='References.html'>References</a><ul class='dropdown'><li><a href='Parts.html'>Parts</a><li><a href='Quadruped.html'>Quadruped</a><li><a href='Rover.html'>Rover</a><li><a href='meArm.html'>meArm</a></li></ul><li class='has-children'><a href='IDE.html'>IDE</a><ul class='dropdown'><li><a href='Codespaces.html'>Codespaces</a></li></ul><li class='has-children'><a href='CAD.html'>CAD</a><ul class='dropdown'><li class='has-children'><a href='NX.html'>NX</a><ul class='dropdown'><li><a href='Ebooks.html'>Ebooks</a><li><a href='NX3.html'>NX3</a><li><a href='NX12.html'>NX12</a><li><a href='NX1872.html'>NX1872</a><li><a href='NX1980.html'>NX1980</a><li><a href='NX2008.html'>NX2008</a><li><a href='NX2312.html'>NX2312</a><li><a href='NX2406.html'>NX2406</a><li><a href='NXOpen.html'>NXOpen</a><li><a href='NXOpen_Python.html'>NXOpen_Python</a><li><a href='Open C.html'>Open C</a><li><a href='MSYS2.html'>MSYS2</a></li></ul><li><a href='Solvespace.html'>Solvespace</a><li class='has-children'><a href='CoppeliaSim.html'>CoppeliaSim</a><ul class='dropdown'><li><a href='ZMQ.html'>ZMQ</a></li></ul><li class='has-children'><a href='Webots.html'>Webots</a><ul class='dropdown'><li><a href='Webots-tut1.html'>Webots-tut1</a></li></li></ul></ul><li><a href='Python.html'>Python</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,47 +142,16 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">IDE << <a href='IDE.html'>Previous</a> <a href='CAD.html'>Next</a> >> CAD<br /><h1>Replit</h1>
-<p>利用 replit.com 維護課程網站的步驟:</p>
+    <div id="tipue_search_content">IDE << <a href='IDE.html'>Previous</a> <a href='CAD.html'>Next</a> >> CAD<br /><h1>Codespaces</h1>
+<p>利用 Codespaces 維護課程網站的步驟:</p>
 <ol>
-<li>以 wcms At mde 登入, 此帳號與 mdecycu At github 帳號綁定</li>
-<li>進入 cad2024 repl 後, tabs 包含三個 Shell 以及一個 Networking tab</li>
-<li>在其中一個 Shell 執行 <span style="background-color: #ffff99;">python main.py</span> 可以啟動網站編輯, 使用 external port 80 執行</li>
-<li>若要檢視 replit 上 cad2024 的靜態網站內容, 則使用另一個 Shell 執行 <span style="background-color: #ffff99;">python main2.py</span>, 使用 external port 3001 執行</li>
+<li>chmod u+x init_replit</li>
+<li>./init_replit</li>
+<li>python3 main.py</li>
+<li>以瀏覽器開啟動態網站進行網站內容編輯</li>
 <li>動態網頁內容編輯告一段落後, 利用 Convert 功能將動態內容轉為靜態網站資料</li>
-<li>最後利用第三個 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到 mdecycu 對應的 cad2024 倉儲中</li>
+<li>最後利用 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到對應的倉儲中</li>
 </ol>
-<p>以上 replit 所使用的 .replit:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">modules = ["python-3.10:v18-20230807-322e88b"]
-
-hidden = [".pythonlibs"]
-run = "python3 main.py"
-entrypoint = "main.py"
-
-[nix]
-channel = "stable-23_05"
-
-[unitTest]
-language = "python3"
-
-[deployment]
-run = ["sh", "-c", "python3 main.py"]
-deploymentTarget = "cloudrun"
-
-[[ports]]
-localPort = 80
-
-[[ports]]
-localPort = 443
-
-[[ports]]
-localPort = 8080
-externalPort = 80
-
-[[ports]]
-localPort = 8081
-externalPort = 3001
-</pre>
 <p>main.py:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from cmsimde import flaskapp
 from gevent.pywsgi import WSGIServer
@@ -220,8 +189,7 @@ def serve_html(filename):
 if __name__ == '__main__':
     app.run(debug=True)
 </pre>
-<p></p>
-<br />IDE << <a href='IDE.html'>Previous</a> <a href='CAD.html'>Next</a> >> CAD</div>
+<p></p><br />IDE << <a href='IDE.html'>Previous</a> <a href='CAD.html'>Next</a> >> CAD</div>
         
     <!-- footer -->
       <div class="container">
