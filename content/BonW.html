@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -142,201 +142,40 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">CoppeliaSim << <a href='CoppeliaSim.html'>Previous</a> <a href='Python.html'>Next</a> >> Python<br /><h1>ZMQ</h1>
-<p><a href="https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html">https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html</a></p>
-<p style="padding-left: 30px;">ØMQ is a neat messaging library that allows you to build your own messaging infrastructure. ØMQ does not provide out of box messaging system experience like ActiveMQ or RabbitMQ. It is higher level concept than sockets and provides as low level conceptual framework as possible to build messaging systems. It can help build framework that scales where services could be handled by different applications that does one job well.</p>
-<p style="padding-left: 30px;">Distributed applications are also easier to change compared to a monolithic applications. It’s expensive to try to define the behavior of each of many software applications that work together in a large network. It’s much cheaper, and more flexible, to define the interfaces between them: the APIs. Messaging is an API that can be stretched across a network.<br/><br/>ØMQ 是一個精簡的訊息傳遞程式庫 (messaging library)，允許使用者自行建立訊息傳遞基礎架構。ØMQ 不像 ActiveMQ 或 RabbitMQ 那樣提供開箱即用的訊息系統體驗。ØMQ 是比封包更高層級的概念，同時提供了儘可能低階的概念框架來構建訊息傳遞系統。它能夠幫助構建可擴展的框架 (framework)，使得這個框架中，不同的服務可以由專注於單一任務的獨立應用程式來處理。</p>
-<p style="padding-left: 30px;">與單一應用程式相比，分散式應用程式更容易更改。嘗試定義在大型網路中協同工作的眾多軟體應用程式的行為，其成本很高; 定義它們之間的介面（API）要便宜得多，也更靈活。使得訊息傳遞是一種可以跨網路擴展的 API。</p>
-<p>使用 pyzmq 建立程式範例:</p>
-<p>server:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import zmq
-import time
-
-context = zmq.Context()
-socket = context.socket(zmq.REP)
-socket.bind("tcp://*:5555")
-
-def process_request(request):
-    # 模擬處理請求
-    time.sleep(1)
-    return f"已處理請求: {request}"
-
-print("服務器已啟動，等待請求...")
-
-while True:
-    message = socket.recv_string()
-    print(f"收到請求: {message}")
-    
-    response = process_request(message)
-    
-    socket.send_string(response)</pre>
-<p>client:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import zmq
-
-context = zmq.Context()
-socket = context.socket(zmq.REQ)
-socket.connect("tcp://localhost:5555")
-
-for request in range(5):
-    print(f"發送請求 {request}...")
-    socket.send_string(f"請求 {request}")
-    
-    response = socket.recv_string()
-    print(f"收到回覆: {response}")</pre>
-<p>上列採用 pyzmq 模組的程式組合，主要展示 ZMQ 程式庫在兩個應用程式間負責傳遞訊息，其特性如下:<br/><br/>1. 通訊介面：<br/><br/>伺服器端和客戶端之間透過 ZMQ 定義了一個簡單的通訊介面。雙方不需要了解對方的內部運作，只需知道如何發送和接收訊息。<br/><br/>2. 跨網路的應用程式介面（API）：<br/><br/>使用 ZMQ 建立了一個可以跨網路運作的 API。伺服器和客戶端程式可以在不同的電腦上執行，只要能夠透過網路連線即可傳遞訊息。<br/><br/>3. 彈性：<br/><br/>使用者可以輕鬆修改伺服器的內部邏輯（例如: 變更用來處理請求的函式設計），而不需要更動客戶端的程式碼。<br/>同樣地，使用者也可以新增更多客戶端或甚至替換現有客戶端，只要客戶端程式遵循相同的訊息傳遞格式。<br/><br/>4. 成本效益：<br/><br/>定義這個簡單的訊息傳遞介面，比起詳細規劃每個應用程式的所有可能行為要簡單得多。<br/><br/>5. 可擴展性：<br/><br/>此一模型可以輕鬆擴展到更複雜的情境 (例如:新增多個伺服器、實現負載平衡等)，而基本的訊息傳遞模式可保持不變。</p>
-<p>另外一組範例，以解二階微分方程為例：</p>
-<p>y'' + p(x)y' + q(x)y = f(x), with boundary conditions y(a) = α and y(b) = β</p>
-<p>可將問題範圍分割成多個子區間，每個工作者負責解決一個子區間。</p>
-<p>首先，建立一個任務派送器：</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># task_dispatcher.py
-import zmq
-import numpy as np
-import time
-
-def task_dispatcher():
-    try:
-        context = zmq.Context()
-        task_sender = context.socket(zmq.PUSH)
-        task_sender.bind("tcp://127.0.0.1:5557")
-        print("Task sender bound to tcp://127.0.0.1:5557")
-
-        result_receiver = context.socket(zmq.PULL)
-        result_receiver.bind("tcp://127.0.0.1:5558")
-        print("Result receiver bound to tcp://127.0.0.1:5558")
-
-        print("Task dispatcher started. Waiting for workers to connect...")
-        time.sleep(1)  # 給工作者一些時間來連接
-        
-        # 定義問題參數
-        a, b = 0, 1  # 邊界
-        alpha, beta = 0, 1  # 邊界條件
-        N = 1000  # 總點數
-        num_workers = 4  # 工作者數量
-
-        h = (b - a) / (N - 1)  # 步長
-        x = np.linspace(a, b, N)
-
-        # 定義方程係數
-        def p(x): return 1
-        def q(x): return -2
-        def f(x): return np.exp(-x)
-
-        print("Dispatching tasks...")
-        # 分配任務
-        points_per_worker = N // num_workers
-        for i in range(num_workers):
-            start = i * points_per_worker
-            end = (i + 1) * points_per_worker if i &lt; num_workers - 1 else N
-            task = {
-                'worker_id': i,
-                'start': start,
-                'end': end,
-                'x': x[start:end].tolist(),
-                'h': h,
-                'p': [p(xi) for xi in x[start:end]],
-                'q': [q(xi) for xi in x[start:end]],
-                'f': [f(xi) for xi in x[start:end]]
-            }
-            task_sender.send_pyobj(task)
-            print(f"Task sent to worker {i}")
-
-        print("All tasks dispatched. Waiting for results...")
-
-        # 收集結果
-        results = [None] * num_workers
-        for _ in range(num_workers):
-            result = result_receiver.recv_pyobj()
-            worker_id = result['worker_id']
-            results[worker_id] = result['y']
-            print(f"Received result from worker {worker_id}")
-
-        # 組合結果
-        y = np.concatenate(results)
-
-        # 應用邊界條件
-        y[0] = alpha
-        y[-1] = beta
-
-        print("Solution computed. First few values:", y[:5])
-        print("Last few values:", y[-5:])
-
-    except zmq.ZMQError as e:
-        print(f"ZMQ Error occurred: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-
-if __name__ == "__main__":
-    task_dispatcher()</pre>
-<p>接著安排負責運算的 client 端程式:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># worker.py
-import zmq
-import numpy as np
-
-def solve_segment(x, h, p, q, f):
-    n = len(x)
-    A = np.zeros((n, n))
-    b = np.zeros(n)
-
-    # 設置三對角矩陣
-    for i in range(1, n-1):
-        A[i, i-1] = 1 - h * p[i] / 2
-        A[i, i] = -2 + h**2 * q[i]
-        A[i, i+1] = 1 + h * p[i] / 2
-        b[i] = h**2 * f[i]
-
-    # 設置邊界條件（這裡使用自然邊界條件）
-    A[0, 0] = A[-1, -1] = 1
-    A[0, 1] = A[-1, -2] = -1
-
-    return np.linalg.solve(A, b)
-
-def worker(worker_id):
-    context = zmq.Context()
-    task_receiver = context.socket(zmq.PULL)
-    task_receiver.connect("tcp://localhost:5557")
-
-    result_sender = context.socket(zmq.PUSH)
-    result_sender.connect("tcp://localhost:5558")
-
-    print(f"Worker {worker_id} started. Waiting for task...")
-
-    task = task_receiver.recv_pyobj()
-    print(f"Worker {worker_id} received task")
-
-    x = np.array(task['x'])
-    h = task['h']
-    p = np.array(task['p'])
-    q = np.array(task['q'])
-    f = np.array(task['f'])
-
-    y = solve_segment(x, h, p, q, f)
-
-    result = {
-        'worker_id': worker_id,
-        'y': y.tolist()
-    }
-    result_sender.send_pyobj(result)
-    print(f"Worker {worker_id} sent result")
-
-if __name__ == "__main__":
-    import sys
-    worker(int(sys.argv[1]) if len(sys.argv) &gt; 1 else 0)</pre>
-<p>執行流程，先執行任務派送程式:</p>
-<p>python task_dispatcher.py</p>
-<p>然後在不同的終端中運行多個工作者：</p>
-<p>python worker.py 0<br/>python worker.py 1<br/>python worker.py 2<br/>python worker.py 3</p>
-<p>此一系統的工作原理:</p>
+    <div id="tipue_search_content">Parts << <a href='Parts.html'>Previous</a> <a href='Quadruped.html'>Next</a> >> Quadruped<br /><h1>BonW</h1>
+<p>Balance on Wheels</p>
+<p><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a> </p>
+<p><img alt="" height="217" src="./../images/balance_on_wheels.png" width="400"/></p>
+<p>專案第一階段執行過程:</p>
 <ol>
-<li>任務派發器將整個問題域分割成幾個子區間。</li>
-<li>每個子區間的資料（包括 x 值、步長 h、方程式係數 p、q 和 f）被打包成一個任務，發送給工作者。</li>
-<li>每個工作者接收一個子區間的任務，使用有限差分法解決該子區間的方程。</li>
-<li>工作者將解決方案發送回任務派發器。</li>
-<li>任務派發器收集所有工作者的結果，將它們組合成完整的解，並應用邊界條件。</li>
+<li>利用 Solvespace 建立零組件</li>
+<li>將零組件轉入 CoppeliaSim</li>
+<li>根據系統零組件從屬關係進行零件組立</li>
+<li>針對系統動態運動模型運算簡化零件</li>
+<li>進行初步開放系統的運動模擬</li>
+<li>加入所需致動器與感測器</li>
+<li>針對系統運動設定零件起始位置與機構運動範圍</li>
+<li>利用 ZMQ Remote API 程式進行回授控制系統設計</li>
 </ol>
-<p>這個例子展示了如何使用 pyzmq 來實現一個分散式計算系統，用於解決複雜的數值問題。它將一個大問題分解成多個小問題，利用多台機器或多個處理器並行計算，從而提高計算效率。</p>
-<p>注意：這個實現使用了自然邊界條件（Neumann邊界條件）來處理子區間的邊界。在實際應用中，可能需要根據具體問題調整邊界條件的處理方式。</p>
-<p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p>
-<br />CoppeliaSim << <a href='CoppeliaSim.html'>Previous</a> <a href='Python.html'>Next</a> >> Python</div>
+<p>專案第二階段執行過程:</p>
+<ol>
+<li>利用 NX2312 建立零組件</li>
+<li>將零組件轉入 CoppeliaSim</li>
+<li>根據系統零組件從屬關係進行零件組立</li>
+<li>針對系統動態運動模型運算簡化零件</li>
+<li>進行初步開放系統的運動模擬</li>
+<li>加入所需致動器與感測器</li>
+<li>針對系統運動設定零件起始位置與機構運動範圍</li>
+<li>利用 ZMQ Remote API 程式進行回授控制系統設計</li>
+</ol>
+<p>專案第三階段執行過程:</p>
+<ol>
+<li>利用 NXOpen 評估能否採二次程式開發流程建立系統零組件</li>
+<li>利用 CoppeliaSim 的 Simple XML 模型檔案格式, 評估能否直接利用 NX2312 轉出的零件 STL 檔案建立模擬場景</li>
+<li>結合 Jupyterlab 的 collaborative 模式 (或 Linux 上的 Jupyterhub server), 評估將潛在客戶導入協同產品設計的可行性</li>
+</ol>
+<p></p>
+<p></p><br />Parts << <a href='Parts.html'>Previous</a> <a href='Quadruped.html'>Next</a> >> Quadruped</div>
         
     <!-- footer -->
       <div class="container">
