@@ -145,9 +145,24 @@ img.add_border {
     <div id="tipue_search_content">Topics << <a href='Topics.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2<br /><h1>Topic 1</h1>
 <p><span>主題: </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
 <p><span>主題摘要:</span></p>
-<p style="padding-left: 30px;">USB 隨身碟:</p>
+<p style="padding-left: 30px;">USB 隨身碟 (可配置在自己的電腦):</p>
 <p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
 <p style="padding-left: 60px;"><a href="http://229.cycu.org/NX2312_CAD.7z">下載</a> NX2312 可攜 CAD 壓縮檔案 (1.85 GB, 解開後約 9 GB)</p>
+<p style="padding-left: 30px;">使用電腦教室中的電腦:</p>
+<p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
+<p style="padding-left: 60px;">使用電腦所安裝的 NX2312</p>
+<hr/>
+<p><a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 與<a href="http://229.cycu.org/NX2312_CAD.7z">可攜 NX2312 CAD</a> 可以直接放在 USB 3.0 格式以上的 USB 隨身碟中, 並在任何 Windows 64 位元以上電腦中使用.</p>
+<p>解開 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 壓縮檔案後, 可將<a href="http://229.cycu.org/NX2312_CAD.7z">可攜 NX2312 CAD</a> 檔案放入 data 目錄中的 nx 子目錄中, 以 start_ipv6.bat 啟動可攜程式系統後, 若在 IPv4 環境, 可在命令提示字元視窗中執行:</p>
+<p>set SPLM_LICENSE_SERVER=29000@認證主機_IPv4_位址, 然後執行 ugraf -nx 開啟 NX2312</p>
+<p>若在 IPv6 環境, 可在命令提示字元視窗中執行:</p>
+<p>set SPLM_LICENSE_SERVER=29000@[認證主機_IPv6_位址], 然後執行 ugraf -nx 開啟 NX2312</p>
+<p>若要使用 Jupyterlab 協同執行環境, 可在命令提示字元視窗中執行:</p>
+<p>jupyter lab --collaborative</p>
+<p>之後便可在瀏覽器中開啟 localhost 中的 jupyterlab 執行環境.</p>
+<p>若要讓其他用戶透過瀏覽器連接至 jupyterlab 協同環境, 可修改 home_ipv6\.jupyter\jupyter_server_config.py 檔案中的 c.ServerApp.ip 變數, 改為電腦網路 IPv4 或 IPv6 位址後, 重新執行:</p>
+<p>jupyter lab --collaborative</p>
+<hr/>
 <p style="padding-left: 30px;">What are Github and Codespaces?</p>
 <p style="padding-left: 30px;"><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world">Hello World - GitHub Docs</a></p>
 <p style="padding-left: 30px;">利用包含學號的字串作為帳號, 申請免費使用 Github.</p>
@@ -199,8 +214,7 @@ TIMEOUTclose = 0</pre>
 REM netsh advfirewall firewall add rule name="RULENAME" dir=[in/out] action=[allow/block/bypass] protocol=[tcp/udp] localip=[any] remoteip=[any]
 REM allow tcp in for port 23000-23050
 netsh advfirewall firewall add rule name="allow_23000-23050" dir=in action=allow protocol=TCP localport=23000-23050
-netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allow protocol=TCP localport=23000-23050</pre>
-<br />Topics << <a href='Topics.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2</div>
+netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allow protocol=TCP localport=23000-23050</pre><br />Topics << <a href='Topics.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2</div>
         
     <!-- footer -->
       <div class="container">
