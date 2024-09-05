@@ -187,7 +187,24 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p style="padding-left: 60px;">建立 <a href="https://mde.tw/cad2024/content/Quadruped.html">Dingo 機器狗</a>控制系統設計模擬場景</p>
 <p style="padding-left: 60px;"><a href="https://github.com/mdecycu/DingoQuadruped">https://github.com/mdecycu/DingoQuadruped</a></p>
 <p style="padding-left: 60px;"><a href="http://229.cycu.org/DINGO_QUADRUPED_CAD.7z">DINGO_QUADRUPED_CAD.7z</a></p>
-<p style="padding-left: 60px;"><img alt="" height="217" src="https://mde.tw/cad2024/images/dingo.png" width="400"/></p><h2>Topic 5</h2>
+<p style="padding-left: 60px;"><img alt="" height="217" src="https://mde.tw/cad2024/images/dingo.png" width="400"/></p>
+<h3>Project 3</h3>
+<p>建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
+<p><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
+<p>上列倉儲中有兩個採 Solidworks 繪製的系統模型, 可以直接以 NX2312 開啟後存為 .prt 檔案. 只是各零組件並沒有詳細的零組件繪製流程. 學員可以自行利用 Solvespace 與 NX2312 建立相同尺寸的零組件.</p>
+<p><img alt="" height="217" src="https://mde.tw/cad2024/images/balance_on_wheels.png" width="400"/></p>
+<p>以下為取自簡化過的 <a href="/downloads/Balance_on_wheels_nx2312.7z">Balance_on_wheels_nx2312.7z</a> 系統組立件, 從 NX2312 以 Export 功能轉為 .stl 後, 再轉入 CoppeliaSim, 過程中自行利用 Cuboid 建立上平台, 並增大厚度以便讓連桿可以直接接在兩側.</p>
+<p>由於原始系統模型在部分軸接孔並沒有圓柱件可以讓 Revolute Joint 定位, 必須透過圓孔的 Shape Editor 設法建立. 且原始 Wheel 形狀較為複雜, 在 CoppeliaSim 建立運動模擬場景時, 必須設法簡化, 以下直接採用單一圓柱體作為輪子的動態模擬物件.</p>
+<p>另外由於連接平台與輪軸的機構為封閉式, 在 CoppeliaSim 場景中進行組裝時, 必須透過兩個 Dummy 物件, 以 Dynamic, overlap constraint 的 Dummy Type 進行連接. 而且各連桿在 CoppeliaSim Shape Editor 後, 可能因碰撞檢測設定而產生的干涉, 可以利用 <a href="https://manual.coppeliarobotics.com/en/shapeDynamicsProperties.htm">Respondable Mask</a> 的設定避開.</p>
+<p>最後, 因為此雙輪車的機構設計目的, 是希望透過輪軸上方致動器的運動控制, 讓輪車透過平台瞬間運動所產生的慣性上下跳躍運動. 但初步階段在雙輪車能夠穩定平衡控制之前, 除輪軸馬達外, 其餘連接軸上的馬達 Control Mode 設為 Position, 均施以 250 N.m 的扭力, 並令其 Target angle 為 0 度.</p>
+<p>根據以上流程建立的 CoppeliaSim 系統場景畫面與檔案如下:</p>
+<p><img alt="" height="217" src="/images/Balance_on_wheels_scene.png" width="400"/></p>
+<p><a href="/downloads/Balance_on_Wheel_scene.7z">Balance_on_Wheel_scene.7z</a></p>
+<p>有關雙輪車平衡控制方法可以參考:</p>
+<p style="padding-left: 30px;"><a href="/downloads/invertedPendulum_ttt_for_4.7.0_rev4.7z">invertedPendulum_ttt_for_4.7.0_rev4.7z</a></p>
+<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/VREP-Coppeliasim-Linear-first-order-inverted-pendulum">https://github.com/mdecycu/VREP-Coppeliasim-Linear-first-order-inverted-pendulum</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/vrep_inverted_pendulum">https://github.com/mdecycu/vrep_inverted_pendulum</a> </p>
+<p style="padding-left: 30px;"><a href="https://ojs.bbwpublisher.com/index.php/JCER/article/view/4840">Project-Based Teaching in Control Theory Education Based on V-REP: A Cart Inverted Pendulum Case</a></p><h2>Topic 5</h2>
 <p>主題: 自選期末專案題目</p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
