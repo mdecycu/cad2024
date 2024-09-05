@@ -263,22 +263,32 @@ img.add_border {
         sim.addLog(sim.verbosity_scriptinfos, 'ZeroMQ Remote API server started')
     end</pre>
 <p>在 4.7.0 中執行的 ZMQ Remote API Python 測試程式:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># zmqRemoteApi_IPv6 為將 zmq 通訊協定修改為 IPv4 與 IPv6 相容
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># CoppeliaSim 4.7.0 rev4 適用
+# 與 4.5.1 只差在:
+'''
+# 利用 size 數列, 建立圓柱物件, 2 代表 cylinder
+# 8 表示 respondable, 1 為 質量
+digit1_handle = sim.createPureShape(2, 8, size, 1, None)
+已經改為 4.7.0 的:
+digit1_handle = sim.createPrimitiveShape(sim.primitiveshape_cylinder, size, 0)
+respondable 屬性與質量必須另外設定
+'''
+# zmqRemoteApi_IPv6 為將 zmq 通訊協定修改為 IPv4 與 IPv6 相容
 # pip install pyzmq cbor keyboard
 # for 4.5.1
 #from zmqRemoteApi_IPv6 import RemoteAPIClient
-# for 4.7.1
+# for 4.7.0
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 import time
 import math
 import keyboard
- 
+  
 # 利用 zmqRemoteAPI 以 23000 對場景伺服器進行連線
 client = RemoteAPIClient('[::1]', 23000)
 # 以 getObject 方法取得場景物件
 sim = client.getObject('sim')
 box = sim.getObject('/box')
- 
+  
 # 啟動模擬
 sim.startSimulation()
 # 建立尺寸數列, 分別定義 x, y, z 方向尺寸
@@ -286,10 +296,18 @@ x = 0.2
 y = 0.2
 z = 0.1
 size = [x, y, z]
- 
-# 利用 size 數列, 建立圓柱物件, 2 代表 cylinder
-# 8 表示 respondable, 1 為 質量
-digit1_handle = sim.createPureShape(2, 8, size, 1, None)
+  
+# 利用 size 數列, 建立圓柱物件
+# https://manual.coppeliarobotics.com/en/regularApi/simCreatePrimitiveShape.htm
+digit1_handle = sim.createPrimitiveShape(sim.primitiveshape_cylinder, size, 0)
+# 將 digit1 設為動態
+# 設置質量屬性
+sim.setObjectFloatParam(digit1_handle, sim.shapefloatparam_mass , 1.0)
+# 設置物體為動態
+sim.setObjectInt32Param(digit1_handle, sim.shapeintparam_static, 0)
+sim.resetDynamicObject(digit1_handle)
+# 設為具備碰撞檢測屬性
+sim.setObjectInt32Param(digit1_handle, sim.shapeintparam_respondable , 1)
 # 將圓柱物件命名為 digit1, 若用於機械計分可做為個位數轉盤
 # 之後可再導入帶有數字組立的外型零件
 sim.setObjectAlias(digit1_handle, 'digit1')
@@ -297,55 +315,154 @@ sim.setObjectAlias(digit1_handle, 'digit1')
 sim.setObjectOrientation(digit1_handle, -1, [0, math.pi/2, 0])
 # 起始物件中心位於 [0, 0, 0], 為了位於地板, 往 z 提升一個半徑高度
 sim.setObjectPosition(digit1_handle, -1, [0, 0, x/2])
- 
+  
 # 建立 revolute joint 命名為 joint, 且將 joint mode 設為 dynamic, control mode 設為 velocity
 joint1_handle = sim.createJoint(sim.joint_revolute_subtype, sim.jointmode_dynamic, 0, None)
 sim.setObjectInt32Param(joint1_handle, sim.jointintparam_dynctrlmode, sim.jointdynctrl_velocity)
 sim.setObjectAlias(joint1_handle, 'joint1')
- 
+  
 # 取得 cylinder 的位置座標
 digit1_pos = sim.getObjectPosition(digit1_handle, -1)
 joint1_pos = [digit1_pos[0], digit1_pos[1], digit1_pos[2]]
- 
+  
 # 將 joint1 至於 cylinder 中心
 sim.setObjectPosition(joint1_handle, -1, joint1_pos)
 # 取得 digit1_handle 的方位
 digit1_ori = sim.getObjectOrientation(digit1_handle, -1)
 # 將 joint1_handle 方位與 digit1 對齊
 sim.setObjectOrientation(joint1_handle, -1, digit1_ori)
- 
+  
 # 將 joint1 置於 box 上
 sim.setObjectParent(joint1_handle, box, True)
 # 將 cylinder 置於 joint1 上
 sim.setObjectParent(digit1_handle, joint1_handle, True)
- 
+  
 # 鎖定 joint1
 # for 4.5.1
 #sim.setJointForce(joint1_handle, float('inf'))
 # for 4.7.1
 sim.setJointTargetForce(joint1_handle, float('inf'))
- 
+  
 print("基本場景建立完成!")
- 
+  
 # 設定主迴圈
 while True:
     # 設定 joint1 目標速度
     sim.setJointTargetVelocity(joint1_handle, 10)
     # 讓 coppeliasim 有時間按照設定讓 joint1 旋轉
     time.sleep(0.01) 
- 
+  
     if keyboard.is_pressed('q'):
         # 可以按下 q 鍵跳出重複執行迴圈
         break
- 
+  
 # 終止模擬
 sim.stopSimulation()</pre>
+<p>若加入 Model 程式庫中的加速度規於輪子上, 並將轉動感測數據列出:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+import time
+import math
+import keyboard
+
+# 利用 zmqRemoteAPI 以 23000 對場景伺服器進行連線
+client = RemoteAPIClient('[::1]', 23000)
+# 以 getObject 方法取得場景物件
+sim = client.getObject('sim')
+box = sim.getObject('/box')
+
+# 啟動模擬
+sim.startSimulation()
+
+# 建立尺寸數列, 分別定義 x, y, z 方向尺寸
+x = 0.2
+y = 0.2
+z = 0.1
+size = [x, y, z]
+
+# 利用 size 數列, 建立圓柱物件
+digit1_handle = sim.createPrimitiveShape(sim.primitiveshape_cylinder, size, 0)
+sim.setObjectAlias(digit1_handle, 'digit1')
+sim.setObjectOrientation(digit1_handle, -1, [0, math.pi/2, 0])
+sim.setObjectPosition(digit1_handle, -1, [0, 0, x/2])
+
+# 將 digit1 設為動態
+# 設置質量屬性
+sim.setObjectFloatParam(digit1_handle, sim.shapefloatparam_mass , 1.0)
+# 設置物體為動態
+sim.setObjectInt32Param(digit1_handle, sim.shapeintparam_static, 0)
+sim.resetDynamicObject(digit1_handle)
+# 設為具備碰撞檢測屬性
+sim.setObjectInt32Param(digit1_handle, sim.shapeintparam_respondable , 1)
+
+# 建立 revolute joint 命名為 joint, 且將 joint mode 設為 dynamic, control mode 設為 velocity
+joint1_handle = sim.createJoint(sim.joint_revolute_subtype, sim.jointmode_dynamic, 0, None)
+sim.setObjectInt32Param(joint1_handle, sim.jointintparam_dynctrlmode, sim.jointdynctrl_velocity)
+sim.setObjectAlias(joint1_handle, 'joint1')
+
+# 取得 cylinder 的位置座標
+digit1_pos = sim.getObjectPosition(digit1_handle, -1)
+joint1_pos = [digit1_pos[0], digit1_pos[1], digit1_pos[2]]
+
+# 將 joint1 至於 cylinder 中心
+sim.setObjectPosition(joint1_handle, -1, joint1_pos)
+# 取得 digit1_handle 的方位
+digit1_ori = sim.getObjectOrientation(digit1_handle, -1)
+# 將 joint1_handle 方位與 digit1 對齊
+sim.setObjectOrientation(joint1_handle, -1, digit1_ori)
+
+# 將 joint1 置於 box 上
+sim.setObjectParent(joint1_handle, box, True)
+# 將 cylinder 置於 joint1 上
+sim.setObjectParent(digit1_handle, joint1_handle, True)
+
+# 鎖定 joint1
+sim.setJointTargetForce(joint1_handle, float('inf'))
+
+print("基本場景建立完成!")
+
+# 載入加速度計模型
+accel_model_path = 'models/components/sensors/Accelerometer.ttm'
+accel_handle = sim.loadModel(accel_model_path)
+
+# 確保加速度計在圓柱物件上
+sim.setObjectPosition(accel_handle, digit1_handle, [0, 0, x/2])
+sim.setObjectParent(accel_handle, digit1_handle, True)
+
+# 取得加速度計的句柄
+# 通常模型載入後的物件名稱是 'Accelerometer'
+accel_sensor_handle = sim.getObjectHandle('Accelerometer')
+
+# 設定主迴圈
+while True:
+    # 設定 joint1 目標速度
+    sim.setJointTargetVelocity(joint1_handle, 10)
+
+    # 嘗試讀取加速度計的數據
+    # 使用 getObjectPosition 和 getObjectOrientation 來讀取加速度計數據
+    # 這僅僅是示例，你需要根據實際 API 文檔來確定如何讀取數據
+    position = sim.getObjectPosition(accel_sensor_handle, -1)
+    orientation = sim.getObjectOrientation(accel_sensor_handle, -1)
+    
+    # 根據感測器的數據進行處理，這裡僅為示例
+    print(f'Accelerometer position: {position}')
+    print(f'Accelerometer orientation: {orientation}')
+
+    # 讓 CoppeliaSim 有時間按照設定讓 joint1 旋轉
+    time.sleep(0.1)  # 增加延遲以便更穩定地讀取數據
+
+    if keyboard.is_pressed('q'):
+        # 可以按下 q 鍵跳出重複執行迴圈
+        break
+
+# 終止模擬
+sim.stopSimulation()
+</pre>
+<p>上列 ZMQ Remote API Python 範例含 CoppeliaSim 4.7.0 rev4 程式庫: <a href="./../downloads/zmq_remote_api_ex.7z">zmq_remote_api_ex.7z</a></p>
 <hr/>
 <p><a href="./../downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="./../downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
-<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p>
-<br />Solvespace << <a href='Solvespace.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ</div>
+<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p><br />Solvespace << <a href='Solvespace.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ</div>
         
     <!-- footer -->
       <div class="container">
