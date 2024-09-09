@@ -1951,7 +1951,169 @@ for i in py_list:
     os.remove(dir_path + "\\" + i + ".msi")
     os.remove(path + "\\" + i + ".msi")
 </pre>
-<h1>Brython</h1>
+<h1>Project</h1>
+<p>已知:</p>
+<ol>
+<li>修課學員經由 @nfu.edu.tw 網域, 可利用"學號@nfu.edu.tw"經由 <a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a> 登入 MS 365.</li>
+<li>登入後, 使用者可以利用"<a href="https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">應用程式註冊</a>"建立應用程式</li>
+<li>所註冊的延伸應用程式則可以利用 Microsoft Online 主機所提供的 OAuth2 API 程式庫, 取得登入者的 profile</li>
+<li>經由上列步驟取得登入者的 profile 後, 延伸應用程式可設法讀取課程學員的作業倉儲與網站連結</li>
+<li>當每一階段的學員作業網頁完成後, 若再經由亂數方法, 隨機分配給每一位學員 10 個除自己以外的學員作業網站進行評分, 即可根據既定的評分基準完成自評</li>
+<li>隨機分配的學員作業網址可利用 email 寄出, 而評分回報則可利用 MS 365 的 Forms 表單取回</li>
+</ol>
+<p>以下為上列流程的 step 1 測試程式 (<a href="/downloads/teams_oauth2_flask_py.txt">teams_oauth2_flask_py.txt</a>):</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, redirect, request, session, url_for
+import requests
+import json
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # 用於 Flask session 的秘密金鑰
+
+# 替換成你的 Azure AD 應用程式資訊
+'''
+CLIENT_ID 為"應用程式 (用戶端) 識別碼"
+CLIENT_SECRET 則為"憑證及秘密"中"用戶端密碼"的"值"
+'''
+CLIENT_ID = 'id'
+CLIENT_SECRET = 'secret'
+TENANT_ID = 'id'
+AUTHORITY = f'https://login.microsoftonline.com/{TENANT_ID}'
+REDIRECT_URI = 'http://localhost:8000/callback'
+SCOPE = 'User.Read'
+
+# 用於登錄和取得授權碼
+@app.route('/')
+def index():
+    auth_url = (f'{AUTHORITY}/oauth2/v2.0/authorize'
+                f'?client_id={CLIENT_ID}'
+                f'&amp;response_type=code'
+                f'&amp;redirect_uri={REDIRECT_URI}'
+                f'&amp;response_mode=query'
+                f'&amp;scope={SCOPE}')
+    return redirect(auth_url)
+
+# 處理回調和交換授權碼
+@app.route('/callback')
+def callback():
+    code = request.args.get('code')
+    token_url = f'{AUTHORITY}/oauth2/v2.0/token'
+    token_data = {
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': REDIRECT_URI,
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'scope': SCOPE
+    }
+    token_r = requests.post(token_url, data=token_data)
+    token_r.raise_for_status()
+    tokens = token_r.json()
+    session['access_token'] = tokens['access_token']
+    return redirect(url_for('profile'))
+
+# 使用訪問令牌呼叫 Microsoft Graph API 來獲取用戶資料
+@app.route('/profile')
+def profile():
+    access_token = session.get('access_token')
+    if not access_token:
+        return redirect(url_for('index'))
+
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    graph_url = 'https://graph.microsoft.com/v1.0/me'
+    graph_r = requests.get(graph_url, headers=headers)
+    graph_r.raise_for_status()
+    user_info = graph_r.json()
+    user_email = str(user_info["mail"])
+    user_id = user_email.split("@")[0]
+    session["user_id"] = user_id
+    # 登出 MS Online 並重定向回首頁
+    # 返回 HTML 及 JavaScript 以進行自動登出
+    return (f'Hello, {user_id} &lt;br&gt;'
+            f'&lt;script type="text/javascript"&gt;'
+            f'  window.location = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";'
+            f'&lt;/script&gt;')
+
+@app.route('/userid')
+def userid():
+    return session["user_id"]
+    
+
+# 登出功能
+@app.route('/logout')
+def logout():
+    # 清除 session 中的訪問令牌
+    session.pop('access_token', None)
+    # 重定向到 MS Online 登出 URL
+    return redirect('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
+
+if __name__ == '__main__':
+    app.run(debug=True, port=8000)
+</pre>
+<p>以下則為寄信範例:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import requests
+import json
+
+# 替換為你的應用程式資訊
+CLIENT_ID = 'your_client_id'
+CLIENT_SECRET = 'your_client_secret'
+TENANT_ID = 'your_tenant_id'
+AUTHORITY = f'https://login.microsoftonline.com/{TENANT_ID}'
+TOKEN_URL = f'{AUTHORITY}/oauth2/v2.0/token'
+SCOPE = 'https://graph.microsoft.com/.default'
+
+# 獲取 OAuth2 訪問令牌
+def get_access_token():
+    token_data = {
+        'grant_type': 'client_credentials',
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'scope': SCOPE
+    }
+    token_r = requests.post(TOKEN_URL, data=token_data)
+    token_r.raise_for_status()
+    tokens = token_r.json()
+    return tokens['access_token']
+
+# 發送電子郵件
+def send_email(access_token, to_address, subject, body):
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    email_data = {
+        "message": {
+            "subject": subject,
+            "body": {
+                "contentType": "Text",
+                "content": body
+            },
+            "toRecipients": [
+                {
+                    "emailAddress": {
+                        "address": to_address
+                    }
+                }
+            ]
+        },
+        "saveToSentItems": "true"
+    }
+    email_url = 'https://graph.microsoft.com/v1.0/me/sendMail'
+    response = requests.post(email_url, headers=headers, json=email_data)
+    response.raise_for_status()
+    print("Email sent successfully!")
+
+if __name__ == "__main__":
+    token = get_access_token()
+    send_email(token, 'recipient@example.com', 'Test Subject', 'This is the email body.')
+</pre>
+<p>其他參考資料:</p>
+<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/fossilapp">https://github.com/mdecycu/fossilapp</a> </p>
+<p style="padding-left: 30px;"><a href="https://github.com/mdecycu/fossiloauth">https://github.com/mdecycu/fossiloauth</a> </p>
+<p style="padding-left: 30px;"><a href="https://mde.tw/blog/about-fossil-scm.html">https://mde.tw/blog/about-fossil-scm.html</a> </p>
+<p></p><h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
