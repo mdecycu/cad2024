@@ -187,14 +187,37 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p style="padding-left: 30px;">利用 <a href="https://solvespace.com/">Solvespace</a><span> 進行單一輸入的平面機構模擬</span></p>
 <p style="padding-left: 30px;">利用 <a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a> 建立機械系統的零組件 (<a href="https://assets.ctfassets.net/17si5cpawjzf/6QaZiAOkbt2rEFuUCuTyzb/a2b9445f9c6de6436a54cec5010925c3/Siemens-SW-NX-CAD-buyers-guide-EB-85683-D9.pdf">NX CAD Buyer's Guide</a>, <span>2024 </span><a href="https://www.engineering.com/siemens-announces-nx-x/">Siemens 推出 NX X</a>, <a href="https://static.sw.cdn.siemens.com/siemens-disw-assets/public/1NWyBXoxq3P6qAbN8zk9nU/en-US/Siemens_SW_NX_X_design_solutions_Fact_Sheet.pdf">Fact Sheet</a>, Why?)</p>
 <p style="padding-left: 60px;">“NX X enables our customers to move to a cloud-based, collaborative engineering environment. Our solution allows them to retain their intellectual property and continue their innovative work, without disruption; no need to reinvent their working practices,” said <a href="https://www.sw.siemens.com/en-US/leadership/technology-leadership/bob-haubrock/">Bob Haubrock</a>, senior vice president, Product Engineering Software, Siemens Digital Industries Software.</p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/nx2306_tutorial_video.7z">NX Tutorial</a></p>
 <p style="padding-left: 30px;">Homework 1:</p>
 <p style="padding-left: 60px;">利用 Solvespace 與 NX2312 建立 <a href="https://mde.tw/cad2024/content/Parts.html">Parts</a> 頁面中的零件</p>
 <p style="padding-left: 60px;">其他<a href="http://229.cycu.org/part_modeling_projects.pdf">零件模擬練習</a></p>
 <p style="padding-left: 30px;">Homework 2:</p>
-<p style="padding-left: 60px;">利用 Solvespace 與 NX2312 建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 組立件</p>
-<h2>Topic 4</h2>
+<p style="padding-left: 60px;">利用 Solvespace 與 NX2312 建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 組立件</p><h2>Topic 4</h2>
 <p>主題: 機電整合系統模擬與控制</p>
 <p style="padding-left: 30px;">利用<span> </span><a href="https://www.coppeliarobotics.com/">CoppeliaSim</a><span> </span>建立機電模擬系統</p>
+<p style="padding-left: 60px;">CoppeliaSim 使用者設定檔案位於 C:\Users\%USERNAME%\AppData\Roaming\CoppeliaSim\usrset.txt, 因此若要使用可攜模式, 必須在啟動系統時將先前設定複製至內件位置.</p>
+<p style="padding-left: 90px;">Xcopy %Disk%:\home_ipv6\AppData\Roaming\CoppeliaSim C:\users\%USERNAME%\AppData\Roaming\CoppeliaSim /E /H /C /I /Y</p>
+<p style="padding-left: 90px;">其中包括 defaultPython 與 preferredSandboxLang 變數設定</p>
+<p style="padding-left: 60px;"><a href="https://github.com/mdecycu/Copsim_scenes_4.7">CoppeliaSim 4.7 Scenes</a> 巡禮 (所有場景位於 CoppeliaSim/scenes 目錄中)</p>
+<p style="padding-left: 90px;"><a href="https://raw.githubusercontent.com/orbitalquark/lua-quick-reference/default/docs/LuaQuickReference2.pdf">Lua 簡介</a></p>
+<p style="padding-left: 90px;">Kinematics:</p>
+<p style="padding-left: 120px;">scenes\controlTypeExamples\controlledViaZmq.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\simpleExamples\1-singleIkGroupWithSingleIkElement-undamped.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\simpleExamples\8-computingJointAnglesForRandomPoses.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\abbFantaCanChallenge.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\smoothMovementsInFkAndIk.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\twoRobotsIK.ttt</p>
+<p style="padding-left: 120px;">scenes\trajectoryAndMotion\trajectoryGenerationDemo.ttt</p>
+<p style="padding-left: 120px;">scenes\pickAndPlaceDemo.ttt</p>
+<p style="padding-left: 90px;">Dynamics:</p>
+<p style="padding-left: 120px;">scenes\otherScenes\dynamic4BarLinkage.ttt</p>
+<p style="padding-left: 120px;">scenes\otherScenes\simpleMagnetDemo.ttt</p>
+<p style="padding-left: 120px;">scenes\otherScenes\visionSensorOverTerrain.ttt</p>
+<p style="padding-left: 120px;">scenes\gears.ttt</p>
+<p style="padding-left: 90px;">UI:</p>
+<p style="padding-left: 120px;">scenes\customUI-python.ttt</p>
+<p style="padding-left: 60px;"><a href="https://mde.tw/Copsim_manual_4.7/en/tutorials.htm">CoppeliaSim 4.7 Tutorial</a> </p>
+<p style="padding-left: 60px;">原始碼: <a href="https://github.com/CoppeliaRobotics">https://github.com/CoppeliaRobotics</a></p>
 <p style="padding-left: 30px;">利用<span> </span><a href="https://manual.coppeliarobotics.com/en/zmqRemoteApiOverview.htm">Python</a><span> </span>跨網路控制瀏覽器上的機電模擬系統</p>
 <p style="padding-left: 30px;">Homework 3:</p>
 <p style="padding-left: 60px;">建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
@@ -220,6 +243,7 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p>根據以上流程建立的 CoppeliaSim 系統場景畫面與檔案如下:</p>
 <p><img alt="" height="217" src="/images/Balance_on_wheels_scene.png" width="400"/></p>
 <p><a href="/downloads/Balance_on_Wheel_scene.7z">Balance_on_Wheel_scene.7z</a></p>
+<p><a href="/downloads/Balance_on_Wheel_w_GPS_sensor_zero_vel_ttt.7z">Balance_on_Wheel_w_GPS_sensor_zero_vel_ttt.7z</a></p>
 <p>有關雙輪車平衡控制方法可以參考:</p>
 <p style="padding-left: 30px;"><a href="/downloads/invertedPendulum_ttt_for_4.7.0_rev4.7z">invertedPendulum_ttt_for_4.7.0_rev4.7z</a></p>
 <p style="padding-left: 30px;"><a href="https://ctms.engin.umich.edu/CTMS/?example=InvertedPendulum&amp;section=SystemModeling">Inverted Pendulum: System Modeling</a></p>
@@ -229,8 +253,7 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p style="padding-left: 30px;"><a href="https://iopscience.iop.org/article/10.1088/1742-6596/2187/1/012024/pdf">Balance Control of an Inverted Pendulum on a Quadruped Robot by Reinforcement Learning</a></p>
 <p style="padding-left: 30px;"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10919658/">Control strategies for inverted pendulum: A comparative analysis of linear, nonlinear, and artificial intelligence approaches</a></p>
 <p style="padding-left: 30px;"><a href="https://ir.lib.nycu.edu.tw/bitstream/11536/10654/1/000249410400016.pdf">Design of nonlinear controller for bi-axial inverted pendulum system</a></p>
-<p></p>
-<h1>References</h1>
+<p></p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
@@ -2170,7 +2193,7 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
-<!-- editor2 結束 --><hr>
+<!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></hr>
+</p>

@@ -145,6 +145,30 @@ img.add_border {
     <div id="tipue_search_content">Topic 3 << <a href='Topic 3.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3<br /><h1>Topic 4</h1>
 <p>主題: 機電整合系統模擬與控制</p>
 <p style="padding-left: 30px;">利用<span> </span><a href="https://www.coppeliarobotics.com/">CoppeliaSim</a><span> </span>建立機電模擬系統</p>
+<p style="padding-left: 60px;">CoppeliaSim 使用者設定檔案位於 C:\Users\%USERNAME%\AppData\Roaming\CoppeliaSim\usrset.txt, 因此若要使用可攜模式, 必須在啟動系統時將先前設定複製至內件位置.</p>
+<p style="padding-left: 90px;">Xcopy %Disk%:\home_ipv6\AppData\Roaming\CoppeliaSim C:\users\%USERNAME%\AppData\Roaming\CoppeliaSim /E /H /C /I /Y</p>
+<p style="padding-left: 90px;">其中包括 defaultPython 與 preferredSandboxLang 變數設定</p>
+<p style="padding-left: 60px;"><a href="https://github.com/mdecycu/Copsim_scenes_4.7">CoppeliaSim 4.7 Scenes</a> 巡禮 (所有場景位於 CoppeliaSim/scenes 目錄中)</p>
+<p style="padding-left: 90px;"><a href="https://raw.githubusercontent.com/orbitalquark/lua-quick-reference/default/docs/LuaQuickReference2.pdf">Lua 簡介</a></p>
+<p style="padding-left: 90px;">Kinematics:</p>
+<p style="padding-left: 120px;">scenes\controlTypeExamples\controlledViaZmq.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\simpleExamples\1-singleIkGroupWithSingleIkElement-undamped.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\simpleExamples\8-computingJointAnglesForRandomPoses.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\abbFantaCanChallenge.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\smoothMovementsInFkAndIk.ttt</p>
+<p style="padding-left: 120px;">scenes\kinematics\twoRobotsIK.ttt</p>
+<p style="padding-left: 120px;">scenes\trajectoryAndMotion\trajectoryGenerationDemo.ttt</p>
+<p style="padding-left: 120px;">scenes\pickAndPlaceDemo.ttt</p>
+<p style="padding-left: 90px;">Dynamics:</p>
+<p style="padding-left: 120px;">scenes\otherScenes\dynamic4BarLinkage.ttt</p>
+<p style="padding-left: 120px;">scenes\otherScenes\simpleMagnetDemo.ttt</p>
+<p style="padding-left: 120px;">scenes\otherScenes\visionSensorOverTerrain.ttt</p>
+<p style="padding-left: 120px;">scenes\gears.ttt</p>
+<p style="padding-left: 120px;">scenes\proximitySensorDemo.ttt</p>
+<p style="padding-left: 90px;">UI:</p>
+<p style="padding-left: 120px;">scenes\customUI-python.ttt</p>
+<p style="padding-left: 60px;"><a href="https://mde.tw/Copsim_manual_4.7/en/tutorials.htm">CoppeliaSim 4.7 Tutorial</a> </p>
+<p style="padding-left: 60px;">原始碼: <a href="https://github.com/CoppeliaRobotics">https://github.com/CoppeliaRobotics</a></p>
 <p style="padding-left: 30px;">利用<span> </span><a href="https://manual.coppeliarobotics.com/en/zmqRemoteApiOverview.htm">Python</a><span> </span>跨網路控制瀏覽器上的機電模擬系統</p>
 <p style="padding-left: 30px;">Homework 3:</p>
 <p style="padding-left: 60px;">建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
