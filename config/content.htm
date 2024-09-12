@@ -182,12 +182,35 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=in action=allow
 netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allow protocol=TCP localport=23000-23050</pre>
 <h3>上課內容</h3>
 <p>2a w1 有關 Codespaces 應用:</p>
+<p>demo 倉儲: <a href="https://github.com/mdecad2024/hw-mdecycu">https://github.com/mdecad2024/hw-mdecycu</a></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/ZMlov8CwH80?si=quicxuuJvEMdXW3Z" title="YouTube video player" width="560"></iframe></p>
 <p>請下週記得帶來:</p>
 <p style="padding-left: 30px;">耳機</p>
 <p style="padding-left: 30px;">隨身碟 (USB 3.0, 32 GB 以上)</p>
+<p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
+<p style="padding-left: 60px;"><a href="http://229.cycu.org/NX2312_CAD.7z">下載</a> NX2312 可攜 CAD 壓縮檔案 (1.85 GB, 解開後約 9 GB)</p>
+<p style="padding-left: 60px;">NX2312 解開壓縮後, 將 NX2312_CAD 目錄名稱改為 nx 後, 放入可攜程式系統的 data 目錄中</p>
 <p>作業:</p>
-<p style="padding-left: 30px;">為上列影片加上字幕, 然後嵌入個人作業網站的 HW1</p><h2>Topic 2</h2>
+<p style="padding-left: 30px;">為上列影片(<a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EQHBusxW2M9LpktClnfxxHkB-u0SWIUUWQs69h8t_wvwJQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&amp;e=DGnrma">mp4 檔案</a>) 加上字幕, 然後嵌入個人作業網站的 HW1</p>
+<p style="padding-left: 30px;"></p>
+<p>NX2312 啟動設定:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for NX2312, must after path setup 
+set SPLM_LICENSE_SERVER=29000@認證主機
+set UGII_LANG=english
+set UGS_LICENSE_BUNDLE=ACD11,ACD10
+set UGII_BASE_DIR=%Disk%:\NX\
+set UGII_TMP_DIR=%Disk%:\NX\temp
+set UGII_LIB_PATH=%Disk%:\NX\NXBIN\python
+set ugii=%Disk%:\NX\ugii;%Disk%:\NX\nxbin;
+path = %ugii%;%path%
+Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData\Local\Siemens\NX2312 /E /H /C /I /Y
+
+REM 決定是否開啟 nx GUI 介面
+REM start ugraf -nx
+
+REM 以下指令可以直接呼叫 NXOpen Python 程式進行繪圖組立與其他相關流程
+python %Disk%:\tmp\nx_ex\new_part.py</pre>
+<p></p><h2>Topic 2</h2>
 <p>主題:<span> </span><span>計算機程式課程作業與學員網頁 (複習)</span></p>
 <p style="padding-left: 30px;">What is Github Classroom?</p>
 <p style="padding-left: 30px;"><a href="https://classroom.github.com/">GitHub Classroom</a></p>
