@@ -51,7 +51,45 @@
 <li><span>直接執行 USB 中的程式檔案</span></li>
 <li><span>USB 僅存倉儲、相關設定與必要的認證檔案</span></li>
 </ol>
-<p><span></span></p><h2>Evaluate</h2>
+<hr/>
+<p><span></span>Flask 啟動 https 連線可以採 adhoc 與使用 key.pem, cert.pem 等兩種方式, 其中採 key.pem, cert.pem 的執行無需每次連線都生成數位簽章, 因此速度較快.</p>
+<p>cert.pem 與 key.pem 可以利用可攜程式中的 openssl.exe 建立:</p>
+<p>openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem</p>
+<p>放入倉儲根目錄, 並修改 cmsimde 目錄中的 wsgi.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#!/usr/bin/python
+
+"""Flask startup script
+"""
+
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+# import flaskapp at the same directory
+import flaskapp
+
+# get uwsgi, ip and port variable values of flaskapp.py
+uwsgi = flaskapp.uwsgi
+ip = flaskapp.ip
+port = flaskapp.dynamic_port
+
+if uwsgi:
+    # run on remote site
+    application = flaskapp.app
+else:
+    # on localhost, on Linux or Mac need to use python3 wsgi.py to execute
+    #flaskapp.app.run(host=ip, port=port, debug=True, ssl_context="adhoc")
+    flaskapp.app.run(host=ip, port=port, debug=True, ssl_context=('cert.pem', 'key.pem'))</pre>
+<p>此外, 為了加快 USB 中編輯動態網站與生成靜態網站的速度, 可以每次啟動電腦後下載 python_2025_lite.7z 後解開至 C:\, 使用 batch file 執行如下:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
+
+REM 下載 python_2025_lite.7z
+
+curl --user kmolab:kmolab --output C:\Users\%USERNAME%\Downloads\python_2025_lite.7z "http://229.cycu.org/python_2025_lite.7z"
+
+REM 解開壓縮檔案至 C:\
+
+"C:\Program Files\7-Zip\7z" x C:\Users\%USERNAME%\Downloads\python_2025_lite.7z -oC:\ -y</pre>
+<p></p><h2>Evaluate</h2>
 <p>網頁內容評分: 用來評量受評者的作業網頁內容, 是否完整且充實</p>
 <p>操作影片評分: 用來評量受評者所提供的操作影片內容, 是否說明清楚, 提供字幕且完整呈現標的內容</p>
 <p>倉儲提交說明: 用來評量受評者所提供的倉儲提交說明是否清楚, 以及提交次數及頻率, 是否足以證明其用功程度</p>
@@ -221,9 +259,11 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p style="padding-left: 60px;">NX2312 解開壓縮後, 將 NX2312_CAD 目錄名稱改為 nx 後, 放入可攜程式系統的 data 目錄中</p>
 <p>作業:</p>
 <p style="padding-left: 30px;">為上列影片(<a href="https://nfuedu-my.sharepoint.com/:v:/g/personal/yen_nfu_edu_tw/EQHBusxW2M9LpktClnfxxHkB-u0SWIUUWQs69h8t_wvwJQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&amp;e=DGnrma">mp4 檔案</a>) 加上字幕, 然後嵌入個人作業網站的 HW1</p>
+<p>利用 Codespaces 維護作業網站:</p>
 <p>2b w1 1-1 影片:</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/a0u8eD3GWAc?si=cGspxZCEco5oJ6FM" title="YouTube video player" width="560"></iframe></p>
-<p style="padding-left: 30px;"></p>
+<p>利用可攜程式環境維護作業網站:</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/gZMqQMMXEfc?si=JxAGIYFLrnzpjbRD" title="YouTube video player" width="560"></iframe></p>
 <p>NX2312 啟動設定:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for NX2312, must after path setup 
 set SPLM_LICENSE_SERVER=29000@認證主機
@@ -450,7 +490,7 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <p><a href="https://link.springer.com/content/pdf/10.1007/978-3-319-62533-1.pdf">Elements of Robotics</a> (Open ebook)</p>
 <p><a href="/downloads/uArm_manipulator_en.pdf">uArm_manipulator_en.pdf</a> (<a href="/downloads/uArm_manipulator_es.pdf">uArm_manipulator_es.pdf</a>)</p>
 <p><img alt="" height="672" src="/images/cd2022_flowchart.png" width="544"/></p>
-<hr/>
+<hr>
 <p>Forward Kinematics and Inverse Kinematics of uArm robot:</p>
 <p>Inverse Kinematics:</p>
 <p>利用 <a href="https://www.sympy.org">sympy</a> 根據 <a href="/downloads/MeArmPiTechnicalOverviewV0-3DRAFT.pdf">meArm Pi Technical Overview</a> 中的說明 (修正錯誤後), 解出 Inverse Kinematics 如下:</p>
@@ -1023,7 +1063,7 @@ Tooling Design &amp; NX Joint - DESIGN_TOOLS MOLDWIZARD NXAECDESIGN NXCOATINGS N
 Translators - CATIAV5 DXFDWG IGES NXCREO STEP203UG STEP214UG UGCATIA UGMW UGTO2D TRANSLATORS
 Validation - DESIGN_TOOLS NXREPORTS MPA
 NX VR - NXVR</pre>
-<hr/>
+<hr>
 <h3>NX2406</h3>
 <p><span>NX2406 NXOpen Python 動態連結程式庫採用 Python</span><span> 3.10.12 版本編譯</span><span>.</span></p>
 <p><span><a href="http://229.cycu.org/NX2406_CAD.7z">下載</a> NX2406 可攜 CAD 壓縮檔案 (1.76 GB, 解開後約 9 GB)</span></p>
@@ -2623,4 +2663,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p>
+</p></hr></hr>

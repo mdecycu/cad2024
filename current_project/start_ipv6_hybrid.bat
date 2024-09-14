@@ -1,28 +1,28 @@
 @echo off
 set Disk=y
-subst %Local% "data"
+subst %Disk%: "data"
+
+%Disk%:
 
 REM 請先將 python_2025_lite 下載到 C:\
 REM 除了個人作業倉儲與  ssh key 之外, 其他執行都使用 C:\ 中的檔案
 set Local=C:\python_2025_lite\data
 REM for cadlab
 REM set NX_location="C:\Program Files\Siemens\NX2312"
-set NX_location="F:\python_2025_lite\data\nx"
+set NX_location=E:\NX2312_CAD
 
 REM python 執行將使用 C:\, 但是額外的 Python 模組將存至隨身碟
 REM pip install <package> --target  Y:\extra_python_modules, 但必須將此額外模組路徑納入 PYTHONPATH
 
-%Local%
-
-set HomePath=%Local%\home_ipv6
-set HomeDrive=%Local%\home_ipv6
-set Home=%Local%\home_ipv6
-set USERPROFILE=%Local%\home_ipv6
+set HomePath=%Disk%:\home_ipv6
+set HomeDrive=%Disk%:\home_ipv6
+set Home=%Disk%:\home_ipv6
+set USERPROFILE=%Disk%:\home_ipv6
 
 REM 將系統 Python 程式的 io 設為 utf-8
 set PYTHONIOENCODING="utf-8"
 
-set PYTHONPATH=%Local%\Python310\DLLs;%Local%\Python310\Lib;%Local%\Python310\Lib\site-packages;%Local%\NX\NXBIN\python;%Disk%:\extra_python_modules;
+set PYTHONPATH=%Local%\Python310\DLLs;%Local%\Python310\Lib;%Local%\Python310\Lib\site-packages;%NX_location%\NXBIN\python;%Disk%:\extra_python_modules;
 set PYTHONHOME=%Local%\Python310
 
 REM for putty
