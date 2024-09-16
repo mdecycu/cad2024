@@ -435,7 +435,7 @@ REM start ugraf -nx
 REM 以下指令可以直接呼叫 NXOpen Python 程式進行繪圖組立與其他相關流程
 python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <h3>Seat</h3>
-<p>2a <a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/4ed15bcc8ec61a971558f00ee95b6d686739b4ba/cad2024_2a_group1_brython.py">座位表1</a>, <a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/e51dbbc23766cfcce98198d1ef4343e90ba62a4e/cad2024_2a_group2_brython.py">分組座位表</a></p>
+<p>2a <a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/4ed15bcc8ec61a971558f00ee95b6d686739b4ba/cad2024_2a_group1_brython.py">座位表1</a>, <a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/4ed15bcc8ec61a971558f00ee95b6d686739b4ba/cad2024_2a_group2_brython.py">分組座位表</a></p>
 <p>2b <a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/4ed15bcc8ec61a971558f00ee95b6d686739b4ba/cad2024_2b_group1_brython.py">座位表1</a>, <a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/4ed15bcc8ec61a971558f00ee95b6d686739b4ba/cad2024_2b_group2_brython.py">分組座位表</a></p>
 <hr/>
 <p>上述程式透過與 claude.ai 進行以下對話後產生：</p>
@@ -449,6 +449,11 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <p>主題: 利用 CAD 套件建立零組件 (<a href="https://mde.tw/cad2024/content/Parts.html">零件</a>, <a href="https://mde.tw/cad2024/content/Quadruped.html">組立件</a>)</p>
 <p style="padding-left: 30px;">利用 <a href="https://solvespace.com/">Solvespace</a> 建立機械系統的零組件</p>
 <p style="padding-left: 60px;"><a href="https://www.bing.com/videos/search?q=solvespace+tutorial">Solvespace Tutorial</a></p>
+<p style="padding-left: 60px;"><a href="https://readthedocs.org/projects/solvespace/downloads/pdf/latest/">Document</a> (<a href="https://solvespace.readthedocs.io/en/latest/">link</a>)</p>
+<p style="padding-left: 60px;"><a href="https://solvespace.com/2d.pl">2D Sketch</a>, <a href="https://solvespace.github.io/solvespace-web/constraints.html">constraints</a>, <a href="https://solvespace.github.io/solvespace-web/box.html">assembly</a></p>
+<p style="padding-left: 60px;"><a href="https://thenybble.de/posts/solvespace-mini-tutorial/">mini Tutorial</a></p>
+<p style="padding-left: 60px;"><a href="https://www.farwire.net/SolveSpace-LearningGuide.htm">Learning Guide</a></p>
+<p style="padding-left: 60px;"><a href="https://www.youtube.com/watch?v=88Fo7jMrLyg">Drawing Tutorial</a></p>
 <p style="padding-left: 30px;">利用 <a href="https://solvespace.com/">Solvespace</a><span> 進行單一輸入的平面機構模擬</span></p>
 <p style="padding-left: 30px;">利用 <a href="https://plm.sw.siemens.com/en-US/nx/">Siemens NX</a> 建立機械系統的零組件 (<a href="https://assets.ctfassets.net/17si5cpawjzf/6QaZiAOkbt2rEFuUCuTyzb/a2b9445f9c6de6436a54cec5010925c3/Siemens-SW-NX-CAD-buyers-guide-EB-85683-D9.pdf">NX CAD Buyer's Guide</a>, <span>2024 </span><a href="https://www.engineering.com/siemens-announces-nx-x/">Siemens 推出 NX X</a>, <a href="https://static.sw.cdn.siemens.com/siemens-disw-assets/public/1NWyBXoxq3P6qAbN8zk9nU/en-US/Siemens_SW_NX_X_design_solutions_Fact_Sheet.pdf">Fact Sheet</a>, Why?)</p>
 <p style="padding-left: 60px;">“NX X enables our customers to move to a cloud-based, collaborative engineering environment. Our solution allows them to retain their intellectual property and continue their innovative work, without disruption; no need to reinvent their working practices,” said <a href="https://www.sw.siemens.com/en-US/leadership/technology-leadership/bob-haubrock/">Bob Haubrock</a>, senior vice president, Product Engineering Software, Siemens Digital Industries Software.</p>
@@ -1041,7 +1046,7 @@ VENDOR saltd saltd PORT=29001</pre>
 "LANGUAGE"="english"
 "LICENSESERVER"="29000@your_license_server"
 "UGII_BASE_DIR"="D:\\NX2312"</pre>
-<hr>
+<hr/>
 <p>透過 <a href="/downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 各子目錄與總容量.</p>
 <p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
@@ -2818,7 +2823,7 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
-<!-- editor2 結束 --><hr>
+<!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></hr></hr>
+</p>
