@@ -407,6 +407,7 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p>1. 使用 Codespaces, 開啟、關閉或刪除虛擬程式環境: <a href="https://github.com/codespaces">https://github.com/codespaces</a> </p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/zRcEB9ac5hk?si=TCRHJZ01IOZl0wAg" title="YouTube video player" width="560"></iframe></p>
 <p>2. 使用可攜程式環境: <span>下載 </span><a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a><span> (428 MB, 解開壓縮後約 1.5 GB)</span></p>
+<p><span>w2 採 hybrid (複合式, 只將必要的倉儲與設定檔案放在 USB, 執行時使用 C:\ 中的檔案) 自動下載可攜並解開到固態硬碟的兩個批次檔案: <a href="/downloads/cad2024_w2_hybrid_download_and_start_batch.7z">cad2024_w2_hybrid_download_and_start_batch.7z</a></span></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/P6EQkLQ5nhw?si=CGEA7uvdCQOiCp4B" title="YouTube video player" width="560"></iframe></p>
 <p>請下週記得帶來:</p>
 <p style="padding-left: 30px;">耳機</p>
@@ -414,7 +415,6 @@ netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allo
 <p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
 <p style="padding-left: 60px;"><a href="http://229.cycu.org/NX2312_CAD.7z">下載</a> NX2312 可攜 CAD 壓縮檔案 (1.85 GB, 解開後約 9 GB)</p>
 <p style="padding-left: 60px;">NX2312 解開壓縮後, 將 NX2312_CAD 目錄名稱改為 nx 後, 放入可攜程式系統的 data 目錄中</p>
-<p>w2 採 hybrid (複合式, 只將必要的倉儲與設定檔案放在 USB, 執行時使用 C:\ 中的檔案) 自動下載可攜並解開到固態硬碟的兩個批次檔案: <a href="/downloads/cad2024_w2_hybrid_download_and_start_batch.7z">cad2024_w2_hybrid_download_and_start_batch.7z</a></p>
 <hr/>
 <p>利用 Codespaces 維護作業網站:</p>
 <p>2b w1 1-1 影片:</p>
@@ -1018,7 +1018,7 @@ VENDOR saltd saltd PORT=29001</pre>
 <h3>NX12</h3>
 <p>File - Utilities - Customer Defaults - General - Miscellaneous</p>
 <p>Product Excellence Program -  turn off the Participate and Display initial Message</p>
-<hr>
+<hr/>
 <p><span>NX12 NXOpen Python 動態連結程式庫採用 Python 3.6.5 版本編譯.</span></p>
 <p><span><a href="http://229.cycu.org/NX12_CAD_portable.7z">下載</a> NX12_CAD_portable.7z (947 MB, 解開壓縮後約 4.7 GB)</span></p>
 <h3>NX1872</h3>
@@ -1626,7 +1626,7 @@ Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData
 <p>模擬場景範例: <a href="/downloads/tricycle_ttt.7z">tricycle_ttt.7z</a>, <a href="/downloads/GPSsensor_ttt.7z">GPSsensor_ttt.7z</a></p>
 <p><a href="https://www.youtube.com/playlist?list=PLjzuoBhdtaXOoqkJUqhYQletLLnJP8vjZ">CoppeliaSim Tutorial Videos</a></p>
 <p><a href="https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator">Get started with CoppeliaSim</a></p>
-<hr>
+<hr/>
 <p>CoppeliaSim 在 2024.06.14 推出 <a href="https://manual.coppeliarobotics.com/en/versionInfo.htm#coppeliaSim4.7.0">4.7.0 版</a>, 其中沿用至 4.6.0 版的 zmqRemoteApi 模組已經改名為 coppeliasim_zmqremoteapi_client, 部分模組的內容也進行些微更動, 導致先前所編寫的 ZMQ Rempte API Python 程式都必須因應修改, 否則無法執行.</p>
 <p>KMOLab 在 4.5.1 版為了讓 CoppeliaSim 的 ZMQ Remote API Python 遠端控制程式能夠在 IPv6 網路協定中執行, 修改了 Server 與 Client 模組中的 ZMQ 程式設定, 若要讓 4.7.0 版也能相容於 IPv6, 則必須修改下列程式碼:</p>
 <p>lua\pythonWrapperV2.lua</p>
@@ -2711,7 +2711,7 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div1"></div>
-<!-- editor1 結束 --><hr><!-- ########################################## -->
+<!-- editor1 結束 --><hr/><!-- ########################################## -->
 <p>從 1 累加到 100 part2:</p>
 <p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
 <p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
@@ -2833,4 +2833,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></hr></hr></hr>
+</p>
