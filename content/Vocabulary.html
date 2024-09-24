@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,23 +141,15 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 3 << <a href='HW 3.html'>Previous</a> <a href='Parts.html'>Next</a> >> Parts<br /><h1>References</h1>
-<p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
-<p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
-<p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
-<p><a href="https://youtube.com/watch?v=q20HwaMxjBQ&amp;feature=shared">Guide to mechanical design engineering course</a></p>
-<p><a href="https://drive.google.com/file/d/1uW7alBAk2zMYIHYDyGxtNZ2jmcBKrhZj/view">References</a> </p>
-<p>CAD:</p>
-<p style="padding-left: 30px;"><a href="https://www.tmt.unze.ba/zbornik/TMT2010/Keynote-Tornincasa.pdf">2010 THE FUTURE AND THE EVOLUTION OF CAD</a></p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/cadbook.pdf">cadbook.pdf</a> (from cadp2018 course)</p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/cad_history.pdf">cad_history.pdf</a> <span>(from cadp2018 course)</span></p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/NX-12-for-Engineering-Design.pdf">NX-12-for-Engineering-Design.pdf</a> (from <a href="https://me5763.github.io/lab/assets/books/NX-12-for-Engineering-Design.pdf">https://me5763.github.io/lab/assets/books/NX-12-for-Engineering-Design.pdf</a>)</p>
-<p>Git:</p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/Git_for_Electronic_Circuit_Design.pdf">Git for Electronic Circuit Design - CAD and Version Control for Electrical Engineers.pdf</a> (from <a href="https://link.springer.com/book/10.1007/978-1-4842-8124-6">Springer</a>)</p>
-<p>ODOO:</p>
-<p style="padding-left: 30px;"><a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a> </p>
-<p style="padding-left: 30px;"><a href="https://mde.tw/pj4101">https://mde.tw/pj4101</a> </p>
-<br />HW 3 << <a href='HW 3.html'>Previous</a> <a href='Parts.html'>Next</a> >> Parts</div>
+    <div id="tipue_search_content">Seat << <a href='Seat.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2<br /><h1>Vocabulary</h1>
+<p>這裡將要利用 Python 程式, 從電子書: <a href="http://229.cycu.org/Intro_to_Mechatronics.pdf">Intro_to_Mechatronics.pdf</a> 與 <a href="https://link.springer.com/book/10.1007/978-3-031-57148-0">Programming with Python for Engineers</a>, 擷取出英文單字, 並建立查詢中英文字典的網頁.</p>
+<p>所使用的 Python 模組為 <a href="https://github.com/deanmalmgren/textract">textract</a> 結合 <a href="https://github.com/oschwartz10612/poppler-windows/releases">poppler</a> 中的 pdftotext.exe 工具, 先利用 <a href="./../downloads/extract_text_from_pdf.txt">extract_text_from_pdf.txt</a> 將電子書的內容取出後, 再利用 <a href="./../downloads/check_vocabulary_from_cdit_net.txt">check_vocabulary_from_cdit_net.txt</a> 建立單字查詢超文件:</p>
+<p><a href="http://229.cycu.org/Intro_to_Mechatronics.pdf">Intro_to_Mechatronics.pdf</a>: 英文單字查詢 <a href="./../downloads/words_Intro_to_Mechatronics.html">words_Intro_to_Mechatronics.html</a></p>
+<p><a href="https://link.springer.com/book/10.1007/978-3-031-57148-0">Programming with Python for Engineers</a>: 英文單字查詢 <a href="./../downloads/words_programming_with_python_for_engineers.html">words_programming_with_python_for_engineers.html</a></p>
+<p><a href="https://ieeexplore.ieee.org/document/299539">ref1</a>: 英文單字查詢 <a href="./../downloads/words_mech_what.html">words_mech_what.html</a></p>
+<p>由於可攜程式套件 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 中的 pip 版本高於 24.1, 導致無法正常安裝 <a href="https://github.com/deanmalmgren/textract">textract</a> 模組, 因此利用:  </p>
+<p>python get-pip.py pip==21.1.2</p>
+<p>將 pip 版本退至 21.1.2 後, 利用 pip install textract, 然後下載 <a href="https://github.com/oschwartz10612/poppler-windows/releases">poppler</a> 工具, 讓 pdftotext.exe 可以在可攜程式c環境的 path 中執行.</p><br />Seat << <a href='Seat.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2</div>
         
     <!-- footer -->
       <div class="container">
