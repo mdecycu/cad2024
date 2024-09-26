@@ -414,6 +414,20 @@ REM allow tcp in for port 23000-23050
 netsh advfirewall firewall add rule name="allow_23000-23050" dir=in action=allow protocol=TCP localport=23000-23050
 netsh advfirewall firewall add rule name="allow_23000-23050" dir=out action=allow protocol=TCP localport=23000-23050</pre>
 <h2>上課內容</h2>
+<p><span>利用靜態認證檔案, 加快作業網站編輯流程:</span></p>
+<p><span>第一步: 使用可攜程式環境在cmd 中執行下列指令:</span></p>
+<p style="padding-left: 30px;"><span>openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem</span></p>
+<p><span>第二步: 將 key.pem 與 cert.pem 放入作業倉儲根目錄</span></p>
+<p><span>第三步: 修改作業倉儲中的 cmsimde/wsgi.py</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">if uwsgi:
+    # run on remote site
+    application = flaskapp.app
+else:
+    # on localhost, on Linux or Mac need to use python3 wsgi.py to execute
+    #flaskapp.app.run(host=ip, port=port, debug=True, ssl_context="adhoc")
+    flaskapp.app.run(host=ip, port=port, debug=True, ssl_context=('cert.pem', 'key.pem'))</pre>
+<p><span>結果: 當啟動作業網站編輯時, 可以直接取用 key.pem 與 cert.pem, 而不需要每次連至各頁面時動態產生 https 所需的認證檔案.</span></p>
+<hr/>
 <p>2a w1 有關 Codespaces 應用:</p>
 <p>demo 倉儲: <a href="https://github.com/mdecad2024/hw-mdecycu">https://github.com/mdecad2024/hw-mdecycu</a></p>
 <p>維護作業倉儲的兩種方法:</p>
