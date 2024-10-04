@@ -426,7 +426,8 @@ else:
     # on localhost, on Linux or Mac need to use python3 wsgi.py to execute
     #flaskapp.app.run(host=ip, port=port, debug=True, ssl_context="adhoc")
     flaskapp.app.run(host=ip, port=port, debug=True, ssl_context=('cert.pem', 'key.pem'))</pre>
-<p><span></span></p>
+<p><span>結果: 當啟動作業網站編輯時, 可以直接取用 key.pem 與 cert.pem, 而不需要每次連至各頁面時動態產生 https 所需的認證檔案.</span></p>
+<hr/>
 <p>2a w1 有關 Codespaces 應用:</p>
 <p>demo 倉儲: <a href="https://github.com/mdecad2024/hw-mdecycu">https://github.com/mdecad2024/hw-mdecycu</a></p>
 <p>維護作業倉儲的兩種方法:</p>
@@ -1058,7 +1059,7 @@ VENDOR saltd saltd PORT=29001</pre>
 <h3>NX12</h3>
 <p>File - Utilities - Customer Defaults - General - Miscellaneous</p>
 <p>Product Excellence Program -  turn off the Participate and Display initial Message</p>
-<hr>
+<hr/>
 <p><span>NX12 NXOpen Python 動態連結程式庫採用 Python 3.6.5 版本編譯.</span></p>
 <p><span><a href="http://229.cycu.org/NX12_CAD_portable.7z">下載</a> NX12_CAD_portable.7z (947 MB, 解開壓縮後約 4.7 GB)</span></p>
 <h3>NX1872</h3>
@@ -2873,4 +2874,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></hr>
+</p>
