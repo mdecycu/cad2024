@@ -602,7 +602,29 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre><h3>Seat</h3>
 <p><img alt="" height="363" src="/images/cad2024_part_ex1.png" width="400"/></p>
 <p><img alt="" height="374" src="/images/cad2024_part_ex1_solvespace.png" width="400"/></p>
 <p><a href="/downloads/cad2024_part_ex1_solvespace.7z">cad2024_part_ex1_solvespace.7z</a></p>
-<p><iframe height="400" src="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://mde.tw/cad2024/downloads/cad2024_part_ex1_solvespace.stl" width="600"></iframe></p>
+<p><iframe height="400" src="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl" width="600"></iframe></p>
+<p>上述 iframe 的標註 src 為:</p>
+<p><a href="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl">https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl</a> </p>
+<p>以上 STL 除了放在倉儲 downloads 目錄之外, 也可上傳到可以接受 Cross-Origin Resource Sharing (CORS) 的 WWW server, 目前已經設定一台 s104.cycu.org 可以讓使用者透過 sftp 將零組件轉出的 STL 上傳到使用者的 public_html 目錄, 並透過 "~用戶名稱/STL 檔案名稱"進行連結. 以下為該 server 的必要設置:</p>
+<p>必須與作業網站的 https 連結相同 - 可透過 <a href="https://letsencrypt.org/">Let's Encrypt (letsencrypt.org)</a> 設置, 其中 <a href="https://github.com/certbot/certbot/releases">Windows 套件為 v2.9.0</a>.</p>
+<p>有關 s104.cycu.org 中 nginx 的用戶 public_html 設置必須允許跨網站連結:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false"># 處理 /~username/ 格式的請求
+location ~ ^/~(.+?)(/.*)?$ {
+    alias C:/Users/$1/public_html$2;
+    index index.html;
+    autoindex on;
+    # try to resolve the COR's issue
+    add_header 'Access-Control-Allow-Origin' '*' always;
+    add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS' always;
+    add_header 'Access-Control-Allow-Headers' 'Content-Type' always;
+
+    if ($request_method = 'OPTIONS') {
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Content-Type' always;
+        return 204;
+    }
+}</pre>
 <p>Solvespace 零件繪圖:</p>
 <p>Sketch Rectangle (R)</p>
 <p>Tangle Arc at Point (Shift + A)</p>
