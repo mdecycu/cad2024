@@ -278,7 +278,24 @@ Exit
 <p><a href="https://s40723221.github.io/cd2020/downloads/MechaFutureAndChallenges.pdf">機電整合未來發展與挑戰</a> (<a href="https://s40723210.github.io/cd2020/downloads/MechaFutureAndChallenges%E7%BF%BB%E8%AD%AF.pdf">version 2</a>)</p>
 <p><a href="http://229.cycu.org/40723221_2020.7z">40723221_2020.7z</a></p>
 <p><a href="https://www.20sim.com/downloads/files/20sim.exe">https://www.20sim.com/downloads/files/20sim.exe</a></p>
-<p><a href="https://openmodelica.org/download/download-windows/">https://openmodelica.org/download/download-windows/</a></p><h1>Topics</h1>
+<p><a href="https://openmodelica.org/download/download-windows/">https://openmodelica.org/download/download-windows/</a></p><h2>Servers</h2>
+<p>s104.cycu.org 是一台可讓使用者存放零組件 STL 檔案的伺服器:</p>
+<p>每一位學員都將透過"學號@nfu.edu.tw"收到 sftp 檔案至此一主機的帳號與密碼.</p>
+<p>帳號為各學員的學號</p>
+<p>密碼則可從通知信中查詢</p>
+<p>sftp 指令:</p>
+<p>請在近端先將目錄切換至要上傳 STL 檔案的所在目錄, 例如: STL 零件檔案位於 C:\tmp 目錄:</p>
+<p>假設使用者的學號為 1234, 此學號代碼即為帳號</p>
+<p>C:</p>
+<p>cd \tmp</p>
+<p>C:\tmp&gt;sftp <a href="mailto:1234@s104.cycu.org">1234@s104.cycu.org</a></p>
+<p>1234@s104.cycu.org's password:</p>
+<p>輸入對應密碼後:</p>
+<p>Connected to s104.cycu.org.<br/>sftp&gt; pwd<br/>Remote working directory: /C:/Users/1234.DESKTOP-BAEUNSD<br/>sftp&gt; cd ..<br/>sftp&gt; cd 1234<br/>sftp&gt; pwd<br/>Remote working directory: /C:/Users/1234<br/>sftp&gt; cd public_html<br/>sftp&gt; put 1234_lesson2_solvespace.stl<br/>Uploading 1234_lesson2_solvespace.stl to /C:/Users/1234/public_html/1234_lesson2_solvespace.stl<br/>1234_lesson2_solvespace.stl                                                                           100%  32KB  45.1MB/s   00:00<br/>sftp&gt;</p>
+<p>上傳結束後, 便可從 https://s104.cycu.org/~1234/1234_lesson2_solvespace.stl 擷取此一檔案. 假設學員學號為 1234 的 Github 帳號也是 1234, 則能夠直接在其作業網站上瀏覽此一 STL 零件檔案的連結將會是:</p>
+<p>https://mdecad2024.github.io/hw-1234/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~1234/1234_lesson2_solvespace.stl</p>
+<p></p>
+<p></p><h1>Topics</h1>
 <p>Topic 1:<span> </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
 <p style="padding-left: 30px;">USB 隨身碟:</p>
 <p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
