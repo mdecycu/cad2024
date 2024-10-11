@@ -518,7 +518,12 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre><h3>Seat</h3>
 <p style="padding-left: 30px;">Homework 2:</p>
 <p style="padding-left: 60px;">利用 Solvespace 與 NX2312 建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 組立件</p>
 <p style="padding-left: 60px;"><a href="http://229.cycu.org/2019_Control_and_balancing_of_a_small_vehicle_with_two_wheels_for_autonomous_driving.pdf">2019_Control_and_balancing_of_a_small_vehicle_with_two_wheels_for_autonomous_driving.pdf</a> (<a href="https://www.diva-portal.org/smash/get/diva2:1380196/FULLTEXT01.pdf">source</a>)</p>
-<p style="padding-left: 60px;"><a href="https://www.google.com/search?q=balance+on+wheels+thesis|2019..2024">其他參考資料</a></p><h2>Topic 4</h2>
+<p style="padding-left: 60px;"><a href="https://www.google.com/search?q=balance+on+wheels+thesis|2019..2024">其他參考資料</a></p><h3>lessons</h3>
+<p>lesson 2: </p>
+<p>solvespace: <a href="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~scrum1/cad2024_lesson2.stl">https://s104.cycu.org/~scrum1/cad2024_lesson2.stl</a><span> </span></p>
+<p>STL: <a href="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~scrum1/cad2024_lesson2.stl">https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~scrum1/cad2024_lesson2.stl</a> </p>
+<p>操作影片如下:</p>
+<p></p><h2>Topic 4</h2>
 <p>主題: 機電整合系統模擬與控制</p>
 <p style="padding-left: 30px;">利用<span> </span><a href="https://www.coppeliarobotics.com/">CoppeliaSim</a><span> </span>建立機電模擬系統</p>
 <p style="padding-left: 60px;">CoppeliaSim 使用者設定檔案位於 C:\Users\%USERNAME%\AppData\Roaming\CoppeliaSim\usrset.txt, 因此若要使用可攜模式, 必須在啟動系統時將先前設定複製至內件位置.</p>
@@ -627,6 +632,10 @@ location ~ ^/~(.+?)(/.*)?$ {
 }</pre>
 <p>3. 使用者必須設定其帳號下的 public_html 具有寫入檔案的權利, 以 scrum1 帳號為例, ssh 進入後, 利用 mkdir 建立 public_html 目錄後, 可以利用下列指令讓 public_html 可以寫入.</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">icacls "C:\Users\scrum1\public_html" /grant scrum1:(OI)(CI)F
+
+REM OI (Object Inherit) allows files in the folder to inherit these permissions.
+REM CI (Container Inherit) allows subfolders to inherit these permissions.
+REM F grants full control.
 </pre>
 <hr/>
 <p>Solvespace 零件繪圖:</p>
