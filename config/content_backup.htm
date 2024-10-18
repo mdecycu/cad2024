@@ -23,7 +23,10 @@
 <p>行事曆</p>
 <p><a href="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei"> 全頁檢視 </a></p>
 <p><iframe height="600" src="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei" width="800"></iframe></p>
-<h2>Site</h2>
+<h2>links</h2>
+<p>以下為修課學員的作業倉儲與網站連結:</p>
+<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/a1d142d5de41517dea7d47ce903a39f003e531b4/2a_w3_site_repo_brython.py">2a site and repo</a></p>
+<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/a1d142d5de41517dea7d47ce903a39f003e531b4/2b_w3_site_repo_brython.py">2b site and repo</a></p><h2>Site</h2>
 <p>所謂"<span>基於瀏覽器的分散式版次管理與整合程式開發環境":</span></p>
 <ol>
 <li><span>基於瀏覽器 (<a href="https://en.wikipedia.org/wiki/Web_browser">Web Browser</a>)</span></li>
@@ -300,6 +303,57 @@ Exit
 <p>上傳結束後, 便可從 https://s104.cycu.org/~1234/1234_lesson2_solvespace.stl 擷取此一檔案. 假設學員學號為 1234 的 Github 帳號也是 1234, 則能夠直接在其作業網站上瀏覽此一 STL 零件檔案的連結將會是:</p>
 <p>https://mdecad2024.github.io/hw-1234/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~1234/1234_lesson2_solvespace.stl</p>
 <p></p>
+<h2>Codespaces</h2>
+<p>利用 Codespaces 維護課程網站的步驟:</p>
+<ol>
+<li>chmod u+x init_replit</li>
+<li>./init_replit</li>
+<li>python main.py </li>
+<li>開啟轉址後的瀏覽器, 以內建密碼 admin 登入進行網站內容編輯</li>
+<li>動態網頁內容編輯告一段落後, 利用 Convert 功能將動態內容轉為靜態網站資料</li>
+<li>檢查轉靜態之後的網頁內容, python main2.py 執行後, 開啟瀏覽器觀看靜態網站內容</li>
+<li>利用 chmod u+x acp 讓 user 可以執行 acp script </li>
+<li>最後利用 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到對應的倉儲中</li>
+<li>由於目前 Codespaces 只允許免費帳號每月使用 120 core hours, 若採 2 cores 機器, 每月僅能使用 60 小時.</li>
+<li>登入 Github 後, 可至 <a href="https://github.com/settings/billing/summary">https://github.com/settings/billing/summary</a> 頁面中的 Codespaces 查核已經使用的 Usage hours.</li>
+</ol>
+<p>main.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from cmsimde import flaskapp
+from gevent.pywsgi import WSGIServer
+
+#flaskapp.app.run(host="0.0.0.0", debug=True)
+http_server = WSGIServer(('0.0.0.0', 8080), flaskapp.app)
+http_server.serve_forever()</pre>
+<p>main2.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Run static server
+import static
+from gevent.pywsgi import WSGIServer
+
+http_server = WSGIServer(('0.0.0.0', 8081), static.app)
+http_server.serve_forever()</pre>
+<p>以及與 main2.py 結合使用的 static.py:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, send_from_directory
+
+app = Flask(__name__)
+
+# Route to serve the index.html file
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+# Route to serve static files from the ./cmsimde/static directory
+@app.route('/cmsimde/static/&lt;path:filename&gt;')
+def serve_static(filename):
+    return send_from_directory('cmsimde/static', filename)
+
+# Route to serve other HTML files from the root directory
+@app.route('/&lt;path:filename&gt;')
+def serve_html(filename):
+    return send_from_directory('.', filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</pre>
 <p></p>
 <h1>Topics</h1>
 <p>Topic 1:<span> </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
@@ -514,10 +568,8 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <p>由於可攜程式套件 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 中的 pip 版本高於 24.1, 導致無法正常安裝 <a href="https://github.com/deanmalmgren/textract">textract</a> 模組, 因此利用:  </p>
 <p>python get-pip.py pip==21.1.2</p>
 <p>將 pip 版本退至 21.1.2 後, 利用 pip install textract, 然後下載 <a href="https://github.com/oschwartz10612/poppler-windows/releases">poppler</a> 工具, 讓 pdftotext.exe 可以在可攜程式c環境的 path 中執行.</p>
-<h3>links</h3>
-<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/9e4dbdee95789dae01dd553c786d69b50012bfa7/2a_w3_site_repo_brython.py">2a site and repo</a></p>
-<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/a1d142d5de41517dea7d47ce903a39f003e531b4/2b_w3_site_repo_brython.py">2b site and repo</a></p>
-<p><span></span></p><h2>Topic 2</h2>
+<p></p>
+<h2>Topic 2</h2>
 <p>主題:<span> </span><span>計算機程式課程作業與學員網頁 (複習)</span></p>
 <p style="padding-left: 30px;">What is Github Classroom?</p>
 <p style="padding-left: 30px;"><a href="https://classroom.github.com/">GitHub Classroom</a></p>
@@ -555,7 +607,9 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <p><a href="/downloads/embed_stl_into_page_html.txt">embed_stl_into_page_html.txt</a></p>
 <p><a href="/downloads/embed_multiple_stl_into_page_html.txt">embed_multiple_stl_into_page_html.txt</a></p>
 <p>solvespace: <a href="https://s104.cycu.org/~scrum1/cad2024_part_ex1_solvespace.slvs">cad2024_part_ex1_solvespace.slvs</a></p>
+<p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
+</p>
 <p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
 <p>solvespace: <a href="https://s104.cycu.org/~scrum1/lesson2.slvs">lesson2.slvs</a></p>
 <p><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas></p>
@@ -569,6 +623,7 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <option>low</option>
 <option>high</option>
 </select></div>
+<p>
 <script type="text/javascript">
 var viewers = [];
 
@@ -629,10 +684,14 @@ function openByGet(){
 }
 
 openByGet();
-</script><h3>STL</h3>
+</script>
+</p>
+<h3>STL</h3>
 <p>multiple stl files shown on one page:</p>
 <p><a href="/downloads/embed_multiple_stl_into_page_html.txt">embed_multiple_stl_into_page_html.txt</a></p>
+<p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
+</p>
 <p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
 <p><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></p>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
@@ -645,6 +704,7 @@ openByGet();
 <option>low</option>
 <option>high</option>
 </select></div>
+<p>
 <script type="text/javascript">
 var viewers = [];
 
@@ -705,7 +765,9 @@ function openByGet(){
 }
 
 openByGet();
-</script><h3>NX_python</h3>
+</script>
+</p>
+<h3>NX_python</h3>
 <p><a href="/downloads/nxopen_python_block_ex.7z">nxopen_python_block_ex.7z</a></p>
 <h2>Topic 4</h2>
 <p>主題: 機電整合系統模擬與控制</p>
@@ -748,7 +810,8 @@ openByGet();
 <p style="padding-left: 60px;">建立 <a href="https://mde.tw/cad2024/content/Quadruped.html">Dingo 機器狗</a>控制系統設計模擬場景</p>
 <p style="padding-left: 60px;"><a href="https://github.com/mdecycu/DingoQuadruped">https://github.com/mdecycu/DingoQuadruped</a></p>
 <p style="padding-left: 60px;"><a href="http://229.cycu.org/DINGO_QUADRUPED_CAD.7z">DINGO_QUADRUPED_CAD.7z</a></p>
-<p style="padding-left: 60px;"><img alt="" height="217" src="https://mde.tw/cad2024/images/dingo.png" width="400"/></p><h3>HW 3</h3>
+<p style="padding-left: 60px;"><img alt="" height="217" src="https://mde.tw/cad2024/images/dingo.png" width="400"/></p>
+<h3>HW 3</h3>
 <p>建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
 <p><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
 <p>上列倉儲中有兩個採 Solidworks 繪製的系統模型, 可以直接以 NX2312 開啟後存為 .prt 檔案. 只是各零組件並沒有詳細的零組件繪製流程. 學員可以自行利用 Solvespace 與 NX2312 建立相同尺寸的零組件.</p>
@@ -788,11 +851,13 @@ openByGet();
 <p style="padding-left: 30px;"><a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a> </p>
 <p style="padding-left: 30px;"><a href="https://mde.tw/pj4101">https://mde.tw/pj4101</a> </p>
 <h2>Parts</h2>
-<p><a href="https://support.industrysoftware.automation.siemens.com/training/se/en/ST3/pdf/spse01550.pdf">https://support.industrysoftware.automation.siemens.com/training/se/en/ST3/pdf/spse01550.pdf</a> </p>
+<p><a href="https://support.industrysoftware.automation.siemens.com/training/se/en/ST3/pdf/spse01550.pdf">https://support.industrysoftware.automation.siemens.com/training/se/en/ST3/pdf/spse01550.pdf</a>  (零件繪圖練習只要畫到 page 32)</p>
 <p><img alt="" height="363" src="/images/cad2024_part_ex1.png" width="400"/></p>
 <p><img alt="" height="374" src="/images/cad2024_part_ex1_solvespace.png" width="400"/></p>
 <p><a href="/downloads/cad2024_part_ex1_solvespace.7z">cad2024_part_ex1_solvespace.7z</a></p>
+<p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
+</p>
 <div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
@@ -804,6 +869,7 @@ openByGet();
 <option>low</option>
 <option>high</option>
 </select></div>
+<p>
 <script type="text/javascript">
 var viewers = [];
 
@@ -863,6 +929,7 @@ function openByGet(){
 
 openByGet();
 </script>
+</p>
 <p></p>
 <p>上述 iframe 的標註 src 為:</p>
 <p><a href="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl">https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl</a> </p>
@@ -924,7 +991,8 @@ REM F grants full control.
 <p><a href="/downloads/cad2024_part_ex1_nx2312.7z">cad2024_part_ex1_nx2312.7z</a></p>
 <p><a href="/downloads/cad2024_part_ex1_nx1872.7z">cad2024_part_ex1_nx1872.7z</a></p>
 <p></p>
-<p></p><h2>BonW</h2>
+<p></p>
+<h2>BonW</h2>
 <p>Balance on Wheels</p>
 <p><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
 <p><img alt="" height="217" src="/images/balance_on_wheels.png" width="400"/></p>
@@ -1038,58 +1106,6 @@ utheta: 2*atan((160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*
 {ltheta: asin(r/80 + sin(2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))) - 13/16), 
    
 utheta: -2*atan((-160*r + sqrt(-r**4 + 260*r**3 - 2*r**2*z**2 + 212*r**2*z - 5368*r**2 + 260*r*z**2 - 27560*r*z - 1499160*r - z**4 + 212*z**3 + 296*z**2 - 1222392*z + 130593244) + 10400)/(r**2 - 130*r + z**2 - 266*z + 15514))}]</pre>
-<p></p>
-<h1>Codespaces</h1>
-<p>利用 Codespaces 維護課程網站的步驟:</p>
-<ol>
-<li>chmod u+x init_replit</li>
-<li>./init_replit</li>
-<li>python main.py </li>
-<li>開啟轉址後的瀏覽器, 以內建密碼 admin 登入進行網站內容編輯</li>
-<li>動態網頁內容編輯告一段落後, 利用 Convert 功能將動態內容轉為靜態網站資料</li>
-<li>檢查轉靜態之後的網頁內容, python main2.py 執行後, 開啟瀏覽器觀看靜態網站內容</li>
-<li>利用 chmod u+x acp 讓 user 可以執行 acp script </li>
-<li>最後利用 Shell, 以 <span style="background-color: #ffff99;">./acp "輸入提交註記說明字串"</span> 完成 git add, git commit -m 與 git push, 將動態與靜態網站內容送到對應的倉儲中</li>
-<li>由於目前 Codespaces 只允許免費帳號每月使用 120 core hours, 若採 2 cores 機器, 每月僅能使用 60 小時.</li>
-<li>登入 Github 後, 可至 <a href="https://github.com/settings/billing/summary">https://github.com/settings/billing/summary</a> 頁面中的 Codespaces 查核已經使用的 Usage hours.</li>
-</ol>
-<p>main.py:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from cmsimde import flaskapp
-from gevent.pywsgi import WSGIServer
-
-#flaskapp.app.run(host="0.0.0.0", debug=True)
-http_server = WSGIServer(('0.0.0.0', 8080), flaskapp.app)
-http_server.serve_forever()</pre>
-<p>main2.py:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Run static server
-import static
-from gevent.pywsgi import WSGIServer
-
-http_server = WSGIServer(('0.0.0.0', 8081), static.app)
-http_server.serve_forever()</pre>
-<p>以及與 main2.py 結合使用的 static.py:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, send_from_directory
-
-app = Flask(__name__)
-
-# Route to serve the index.html file
-@app.route('/')
-def index():
-    return send_from_directory('.', 'index.html')
-
-# Route to serve static files from the ./cmsimde/static directory
-@app.route('/cmsimde/static/&lt;path:filename&gt;')
-def serve_static(filename):
-    return send_from_directory('cmsimde/static', filename)
-
-# Route to serve other HTML files from the root directory
-@app.route('/&lt;path:filename&gt;')
-def serve_html(filename):
-    return send_from_directory('.', filename)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-</pre>
 <p></p>
 <h1>CAD</h1>
 <p>Engineers Edge: <a href="https://www.engineersedge.com/">https://www.engineersedge.com/</a></p>
