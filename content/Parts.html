@@ -146,7 +146,77 @@ img.add_border {
 <p><img alt="" height="363" src="./../images/cad2024_part_ex1.png" width="400"/></p>
 <p><img alt="" height="374" src="./../images/cad2024_part_ex1_solvespace.png" width="400"/></p>
 <p><a href="./../downloads/cad2024_part_ex1_solvespace.7z">cad2024_part_ex1_solvespace.7z</a></p>
-<p><iframe height="400" src="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl" width="600"></iframe></p>
+<script src="./../cmsimde/static/jsc3d.js" type="text/javascript"></script>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
+<option>Flat</option>
+<option>Point</option>
+<option>Wireframe</option>
+<option>Smooth</option>
+</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
+<option>Standard</option>
+<option>low</option>
+<option>high</option>
+</select></div>
+<script type="text/javascript">
+var viewers = [];
+
+function getOptions(){
+    var mc = document.getElementById("mdlClr").value;
+    var bc1 = document.getElementById("bckClr1").value;
+    var bc2 = document.getElementById("bckClr2").value;
+    var ren = document.getElementById("render").value;
+    var def = document.getElementById("defini").value;
+    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+}
+
+function readSTLfile(opt, canvasId){
+    var canvas = document.getElementById(canvasId);
+    var viewer = new JSC3D.Viewer(canvas);
+    viewer.setParameter('SceneUrl', opt.SceneUrl);
+    viewer.setParameter('InitRotationX', 0);
+    viewer.setParameter('InitRotationY', 0);
+    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('ModelColor', opt.ModelColor);
+    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
+    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
+    viewer.setParameter('RenderMode', opt.RenderMode);
+    viewer.setParameter('Definition', opt.Definition);
+    viewer.init();
+    viewer.update();
+    viewers.push(viewer); // 保存 viewer 實例
+}
+
+function changeOption(strOpt,strValue){
+    console.log("change " + strOpt + " to " + strValue);
+    viewers.forEach(viewer => {
+        viewer.setParameter(strOpt, strValue);
+        viewer.init();
+        viewer.update();
+    });
+}
+
+function openByUrl(){
+    var url = document.getElementById("url").value;
+    var opt = getOptions();
+    opt.SceneUrl = url;
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+}
+
+function openByGet(){
+    var urls = [
+        "https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl"
+    ];
+    var opt = getOptions();
+    urls.forEach((url, index) => {
+        opt.SceneUrl = url;
+        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+    });
+}
+
+openByGet();
+</script>
 <p>上述 iframe 的標註 src 為:</p>
 <p><a href="https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl">https://mde.tw/cad2024/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl</a> </p>
 <p>以上 STL 除了放在倉儲 downloads 目錄之外, 也可上傳到可以接受 Cross-Origin Resource Sharing (CORS) 的 WWW server, 目前已經設定一台 s104.cycu.org 可以讓使用者透過 sftp 將零組件轉出的 STL 上傳到使用者的 public_html 目錄, 並透過 "~用戶名稱/STL 檔案名稱"進行連結. 以下為該 server 的必要設置:</p>
@@ -207,8 +277,7 @@ REM F grants full control.
 <p><a href="./../downloads/cad2024_part_ex1_nx2312.7z">cad2024_part_ex1_nx2312.7z</a></p>
 <p><a href="./../downloads/cad2024_part_ex1_nx1872.7z">cad2024_part_ex1_nx1872.7z</a></p>
 <p></p>
-<p></p>
-<br />References << <a href='References.html'>Previous</a> <a href='BonW.html'>Next</a> >> BonW</div>
+<p></p><br />References << <a href='References.html'>Previous</a> <a href='BonW.html'>Next</a> >> BonW</div>
         
     <!-- footer -->
       <div class="container">
