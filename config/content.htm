@@ -1734,7 +1734,13 @@ Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData
 &lt;Pref Application="Gateway" Category="User Interface" Tab="Journal" displayValue="Python" modified="2024-08-09T08:26:17" name="UG_journalLanguage" title="Journal Language" value="4"/&gt;
 &lt;/PrefValues&gt;</pre>
 <p><a href="/downloads/nxopen_ex.7z">nxopen_ex.7z</a></p>
-<h3>Open C</h3>
+<p>可攜啟動之後, 若從命令列中啟動 NX, 則系統內定設定將讀取 home_ipv6\AppData\Local\Siemens\NX2312 目錄中的相關設定, 其中與 Menu 下拉式功能表有關的設定位於 user.mtx, 決定顯示 Menu 的設定內容為:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">&lt;ActionList name="QuickAccessBar" type="popupbar"&gt;
+    &lt;ActionItems&gt;
+        &lt;ActionItem name="MenuBar" type="cascade" visibility="1"/&gt;
+    &lt;/ActionItems&gt;
+&lt;/ActionList&gt;</pre>
+<p><a href="/downloads/NX2312_user_mtx_and_NX_user_dpv.7z">NX2312_user_mtx_and_NX_user_dpv.7z</a></p><h3>Open C</h3>
 <p>The following table lists the Open C functions that have been wrapped for use in NXOpen.NET. The list provides the Open C function name and the corresponding C# method.</p>
 <table border="1" cellpadding="6" frame="box" width="438"><colgroup span="1"><col span="1" width="233*"/><col span="1" width="339*"/></colgroup>
 <thead>

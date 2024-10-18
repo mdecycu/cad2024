@@ -26,7 +26,14 @@
 <h2>links</h2>
 <p>以下為修課學員的作業倉儲與網站連結:</p>
 <p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/a1d142d5de41517dea7d47ce903a39f003e531b4/2a_w3_site_repo_brython.py">2a site and repo</a></p>
-<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/a1d142d5de41517dea7d47ce903a39f003e531b4/2b_w3_site_repo_brython.py">2b site and repo</a></p><h2>Site</h2>
+<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/a1d142d5de41517dea7d47ce903a39f003e531b4/2b_w3_site_repo_brython.py">2b site and repo</a></p>
+<p>上列學員的作業網站與倉儲連結資料, 取自 <a href="https://github.com/mdecycu/list">https://github.com/mdecycu/list</a> 倉儲中各班名單的 Github Pages, 若學員的 Github 帳號有異動, 必須重新領取作業倉儲並透過 Pull Requests 加入或修改與本身學號對應的 Github 帳號.</p>
+<p>學號與 Github 帳號間的分隔符號為 Tab, 也就是 \t, Pull Requests 是一種允許任何 Github 使用者透過軟性且間接的方式, 提出修改任何公開倉儲中的任何資料.</p>
+<p>所謂軟性, 意即針對任何公開倉儲, 雖然任何 Github 使用者, 都可以透過 Pull Requests 提議修改內容, 但是否將修改的內容合併入目標倉儲的決定權, 並不在提出 Pull Requests 的用戶, 而是掌握在對目標倉儲有直接修改權的 Github 用戶.</p>
+<p>所謂間接, 指的是 Pull Requests 並非直接對目標倉儲的內容進行修改, 而是必須先登入 Github 帳號後, 連線到目標倉儲的網址, 然後透過 Fork 功能, 將目標倉儲"插"一份到自己的帳號下, 由於"插"回來的倉儲是位於自己的帳號下, 因此可以對 Forked 倉儲內容進行修改.</p>
+<p>但是修改 Forked 倉儲內容之後, 必須透過建立 Pull Requests, 將此 PR 通報到目標倉儲, 然後再由目標倉儲的管理者決定是否接受此"拉回"合併的"請求".</p>
+<p>上面所說明的所謂 Pull Requests 是希望從 Forked 倉儲的版本資料, 合併至目標倉儲, 其決定權在目標倉儲的管理者. 但另外一種使用情境則是, 當目標倉儲被某一使用者 Fork 之後, 目標倉儲的內容因為改版而變更後, 若先前 Forked 倉儲希望取得目標倉儲所進行的修改內容, 需要在建立所謂 Pull Requests 流程時的 URL, 將目標倉儲的管理者帳號與 Forked 倉儲用戶帳號對調, 要求執行所謂的"逆向" Pull Requests.</p>
+<p>由於"逆向" Pull Requests 的合併, 是希望將目標倉儲的修改內容, 合併至 Forked 倉儲, 其決定權自然屬於 Forked 倉儲的用戶, 因此該用戶可以自行同意該"逆向" Pull Requests 的合併請求, 讓 Forked 倉儲的內容與目標倉儲保持同步.</p><h2>Site</h2>
 <p>所謂"<span>基於瀏覽器的分散式版次管理與整合程式開發環境":</span></p>
 <ol>
 <li><span>基於瀏覽器 (<a href="https://en.wikipedia.org/wiki/Web_browser">Web Browser</a>)</span></li>
@@ -1727,7 +1734,13 @@ Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData
 &lt;Pref Application="Gateway" Category="User Interface" Tab="Journal" displayValue="Python" modified="2024-08-09T08:26:17" name="UG_journalLanguage" title="Journal Language" value="4"/&gt;
 &lt;/PrefValues&gt;</pre>
 <p><a href="/downloads/nxopen_ex.7z">nxopen_ex.7z</a></p>
-<h3>Open C</h3>
+<p>可攜啟動之後, 若從命令列中啟動 NX, 則系統內定設定將讀取 home_ipv6\AppData\Local\Siemens\NX2312 目錄中的相關設定, 其中與 Menu 下拉式功能表有關的設定位於 user.mtx, 決定顯示 Menu 的設定內容為:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">&lt;ActionList name="QuickAccessBar" type="popupbar"&gt;
+    &lt;ActionItems&gt;
+        &lt;ActionItem name="MenuBar" type="cascade" visibility="1"/&gt;
+    &lt;/ActionItems&gt;
+&lt;/ActionList&gt;</pre>
+<p></p><h3>Open C</h3>
 <p>The following table lists the Open C functions that have been wrapped for use in NXOpen.NET. The list provides the Open C function name and the corresponding C# method.</p>
 <table border="1" cellpadding="6" frame="box" width="438"><colgroup span="1"><col span="1" width="233*"/><col span="1" width="339*"/></colgroup>
 <thead>
