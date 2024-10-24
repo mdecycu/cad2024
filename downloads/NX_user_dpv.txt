@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="NX_user.xsl"?>
+<PrefValues defaultLockStatus="unlocked">
+<Pref Application="Gateway" Category="General" Tab="Data Privacy" displayValue="No" modified="2024-08-09T08:48:09" name="NX_ProductExcellenceProgram" title="Product Excellence Program - Participate" value="false"/>
+<Pref Application="Gateway" Category="General" Tab="Miscellaneous" displayValue="No" modified="2024-08-09T08:25:55" name="NX_ProductExcellenceProgramMessage" title="Product Excellence Program - Display Initial Startup Message" value="false"/>
+<Pref Application="Gateway" Category="User Interface" Tab="Journal" displayValue="Python" modified="2024-08-09T08:26:17" name="UG_journalLanguage" title="Journal Language" value="4"/>
+</PrefValues>
+
