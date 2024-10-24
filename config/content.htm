@@ -643,6 +643,8 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre><h3>Seat</h3>
 <p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
 <p>solvespace: <a href="https://s104.cycu.org/~scrum1/lesson2.slvs">lesson2.slvs</a></p>
 <p><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas></p>
+<p><a href="/downloads/page_27_solvespace.7z">page_27_solvespace.7z</a></p>
+<p><canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas></p>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -699,12 +701,14 @@ function openByUrl(){
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
     readSTLfile(opt, 'cv2'); // 第二個 canvas
+    readSTLfile(opt, 'cv3'); // 第二個 canvas
 }
 
 function openByGet(){
     var urls = [
         "https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl",
-        "https://s104.cycu.org/~scrum1/lesson2.stl"
+        "https://s104.cycu.org/~scrum1/lesson2.stl",
+        "https://s104.cycu.org/~scrum1/page_27.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -715,8 +719,7 @@ function openByGet(){
 
 openByGet();
 </script>
-</p>
-<h3>STL</h3>
+</p><h3>STL</h3>
 <p>multiple stl files shown on one page:</p>
 <p><a href="/downloads/embed_multiple_stl_into_page_html.txt">embed_multiple_stl_into_page_html.txt</a></p>
 <p>
@@ -1721,6 +1724,7 @@ gcc.exe -shared -o dist/gear.dll build/gear.o C:\nx2312_portable\data\nx2312\UGO
 <div class="winkVideoContainerClass"><a href="/downloads/uarm_gear_design_for_NX.zip">uarm_gear_design_for_NX.zip</a></div>
 <div class="winkVideoContainerClass">using MSYS2 compile gear.c: <a href="/downloads/spur_gear_NXOpen_C_NX2312.7z">spur_gear_NXOpen_C_NX2312.7z</a></div>
 <div class="winkVideoContainerClass"><a href="http://229.cycu.org/nxopen_ref.7z">NXOpen_ref.7z</a></div><h3>NXOpen_Python</h3>
+<p><a href="/downloads/generate_cylinder_nx2312_py.txt">generate_cylinder_nx2312_py.txt</a></p>
 <p><span><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">NXOpen Programmer's Guide</a></span></p>
 <p><span><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref">NXOpen Python Reference Guide 2312</a></span></p>
 <p>NX2312 與 NX2406 必須配合 Python 3.10 使用 (以 Python 3.10.12 編譯 .pyd), 這裡利用 gen_python_for_nx2312.py 如下, 建立 Python310 備用 (由於 Python 3.10.12 可攜目錄無法使用下列程式建立, 因此退至 Python 3.10.11):</p>

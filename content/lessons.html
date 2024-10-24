@@ -153,6 +153,8 @@ img.add_border {
 <p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
 <p>solvespace: <a href="https://s104.cycu.org/~scrum1/lesson2.slvs">lesson2.slvs</a></p>
 <p><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas></p>
+<p><a href="./../downloads/page_27_solvespace.7z">page_27_solvespace.7z</a></p>
+<p><canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas></p>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -209,12 +211,14 @@ function openByUrl(){
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
     readSTLfile(opt, 'cv2'); // 第二個 canvas
+    readSTLfile(opt, 'cv3'); // 第二個 canvas
 }
 
 function openByGet(){
     var urls = [
         "https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl",
-        "https://s104.cycu.org/~scrum1/lesson2.stl"
+        "https://s104.cycu.org/~scrum1/lesson2.stl",
+        "https://s104.cycu.org/~scrum1/page_27.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -225,8 +229,7 @@ function openByGet(){
 
 openByGet();
 </script>
-</p>
-<br />Topic 3 << <a href='Topic 3.html'>Previous</a> <a href='STL.html'>Next</a> >> STL</div>
+</p><br />Topic 3 << <a href='Topic 3.html'>Previous</a> <a href='STL.html'>Next</a> >> STL</div>
         
     <!-- footer -->
       <div class="container">

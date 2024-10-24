@@ -26,7 +26,7 @@
 <p><a href="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei"> 全頁檢視 </a></p>
 <p><iframe height="600" src="https://calendar.google.com/calendar/embed?src=mde.nfu.edu.tw_3439313938333136353439%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;mode=week&amp;src=mde.nfu.edu.tw_35303530373431313438%40resource.calendar.google.com&amp;ctz=Asia%2FTaipei&amp;src=yen%40gm.nfu.edu.tw&amp;ctz=Asia%2FTaipei" width="800"></iframe></p><h2>links</h2>
 <p>以下為修課學員的作業倉儲與網站連結:</p>
-<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/ea83ce68baba381d7ee002103c5c8b3945fe9333/2a_w3_site_repo_brython.py">2a site and repo</a></p>
+<p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/11e8e4bb5182f6e5d59fa09797dc574684d9510a/2a_w3_site_repo_brython.py">2a site and repo</a></p>
 <p><a href="https://mde.tw/cad2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/eb2e4327b65a0fe5c307ea329ef2f69c/raw/ea83ce68baba381d7ee002103c5c8b3945fe9333/2b_w3_site_repo_brython.py">2b site and repo</a></p>
 <p>上列學員的作業網站與倉儲連結資料, 取自 <a href="https://github.com/mdecycu/list">https://github.com/mdecycu/list</a> 倉儲中各班名單的 Github Pages, 若學員的 Github 帳號有異動, 必須重新領取作業倉儲並透過 Pull Requests 加入或修改與本身學號對應的 Github 帳號.</p>
 <p>學號與 Github 帳號間的分隔符號為 Tab, 也就是 \t, Pull Requests 是一種允許任何 Github 使用者透過軟性且間接的方式, 提出修改任何公開倉儲中的任何資料.</p>
@@ -643,6 +643,8 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre><h3>Seat</h3>
 <p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
 <p>solvespace: <a href="https://s104.cycu.org/~scrum1/lesson2.slvs">lesson2.slvs</a></p>
 <p><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas></p>
+<p><a href="/downloads/page_27_solvespace.7z">page_27_solvespace.7z</a></p>
+<p><canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas></p>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -699,12 +701,14 @@ function openByUrl(){
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
     readSTLfile(opt, 'cv2'); // 第二個 canvas
+    readSTLfile(opt, 'cv3'); // 第二個 canvas
 }
 
 function openByGet(){
     var urls = [
         "https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl",
-        "https://s104.cycu.org/~scrum1/lesson2.stl"
+        "https://s104.cycu.org/~scrum1/lesson2.stl",
+        "https://s104.cycu.org/~scrum1/page_27.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -715,8 +719,7 @@ function openByGet(){
 
 openByGet();
 </script>
-</p>
-<h3>STL</h3>
+</p><h3>STL</h3>
 <p>multiple stl files shown on one page:</p>
 <p><a href="/downloads/embed_multiple_stl_into_page_html.txt">embed_multiple_stl_into_page_html.txt</a></p>
 <p>
@@ -2806,7 +2809,7 @@ if __name__ == "__main__":
     token = get_access_token()
     send_email(token, 'recipient@example.com', 'Test Subject', 'This is the email body.')
 </pre>
-<hr>
+<hr/>
 <p>以下利用 ChatGPT 4omini 進行對話:</p>
 <p>問:</p>
 <p data-pm-slice="0 0 []" style="padding-left: 30px;">使用 python + flask 開發一個簡單的資料庫程式, 並使用 SQLite, 目前表單有使用者學號以及其 github 帳號, 還有一個備註欄位, 只需要 add, query, update 與 delete 功能, 該如何進行?</p>
@@ -3127,7 +3130,7 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div1"></div>
-<!-- editor1 結束 --><hr><!-- ########################################## -->
+<!-- editor1 結束 --><hr/><!-- ########################################## -->
 <p>從 1 累加到 100 part2:</p>
 <p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
 <p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
@@ -3249,4 +3252,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></hr></hr>
+</p>
