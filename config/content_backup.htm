@@ -279,7 +279,23 @@ Exit
 <p><a href="http://229.cycu.org/40723221_2020.7z">40723221_2020.7z</a></p>
 <p><a href="https://www.20sim.com/downloads/files/20sim.exe">https://www.20sim.com/downloads/files/20sim.exe</a></p>
 <p><a href="https://openmodelica.org/download/download-windows/">https://openmodelica.org/download/download-windows/</a></p><h2>Servers</h2>
-<h1>Topics</h1>
+<p>s104.cycu.org 是一台可讓使用者存放零組件 STL 檔案的伺服器:</p>
+<p>每一位學員都將透過"學號@nfu.edu.tw"收到 sftp 檔案至此一主機的帳號與密碼.</p>
+<p>帳號為各學員的學號</p>
+<p>密碼則可從通知信中查詢</p>
+<p>sftp 指令:</p>
+<p>請在近端先將目錄切換至要上傳 STL 檔案的所在目錄, 例如: STL 零件檔案位於 C:\tmp 目錄:</p>
+<p>假設使用者的學號為 1234, 此學號代碼即為帳號</p>
+<p>C:</p>
+<p>cd \tmp</p>
+<p>C:\tmp&gt;sftp <a href="mailto:1234@s104.cycu.org">1234@s104.cycu.org</a></p>
+<p>1234@s104.cycu.org's password:</p>
+<p>輸入對應密碼後:</p>
+<p>Connected to s104.cycu.org.<br/>sftp&gt; pwd<br/>Remote working directory: /C:/Users/1234.DESKTOP-BAEUNSD<br/>sftp&gt; cd ..<br/>sftp&gt; cd 1234<br/>sftp&gt; pwd<br/>Remote working directory: /C:/Users/1234<br/>sftp&gt; cd public_html<br/>sftp&gt; put 1234_lesson2_solvespace.stl<br/>Uploading 1234_lesson2_solvespace.stl to /C:/Users/1234/public_html/1234_lesson2_solvespace.stl<br/>1234_lesson2_solvespace.stl                                                                           100%  32KB  45.1MB/s   00:00<br/>sftp&gt;</p>
+<p>上傳結束後, 便可從 https://s104.cycu.org/~1234/1234_lesson2_solvespace.stl 擷取此一檔案. 假設學員學號為 1234 的 Github 帳號也是 1234, 則能夠直接在其作業網站上瀏覽此一 STL 零件檔案的連結將會是:</p>
+<p>https://mdecad2024.github.io/hw-1234/cmsimde/static/viewstl.html?src=https://s104.cycu.org/~1234/1234_lesson2_solvespace.stl</p>
+<p></p>
+<p></p><h1>Topics</h1>
 <p>Topic 1:<span> </span><span>基於瀏覽器的分散式版次管理與整合程式開發環境 (複習)</span></p>
 <p style="padding-left: 30px;">USB 隨身碟:</p>
 <p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
@@ -2215,7 +2231,52 @@ if __name__ == "__main__":
 <p>這個例子展示了如何使用 pyzmq 來實現一個分散式計算系統，用於解決複雜的數值問題。它將一個大問題分解成多個小問題，利用多台機器或多個處理器並行計算，從而提高計算效率。</p>
 <p>注意：這個實現使用了自然邊界條件（Neumann邊界條件）來處理子區間的邊界。在實際應用中，可能需要根據具體問題調整邊界條件的處理方式。</p>
 <p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p>
-<h1>Python</h1>
+<h2>SolidWorks</h2>
+<p>下載 <a href="http://229.cycu.org/solidworks_2023.7z">SolidWorks_2023.7z</a> (學校所提供的教育版 SolidWorks 2023 SP2.1)</p>
+<p>安裝過程:</p>
+<p>確定電腦在安裝其他套件或更新時, 已經重新啟動電腦, 否則請在安裝前重新啟動電腦.</p>
+<p>另外若安裝時電腦並非位於校網中, 請透過 VPN 連線進入校區網段, 使用 VPN 連網細節請參考"VPN_校外網路取得校內IP服務.docx" 中的說明.</p>
+<p>以下安裝資訊僅適用於校網中, 在其他網段無法使用, 安裝完成後電腦必須位於校網或以 VPN 登入校網, 否則無法使用.</p>
+<p>解開上列壓縮檔案後, 執行 setup.exe 進行安裝, 畫面如下:</p>
+<p><img caption="false" height="265" src="/images/solidworks_2023_step1.png" width="300"/></p>
+<p>選擇安裝在此電腦上, 接著下一步:</p>
+<p>安裝序號有 24 碼, 可從"SOLIDWORKS2023安裝序號及IP＿README_utf8.txt" 檔案中取得, 複製序號後貼上即可.</p>
+<p><img alt="" height="266" src="/images/solidworks_2023_step2.png" width="300"/></p>
+<p>接著下一步, 安裝程式將會連線至 SolidWorks, 之後選擇不要安裝更新版本:</p>
+<p><img alt="" height="266" src="/images/solidworks_2023_step3.png" width="300"/></p>
+<p>接下來選擇接受 SolidWorks 的條款, 若全部安裝需要 21 GB:</p>
+<p><img alt="" height="266" src="/images/solidworks_2023_step4.png" width="300"/></p>
+<p></p>
+<p>其中:</p>
+<p>繁體中文佔 327MB</p>
+<p>Flow Simulation 佔 1.3GB</p>
+<p>Plastics 佔 1.7GB</p>
+<p>Composer 佔 1.6GB</p>
+<p>CAM 佔 2.3GB</p>
+<p>Visualize 佔 3.9GB</p>
+<p>Electrical 佔 733MB</p>
+<p>3D Experience Marketplace 佔 2MB</p>
+<p>3D Experience Exchange for SolidWorks 佔 2MB</p>
+<p>Simulation 佔 350MB</p>
+<p>Motion 佔 5MB</p>
+<p>若上述延伸套件都選擇不安裝, 則需要 8.6GB:</p>
+<p><img alt="" height="266" src="/images/solidworks_2023_step5.png" width="300"/></p>
+<p>確定安裝內容後, 選擇馬上安裝:</p>
+<p><img alt="" height="228" src="/images/solidworks_2023_step6.png" width="300"/></p>
+<p>按下確定後開始進行下載安裝.</p>
+<p><img alt="" height="266" src="/images/solidworks_2023_step7.png" width="300"/></p>
+<p>安裝完成前, 選擇是否參加客戶經驗改進計畫:</p>
+<p><img alt="" height="265" src="/images/solidworks_2023_step8.png" width="300"/></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p><h1>Python</h1>
 <p>以 Python 為主的可攜程式環境架構:</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/python_2025">https://github.com/mdecycu/python_2025</a></p>
 <p>2024 Fall 開始採用的 python_2025.7z (5.2GB), 包含下列模組:</p>
@@ -2314,8 +2375,7 @@ for i in py_list:
     # delete msi file
     os.remove(dir_path + "\\" + i + ".msi")
     os.remove(path + "\\" + i + ".msi")
-</pre>
-<h1>Project</h1>
+</pre><h1>Project</h1>
 <p>已知:</p>
 <ol>
 <li>修課學員經由 @nfu.edu.tw 網域, 可利用"學號@nfu.edu.tw"經由 <a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a> 登入 MS 365.</li>
