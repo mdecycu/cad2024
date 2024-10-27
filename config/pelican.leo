@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Created by Leo: http://leoeditor.com/leo_toc.html -->
-<leo_file xmlns:leo="http://leoeditor.com/namespaces/leo-python-editor/1.1" >
+<!-- Created by Leo: https://leo-editor.github.io/leo-editor/leo_toc.html -->
+<leo_file xmlns:leo="https://leo-editor.github.io/leo-editor/namespaces/leo-python-editor/1.1" >
 <leo_header file_format="2"/>
 <globals/>
 <preferences/>
@@ -54,9 +54,10 @@
 </v>
 <v t="leo.20170710022054.1"><vh>可以另建節點存放 markdown 目錄下的 md 檔案</vh></v>
 <v t="leo.20170710022041.1"><vh>@path markdown</vh>
-<v t="leo.20180115115910.1"><vh>2020</vh>
-<v t="leo.20180423103639.1"><vh>2020 Fall CP 課程</vh>
-<v t="leo.20180423103656.1"><vh>@edit 20200813.md</vh></v>
+<v t="leo.20180115115910.1"><vh>2024</vh>
+<v t="leo.20180423103639.1"><vh>2024 Fall CAD 課程</vh>
+<v t="leo.20180423103656.1"><vh>@edit 20240620.md</vh></v>
+<v t="leo.20241021100950.1"><vh>@edit 20241020.md</vh></v>
 </v>
 </v>
 </v>

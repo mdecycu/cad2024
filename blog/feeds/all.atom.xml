@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>cad2024 電腦輔助設計與實習</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2024-06-22T13:31:45+08:00</updated><entry><title>2024 Fall CAD 課程</title><link href="./2024-Fall-Computer-Aided-Design-and-practice.html" rel="alternate"></link><published>2024-06-20T11:00:00+08:00</published><updated>2024-06-22T13:31:45+08:00</updated><author><name>yen</name></author><id>tag:None,2024-06-20:./2024-Fall-Computer-Aided-Design-and-practice.html</id><summary type="html">&lt;p&gt;2024 Fall 電腦輔助設計與實習.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>cad2024 電腦輔助設計與實習</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2024-10-21T15:41:20+08:00</updated><entry><title>電腦輔助設計實習課程</title><link href="./2024-Fall-CAD-course-design.html" rel="alternate"></link><published>2024-10-20T11:00:00+08:00</published><updated>2024-10-21T15:41:20+08:00</updated><author><name>yen</name></author><id>tag:None,2024-10-20:./2024-Fall-CAD-course-design.html</id><summary type="html">&lt;p&gt;承接計算機程式, 為協同產品設計實習課程作準備, 就是在規劃電腦輔助設計與實習課程的主要目標.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;承接計算機程式, 為協同產品設計實習課程作準備, 就是在規劃電腦輔助設計與實習課程的主要目標.&lt;/p&gt;
+
+
+&lt;h2&gt;計算機程式&lt;/h2&gt;
+&lt;p&gt;2023 Fall 計算機程式課程網頁: &lt;a href="http://wcm.cycu.org:88/github/cpnote"&gt;http://wcm.cycu.org:88/github/cpnote&lt;/a&gt; (僅系上 IPv6 網段可以擷取), 大部分的教學內容使用 Replit 線上整合環境, 主要使用 ANSI C 語法以及 GD 繪圖程式庫進行教學.&lt;/p&gt;
+&lt;p&gt;後續在電腦輔助設計與實習可以利用 C 與 Python 進行 Siemens NX2312 的延伸程式開發.&lt;/p&gt;
+&lt;p&gt;Open C 繪製正齒輪零件的範例程式: &lt;a href="https://mde.tw/cad2024/downloads/gear_c_NX2312.txt"&gt;https://mde.tw/cad2024/downloads/gear_c_NX2312.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;NXOpen Python 建立 block 範例程式: &lt;a href="https://mde.tw/cad2024/downloads/1_block_only_short_py.txt"&gt;https://mde.tw/cad2024/downloads/1_block_only_short_py.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose"&gt;NXOpen Programmer's Guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref"&gt;NXOpen Python Reference Guide 2312&lt;/a&gt;&lt;/p&gt;
+&lt;!--
+&lt;pre class="brush:jscript"&gt;
+&lt;/pre&gt;
+&lt;pre class="brush: python"&gt;
+&lt;/pre&gt;
+--&gt;</content><category term="CAD"></category><category term="2024FallCAD"></category></entry><entry><title>2024 Fall CAD 課程</title><link href="./2024-Fall-Computer-Aided-Design-and-practice.html" rel="alternate"></link><published>2024-06-20T11:00:00+08:00</published><updated>2024-09-01T20:05:21+08:00</updated><author><name>yen</name></author><id>tag:None,2024-06-20:./2024-Fall-Computer-Aided-Design-and-practice.html</id><summary type="html">&lt;p&gt;2024 Fall 電腦輔助設計與實習.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;2024 Fall 電腦輔助設計與實習.&lt;/p&gt;
 
 
