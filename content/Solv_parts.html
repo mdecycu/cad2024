@@ -141,211 +141,84 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">NX2008 << <a href='NX2008.html'>Previous</a> <a href='NX2406.html'>Next</a> >> NX2406<br /><h1>NX2312</h1>
-<p><span>NX2312 NXOpen Python 動態連結程式庫採用 Python</span><span> 3.10.12 版本編譯</span><span>.</span></p>
-<p><span><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">NXOpen Programmer's Guide</a></span></p>
-<p><span><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref">NXOpen Python Reference Guide 2312</a></span></p>
-<p><span><a href="http://229.cycu.org/NX2312_CAD.7z">下載</a> NX2312 可攜 CAD 壓縮檔案 (1.85 GB, 解開後約 9 GB)</span></p>
-<p style="padding-left: 30px;"><span><a href="http://229.cycu.org/nx2312_Drafting.7z">nx2312_Drafting.7z</a></span></p>
-<p style="padding-left: 30px;"><span><a href="http://229.cycu.org/nx2312_nxplot.7z">nx2312_nxplot.7z</a></span></p>
-<p><span>Download <strong>SiemensNX-2312.4001_wntx64.zip</strong> (14GB)</span></p>
-<p>NX2312 安裝後, 透過 Local_Machine - Software - Siemens 登錄檔案儲存下列資料, 其中包括認證主機的埠號與 IP:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Windows Registry Editor Version 5.00
+    <div id="tipue_search_content">Parts << <a href='Parts.html'>Previous</a> <a href='BonW.html'>Next</a> >> BonW<br /><h1>Solv_parts</h1>
+<p><img alt="" height="532" src="./../images/page16.png" width="400"/></p>
+<p>採用 Solvespace 作圖:</p>
+<p style="padding-left: 30px;"><a href="https://s104.cycu.org/~scrum1/page16_solvespace.7z">page_16_solvespace.7z</a></p>
+<p style="padding-left: 30px;">page16_1.slvs 為零件的核心物件, page16_2.slvs 則為其外圍物件, page16_3.slvs 為 page_2.slvs 利用 page16_1.slvs 進行除料, 之後再補上下兩個物件.</p>
+<script src="./../cmsimde/static/jsc3d.js" type="text/javascript"></script>
+<p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
+<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
+<option>Flat</option>
+<option>Point</option>
+<option>Wireframe</option>
+<option>Smooth</option>
+</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
+<option>Standard</option>
+<option>low</option>
+<option>high</option>
+</select></div>
+<p>
+<script type="text/javascript">
+var viewers = [];
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens]
+function getOptions(){
+    var mc = document.getElementById("mdlClr").value;
+    var bc1 = document.getElementById("bckClr1").value;
+    var bc2 = document.getElementById("bckClr2").value;
+    var ren = document.getElementById("render").value;
+    var def = document.getElementById("defini").value;
+    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+}
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\Installed Products]
-"NX 2312"="[{\"ProductCode\":\"{BC25F476-AA6E-41ED-BBA3-F7CA7DE8EB92}\",\"ChannelType\":\"Main\"}]"
+function readSTLfile(opt, canvasId){
+    var canvas = document.getElementById(canvasId);
+    var viewer = new JSC3D.Viewer(canvas);
+    viewer.setParameter('SceneUrl', opt.SceneUrl);
+    viewer.setParameter('InitRotationX', 0);
+    viewer.setParameter('InitRotationY', 0);
+    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('ModelColor', opt.ModelColor);
+    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
+    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
+    viewer.setParameter('RenderMode', opt.RenderMode);
+    viewer.setParameter('Definition', opt.Definition);
+    viewer.init();
+    viewer.update();
+    viewers.push(viewer); // 保存 viewer 實例
+}
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\NX 2312]
-@="D:\\NX2312\\"
-"NXOPEN_EXTENSIONS"=""
-"NXOPEN_INSTALL"="YES"
-"INSTALLDIR"="D:\\NX2312\\"
-"LANGUAGE"="english"
-"LICENSESERVER"="29000@your_license_server"
-"UGII_BASE_DIR"="D:\\NX2312"</pre>
-<hr/>
-<p>透過 <a href="./../downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 各子目錄與總容量.</p>
-<p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
-CAPITALINTEGRATION: 與 Siemens Capital 軟件集成,用於電氣系統設計。
-CATIAV5: CATIA V5 文件的轉換器和介面。
-CMM_INSPECTION: 座標測量機(CMM)檢測功能。
-DESIGN_TOOLS: 各種輔助設計工具和功能。
-DIAGRAMCORE: 圖表和示意圖的核心功能。
-DIAGRAMMING: 用於創建各種工程和系統圖表。
-DRAFTING: 2D製圖和文檔創建工具。
-IGES: 初始圖形交換規範(IGES)文件的導入/導出。
-INSTALL: 安裝相關文件和腳本。
-LOCALIZATION: 多語言支持和本地化文件。
-MACH: 工具機加工和 CNC 編程功能。
-MANUFACTURING_PLANNING: 製造規劃和工藝設計工具。
-MECH: 機械設計和工程功能。
-MECHATRONICS: 機電整合設計工具。
-MOLDWIZARD: 模具設計和分析工具。
-MPA: 運動模擬和分析功能。
-NXASSEMBLY: 零件裝配和管理工具。
-NXBIN: NX 的核心檔案和執行檔。
-NXCAE_EXTRAS: 額外的電腦輔助工程(CAE)工具和功能。
-NXHUMAN: 人體工程學和人因工程設計工具。
-NXJOIN: 零件連接和焊接功能。
-NXNASTRAN: 有限元素分析(FEA)求解器。
-NXPARTS: 零件設計和模擬工具。
-NXPLOT: 繪圖和可視化工具。
-NXPROE: Pro/ENGINEER 文件的轉換器和介面。
-NXREPORTS: 報告生成和管理工具。
-NXSHIP: 船舶設計專用工具。
-POSTBUILD: 後處理和結果分析工具。
-PSTUDIO: 產品工作室, 用於產品設計和管理。
-PVTRANS: 產品視覺化轉換工具。
-REL_INFO: 發布資訊和檔案。
-SIMULATION: 各種模擬和分析工具。
-STAMPING_TOOLS: 沖壓工具設計功能。
-STEP203UG 和 STEP214UG: STEP 文件格式的導入/導出。
-TDP: Technical Data Package 創建和管理工具。
-Temp 和 temp_module: 臨時文件存儲目錄。
-TOOLING_BASE: 工具設計的基礎功能。
-TRANSLATORS: 各種文件格式轉換器。
-UGALLIANCE: 與其他 CAD 系統的集成工具。
-UGAUTOMOTIVE: 汽車行業專用設計工具。
-UGCATIA: CATIA文件的轉換器和介面。
-UGFLEXLM: FlexLM許可證管理系統。
-UGFPCD: 印刷電路板(PCB)設計工具。
-UGII: NX 用戶界面和基礎功能。
-UGIMW: 整合材料管理工作台。
-UGMANAGER: 文件和專案管理工具。
-UGOPEN: 開發模組和API。
-UGOPENPP: C++ 開發模組。
-UGPCBXCHANGE: PCB數據交換工具。
-UGPHOTO: 高級著色和視覺工具。
-UGSTRUCTURES: 結構分析和設計工具。
-UGSTUDIO: 產品設計工作室。
-UGTIPS: 用戶提示和幫助文件。
-UGTO2D: 3D到2D轉換工具。
-UGWEB: Web 整合和協同工具。
-UGWELD: 焊接設計和分析工具。
-UNFOLD: 鈑金展開工具。</pre>
-<h4>NX2312 完整版各目錄容量:</h4>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">ACOUSTICS : 1.28 GB
-AM_SIMULATION : 67.7 MB
-AUTOMATED_TESTING : 3.19 MB
-AUTOMATIC_UPDATE : 541.0 B
-AUTOMATION_DESIGNER : 336.83 MB
-CAPITALINTEGRATION : 2.04 MB
-CATIAV5 : 901.76 KB
-CLOUDDM : 13.18 KB
-CMM_INSPECTION : 319.18 MB
-COMPOSITES : 54.18 KB
-DESIGNSPACEEXPLORER : 8.04 KB
-DESIGN_TOOLS : 135.75 MB
-DIAGRAMCORE : 5.81 MB
-DIAGRAMMING : 118.67 MB
-DOCUMENT : 666.71 KB
-DRAFTING : 115.44 MB
-DXFDWG : 197.04 MB
-FABRICMODELER : 5.03 KB
-GCTOOLKIT : 230.19 MB
-IGES : 5.47 MB
-IMMERSIVEEXPERIENCE : 1016.81 MB
-INSTALL : 55.39 KB
-LOCALIZATION : 94.3 KB
-MACH : 2.41 GB
-MANUFACTURING_PLANNING : 160.74 MB
-MBD : 67.83 MB
-MECH : 871.99 MB
-MECHATRONICS : 278.23 MB
-MENDIXREPORTING : 1.05 MB
-MOLDCOOLING : 12.37 KB
-MOLDWIZARD : 236.79 MB
-MPA : 1.48 MB
-NX2DEDIT : 1.25 MB
-NXAECDESIGN : 70.86 MB
-NXASSEMBLY : 91.5 MB
-NXBIN : 6.47 GB
-NXCABLEROUTER : 29.51 KB
-NXCAE_EXTRAS : 4.55 GB
-NXCOATINGS : 632.24 KB
-NXCREO : 5.71 MB
-NXHUMAN : 247.74 MB
-NXJOIN : 24.34 MB
-NXNASTRAN : 3.23 GB
-NXPARTS : 64.96 MB
-NXPLOT : 246.92 MB
-NXREPORTS : 3.66 MB
-NXSHIP : 339.88 MB
-NXSTRUCTUREDESIGN : 119.29 MB
-NXVR : 534.04 MB
-NX_VSA : 12.73 MB
-PARTMFG : 32.08 MB
-PLASTIC_DESIGNER : 6.49 MB
-POSTBUILD : 35.08 MB
-PSTUDIO : 35.5 MB
-PVTRANS : 106.92 KB
-REL_INFO : 36.92 KB
-ROUTING : 433.54 MB
-RULE : 306.25 KB
-SAFETY : 24.39 KB
-SIMULATION : 2.68 GB
-STAGE_MODEL : 4.06 MB
-STAMPING_TOOLS : 163.08 MB
-STEP203UG : 1.44 MB
-STEP214UG : 1.44 MB
-TDP : 219.56 MB
-TOOLING_BASE : 254.04 KB
-TRANSLATORS : 150.1 MB
-UGALLIANCE : 89.19 KB
-UGAUTOMOTIVE : 147.22 MB
-UGCATIA : 6.04 MB
-UGFLEXLM : 30.28 MB
-UGFPCD : 31.89 KB
-UGII : 550.7 MB
-UGIMW : 8.45 MB
-UGMANAGER : 127.12 MB
-UGOPEN : 530.1 MB
-UGOPENPP : 692.91 KB
-UGPCBX : 342.48 KB
-UGPCBXCHANGE : 102.96 MB
-UGPHOTO : 3.94 GB
-UGSTRUCTURES : 346.62 MB
-UGSTUDIO : 14.03 MB
-UGTIPS : 56.22 MB
-UGTO2D : 886.88 KB
-UGWEB : 9.08 MB
-UGWELD : 2.07 MB
-UNFOLD : 71.92 KB
-VDA : 26.31 KB
-VDV : 5.34 MB
-total: 33.32 GB</pre>
-<h4>NX2312 各功能對應目錄:</h4>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">Simcenter Nastran - NXNASTRAN
-Simcenter 3D Acoustics - ACOUSTICS
-Programming Tools - UGALIANCE UGOPEN UGOPENPP
-Model Based Part Manufacturing - PARTMFG DOCUMENT DIAGRAMMING
-Ship Building - NXSHIP NXCABLEROUTER
-Greater China Tools - GCTOOLKIT
-Automated Testing Studio - AUTOMATED_TESTING
-Automotive - UGAUTOMOTIVE DESIGN_TOOLS STAMPING_TOOLS TOOLING_BASE UGWELD VDV VDA
-Composites - COMPOSITES
-Diagramming - DIAGRAMMING
-Drafting - DRAFTING NX2DEDIT
-Fabric Modeler - FABRICMODELER
-Immersive - IMMERSIVEEXPERIENCE
-Inductrial Electrical Design - AUTOMATION_DESIGNER
-Manufacturing - MACH CMM_INSPECTION MBD NX_VSA POSTBUILD PSTUDIO STAGE_MODEL UNFOLD
-Manufacturing Planning - MANUFACTURING_PLANNING
-Mechatronics Concept Designer - MECHATRONICS
-NX Reporting - MENDIXREPORTING
-Optimization Tools - DESIGNSPACEEXPLORER
-Molded Part Design - PLASTIC_DESIGNER
-Routing - ROUTING CAPITALINTEGRATION
-Simcenter 3D - COMPOSITES MECH MOLDCOOLING NXCAE_EXTRAS SAFETY SIMULATION UGSTRUCTURE UGPCBEXCHANGE UGPCBX UGFPCD
-Studio Render - UGSTUDIO UGPHOTO
-Tooling Design &amp; NX Joint - DESIGN_TOOLS MOLDWIZARD NXAECDESIGN NXCOATINGS NXJOIN NXREPORTS NXSTRUCTUREDESIGN STAMPING_TOOLS TOOLING_BASE UGAUTOMOTIVE UGWELD
-Translators - CATIAV5 DXFDWG IGES NXCREO STEP203UG STEP214UG UGCATIA UGMW UGTO2D TRANSLATORS
-Validation - DESIGN_TOOLS NXREPORTS MPA
-NX VR - NXVR</pre>
-<hr/><br />NX2008 << <a href='NX2008.html'>Previous</a> <a href='NX2406.html'>Next</a> >> NX2406</div>
+function changeOption(strOpt,strValue){
+    console.log("change " + strOpt + " to " + strValue);
+    viewers.forEach(viewer => {
+        viewer.setParameter(strOpt, strValue);
+        viewer.init();
+        viewer.update();
+    });
+}
+
+function openByUrl(){
+    var url = document.getElementById("url").value;
+    var opt = getOptions();
+    opt.SceneUrl = url;
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+}
+
+function openByGet(){
+    var urls = [
+        "https://s104.cycu.org/~scrum1/page16_3.stl"
+    ];
+    var opt = getOptions();
+    urls.forEach((url, index) => {
+        opt.SceneUrl = url;
+        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+    });
+}
+
+openByGet();
+</script>
+</p><br />Parts << <a href='Parts.html'>Previous</a> <a href='BonW.html'>Next</a> >> BonW</div>
         
     <!-- footer -->
       <div class="container">
