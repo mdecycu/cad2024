@@ -833,6 +833,8 @@ openByGet();
 <h3>NX_python</h3>
 <p><a href="/downloads/nxopen_python_block_ex.7z">nxopen_python_block_ex.7z</a></p>
 <h2>Topic 4</h2>
+<p>以下影片說明如何配置 NX2312:</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0KzHbQ_YxGA?si=-gPIzsZYSHtnnhPn" title="YouTube video player" width="560"></iframe></p>
 <p><img alt="" height="283" src="/images/one_link_drawing.png" width="400"/></p>
 <p>Solvespace 零件組立功能:</p>
 <p><a href="/downloads/solvespace_one_link_assembly_ttt.7z">solvespace_one_link_assembly_ttt.7z</a></p>
@@ -885,8 +887,7 @@ openByGet();
 <p style="padding-left: 60px;">建立 <a href="https://mde.tw/cad2024/content/Quadruped.html">Dingo 機器狗</a>控制系統設計模擬場景</p>
 <p style="padding-left: 60px;"><a href="https://github.com/mdecycu/DingoQuadruped">https://github.com/mdecycu/DingoQuadruped</a></p>
 <p style="padding-left: 60px;"><a href="http://229.cycu.org/DINGO_QUADRUPED_CAD.7z">DINGO_QUADRUPED_CAD.7z</a></p>
-<p style="padding-left: 60px;"><img alt="" height="217" src="https://mde.tw/cad2024/images/dingo.png" width="400"/></p>
-<h3>Pinball</h3>
+<p style="padding-left: 60px;"><img alt="" height="217" src="https://mde.tw/cad2024/images/dingo.png" width="400"/></p><h3>Pinball</h3>
 <p><img alt="" height="537" src="/images/pinball_flipper_design.png" width="400"/></p>
 <p>(<a href="https://www.pinrepair.com/em/index1.htm">source</a>)</p>
 <p>Pinball 遊戲台上各種裝置的正式英文名稱:</p>
@@ -1192,6 +1193,8 @@ function openByGet(){
 openByGet();
 </script>
 </p><h3>NX_parts</h3>
+<p>以下影片說明如何配置 NX2312:</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0KzHbQ_YxGA?si=-gPIzsZYSHtnnhPn" title="YouTube video player" width="560"></iframe></p>
 <p><img alt="" height="532" src="/images/page16.png" width="400"/></p>
 <p>採 NX2312 繪製:</p>
 <p style="padding-left: 30px;">新增 Model, 選擇以 inches 作為繪圖單位</p>
@@ -1200,12 +1203,86 @@ openByGet();
 <p style="padding-left: 30px;">選擇 Datum Plane 建立工作面</p>
 <p style="padding-left: 30px;">選擇 At Distance, 從 Top 工作面往上建立上部較小的正方形</p>
 <p style="padding-left: 30px;">從 Toolbar Options 帶出 Menu</p>
-<p style="padding-left: 30px;">從 Menu - Insert - Mesh Surface - Through Curves 利用上下兩個正方形建立 loft 實體</p>
+<p style="padding-left: 30px;">從 Menu - Insert - Mesh Surface - Through Curves 利用上下兩個正方形建立 loft 實體 (Alignment 必須選擇 Preserve Shape)</p>
 <p style="padding-left: 30px;">根據 .375 厚度, 對 loft 實體轉為薄殼, 之後再補上下兩個實體</p>
+<p><img alt="" height="489" src="/images/nx2312_through_curves_alignment_preserve_shape.png" width="300"/></p>
+<p></p>
+<p><a href="/downloads/page16_nx.prt">page16_nx.prt</a></p>
+<script src="/static/jsc3d.js" type="text/javascript"></script>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
+<option>Flat</option>
+<option>Point</option>
+<option>Wireframe</option>
+<option>Smooth</option>
+</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
+<option>Standard</option>
+<option>low</option>
+<option>high</option>
+</select></div>
+<script type="text/javascript">
+var viewers = [];
+
+function getOptions(){
+    var mc = document.getElementById("mdlClr").value;
+    var bc1 = document.getElementById("bckClr1").value;
+    var bc2 = document.getElementById("bckClr2").value;
+    var ren = document.getElementById("render").value;
+    var def = document.getElementById("defini").value;
+    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+}
+
+function readSTLfile(opt, canvasId){
+    var canvas = document.getElementById(canvasId);
+    var viewer = new JSC3D.Viewer(canvas);
+    viewer.setParameter('SceneUrl', opt.SceneUrl);
+    viewer.setParameter('InitRotationX', 0);
+    viewer.setParameter('InitRotationY', 0);
+    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('ModelColor', opt.ModelColor);
+    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
+    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
+    viewer.setParameter('RenderMode', opt.RenderMode);
+    viewer.setParameter('Definition', opt.Definition);
+    viewer.init();
+    viewer.update();
+    viewers.push(viewer); // 保存 viewer 實例
+}
+
+function changeOption(strOpt,strValue){
+    console.log("change " + strOpt + " to " + strValue);
+    viewers.forEach(viewer => {
+        viewer.setParameter(strOpt, strValue);
+        viewer.init();
+        viewer.update();
+    });
+}
+
+function openByUrl(){
+    var url = document.getElementById("url").value;
+    var opt = getOptions();
+    opt.SceneUrl = url;
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+}
+
+function openByGet(){
+    var urls = [
+        "https://s104.cycu.org/~scrum1/page16_nx.stl"
+
+    ];
+    var opt = getOptions();
+    urls.forEach((url, index) => {
+        opt.SceneUrl = url;
+        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+    });
+}
+
+openByGet();
+</script>
 <p>參考:</p>
 <p style="padding-left: 30px;"><a href="/downloads/page16_nx_loft.prt">page16_nx_loft.prt</a> (NX2312)</p>
-<p style="padding-left: 30px;"><a href="https://www.youtube.com/watch?v=hvAf9XESqmQ">https://www.youtube.com/watch?v=hvAf9XESqmQ</a></p>
-<h2>BonW</h2>
+<p style="padding-left: 30px;"><a href="https://www.youtube.com/watch?v=hvAf9XESqmQ">https://www.youtube.com/watch?v=hvAf9XESqmQ</a></p><h2>BonW</h2>
 <p>Balance on Wheels</p>
 <p><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
 <p><img alt="" height="217" src="/images/balance_on_wheels.png" width="400"/></p>
