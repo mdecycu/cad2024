@@ -148,12 +148,16 @@ img.add_border {
 <p>採 NX2312 繪製:</p>
 <p style="padding-left: 30px;">新增 Model, 選擇以 inches 作為繪圖單位</p>
 <p style="padding-left: 30px;">選擇 Sketch 繪製草圖</p>
-<p style="padding-left: 30px;">選擇在 Top 工作面上繪製底部正方形(尺寸未標示)</p>
+<p style="padding-left: 30px;">選擇在 Top 工作面上繪製底部正方形 (尺寸透過計算為 4.25x4.25)</p>
 <p style="padding-left: 30px;">選擇 Datum Plane 建立工作面</p>
-<p style="padding-left: 30px;">選擇 At Distance, 從 Top 工作面往上建立上部較小的正方形</p>
+<p style="padding-left: 30px;">選擇 At Distance, 從 Top 工作面 (距離底部2.375) 往上建立上部較小的正方形 (1.875x1.875)</p>
 <p style="padding-left: 30px;">從 Toolbar Options 帶出 Menu</p>
 <p style="padding-left: 30px;">從 Menu - Insert - Mesh Surface - Through Curves 利用上下兩個正方形建立 loft 實體 (Alignment 必須選擇 Preserve Shape)</p>
-<p style="padding-left: 30px;">根據 .375 厚度, 對 loft 實體轉為薄殼, 之後再補上下兩個實體</p>
+<p style="padding-left: 30px;">根據 .375 厚度, 對 loft 實體轉為薄殼 (選擇上下底部挖空), 之後再補上下兩個實體</p>
+<p style="padding-left: 30px;">上部實體可以使用 Include 取得外圍 1.875x1.875 的正方形, 內部則為 1.125x1.125 正方形, 長出實體高度則為 0.75</p>
+<p style="padding-left: 30px;">接著因為 Shell 頂部正方形開口小於 1.125x1.125, 因此需要在 Shell 頂部繪製一個 1.125x1.125 的正方形往下進行除料</p>
+<p style="padding-left: 30px;">最後再底部長出一個 5.25x5.25 且四邊倒圓角半徑 0.5 的外圍正方形, 內部正方形為 3.411x3.411, 完成後向上長出 0.5 實體即完成</p>
+<p style="padding-left: 30px;">利用上述流程建立的零件: <a href="./../downloads/page16_w9.prt">page16_w9.prt</a></p>
 <p><img alt="" height="489" src="./../images/nx2312_through_curves_alignment_preserve_shape.png" width="300"/></p>
 <p></p>
 <p><a href="./../downloads/page16_nx2312.prt">page16_nx2312.prt</a></p>

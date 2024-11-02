@@ -1119,7 +1119,7 @@ REM F grants full control.
 <p><img alt="" height="532" src="/images/page16.png" width="400"/></p>
 <p>採用 Solvespace 作圖:</p>
 <p style="padding-left: 30px;"><a href="/downloads/page16.7z">page16.7z</a></p>
-<p style="padding-left: 30px;">page16_core.slvs 為零件的核心物件, page16_material.slvs 則為其外圍物件, page16_final.slvs 為 page_material.slvs 最為基材, 利用組立導入後, 再以 page16_core.slvs 進行除料, 之後再補上下兩個物件.</p>
+<p style="padding-left: 30px;">page16_core.slvs 為零件的核心物件, page16_material.slvs 則為其外圍物件, page16_final.slvs 為 page_material.slvs 作為基材, 利用組立導入後, 再以 page16_core.slvs 進行除料, 之後再補上下兩個物件.</p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
 <p><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></p>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
@@ -1199,15 +1199,18 @@ openByGet();
 <p>採 NX2312 繪製:</p>
 <p style="padding-left: 30px;">新增 Model, 選擇以 inches 作為繪圖單位</p>
 <p style="padding-left: 30px;">選擇 Sketch 繪製草圖</p>
-<p style="padding-left: 30px;">選擇在 Top 工作面上繪製底部正方形(尺寸未標示)</p>
+<p style="padding-left: 30px;">選擇在 Top 工作面上繪製底部正方形 (尺寸透過計算為 4.25x4.25)</p>
 <p style="padding-left: 30px;">選擇 Datum Plane 建立工作面</p>
-<p style="padding-left: 30px;">選擇 At Distance, 從 Top 工作面往上建立上部較小的正方形</p>
+<p style="padding-left: 30px;">選擇 At Distance, 從 Top 工作面 (距離底部2.375) 往上建立上部較小的正方形 (1.875x1.875)</p>
 <p style="padding-left: 30px;">從 Toolbar Options 帶出 Menu</p>
 <p style="padding-left: 30px;">從 Menu - Insert - Mesh Surface - Through Curves 利用上下兩個正方形建立 loft 實體 (Alignment 必須選擇 Preserve Shape)</p>
-<p style="padding-left: 30px;">根據 .375 厚度, 對 loft 實體轉為薄殼, 之後再補上下兩個實體</p>
+<p style="padding-left: 30px;">根據 .375 厚度, 對 loft 實體轉為薄殼 (選擇上下底部挖空), 之後再補上下兩個實體</p>
+<p style="padding-left: 30px;">上部實體可以使用 Include 取得外圍 1.875x1.875 的正方形, 內部則為 1.125x1.125 正方形, 長出實體高度則為 0.75</p>
+<p style="padding-left: 30px;">接著因為 Shell 頂部正方形開口小於 1.125x1.125, 因此需要在 Shell 頂部繪製一個 1.125x1.125 的正方形往下進行除料</p>
+<p style="padding-left: 30px;">最後再底部長出一個 5.25x5.25 且四邊倒圓角半徑 0.5 的外圍正方形, 內部正方形為 3.411x3.411, 完成後向上長出 0.5 實體即完成</p>
 <p><img alt="" height="489" src="/images/nx2312_through_curves_alignment_preserve_shape.png" width="300"/></p>
 <p></p>
-<p><a href="/downloads/page16_nx.prt">page16_nx.prt</a></p>
+<p><a href="/downloads/page16_nx2312.prt">page16_nx2312.prt</a></p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
 <div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
@@ -1268,7 +1271,7 @@ function openByUrl(){
 
 function openByGet(){
     var urls = [
-        "https://s104.cycu.org/~scrum1/page16_nx.stl"
+        "https://s104.cycu.org/~scrum1/page16_nx2312.stl"
 
     ];
     var opt = getOptions();
