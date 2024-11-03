@@ -153,6 +153,9 @@ img.add_border {
 <p><img alt="" height="353" src="./../images/page2-24.png" width="400"/></p>
 <p><a href="./../downloads/page2-24.7z">page2-24.7z</a></p>
 <p><canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas></p>
+<p>fixed with <a href="http://229.cycu.org/Blender4.2.7z">Blender</a></p>
+<p>Import STL file into Blender, switch to Edit mode,  use shift left mouse keys to select the borders of the hole, ALT+F to fill the hole, export to STL file.</p>
+<p><canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas></p>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -209,12 +212,14 @@ function openByUrl(){
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
     readSTLfile(opt, 'cv2'); // 為每個 canvas 調用
+    readSTLfile(opt, 'cv3'); // 為每個 canvas 調用
 }
 
 function openByGet(){
     var urls = [
         "https://s104.cycu.org/~scrum1/page16_final.stl",
-        "https://s104.cycu.org/~scrum1/page2-24_final.stl"
+        "https://s104.cycu.org/~scrum1/page2-24_final.stl",
+        "https://s104.cycu.org/~scrum1/page2-24_final_fixed_w_blender.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
