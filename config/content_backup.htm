@@ -2832,7 +2832,8 @@ if __name__ == "__main__":
 <p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p>
 <h2>Webots</h2>
 <p>Stable version: <a href="http://229.cycu.org/Webots_2023b.7z">Webots_2023b.7z</a></p>
-<p style="padding-left: 30px;">與 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 結合使用, Webots - Tools - Preferences - Python Command 設定為 Y:\Python310\python.exe, start_ipv6.bat 必須設定:</p>
+<p>1. 與 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 結合使用, Webots - Tools - Preferences - Python Command 設定為 Y:\Python310\python.exe</p>
+<p>2. start_ipv6.bat 必須設定:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for Webots
 set PYTHON_PATH=%Disk%:\Python310
 
@@ -2841,7 +2842,8 @@ set  path_webots=%Disk%:\Webots_2023b\msys64\mingw64\bin
 
 REM 在 path 納入 %path_webots%
 path=~~;%path_webots%;%path%;</pre>
-<p>測試 Python 是否設定正確: <a href="/downloads/Webots_examples.zip">Webots_examples.zip</a> (<a href="https://courses.ideate.cmu.edu/16-375/f2022/ref/text/simulations/index.html">source</a>)</p>
+<p>3. pip install opencv-python</p>
+<p>配置完成後, 測試 Python 是否設定正確: <a href="/downloads/Webots_examples.zip">Webots_examples.zip</a> (<a href="https://courses.ideate.cmu.edu/16-375/f2022/ref/text/simulations/index.html">source</a>)</p>
 <p><a href="/downloads/vrml97specification.pdf">vrml97specification.pdf</a> (<a href="http://www.graphics.stanford.edu/courses/cs248-98-fall/Assignments/Assignment3/VRML2_Specification/">VRML 2.0</a>, <a href="https://zh.wikipedia.org/zh-tw/VRML">VRML</a>)</p>
 <p><a href="https://github.com/Introduction-to-Autonomous-Robots/Introduction-to-Autonomous-Robots">https://github.com/Introduction-to-Autonomous-Robots/Introduction-to-Autonomous-Robots</a></p>
 <p>Webots 原始碼: <a href="https://github.com/cyberbotics/webots">https://github.com/cyberbotics/webots</a></p>
@@ -2852,7 +2854,8 @@ path=~~;%path_webots%;%path%;</pre>
 <p>License: <a href="https://cyberbotics.com/doc/guide/webots-license-agreement">https://cyberbotics.com/doc/guide/webots-license-agreement</a></p>
 <p><a href="https://cyberbotics.com/doc/guide/web-interface">https://cyberbotics.com/doc/guide/web-interface</a></p>
 <p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a></p>
-<p><a href="https://cyberbotics.com/doc/guide/web-streaming">https://cyberbotics.com/doc/guide/web-streaming</a> (<a href="https://cyberbotics.com/doc/guide/starting-webots#command-line-arguments">Command Line Arguments</a>)</p><h3>Webots_ex</h3>
+<p><a href="https://cyberbotics.com/doc/guide/web-streaming">https://cyberbotics.com/doc/guide/web-streaming</a> (<a href="https://cyberbotics.com/doc/guide/starting-webots#command-line-arguments">Command Line Arguments</a>)</p>
+<p><a href="https://felipenmartins.github.io/Robotics-Simulation-Labs/">https://felipenmartins.github.io/Robotics-Simulation-Labs/</a>　</p><h3>Webots_ex</h3>
 <p>Webots 最新版可直接從 <a href="https://github.com/cyberbotics/webots/releases">https://github.com/cyberbotics/webots/releases</a> 下載.</p>
 <p>Stable version: <a href="http://229.cycu.org/Webots_2023b.7z">Webots_2023b.7z</a></p>
 <p>使用授權: <a href="https://cyberbotics.com/doc/guide/webots-license-agreement">https://cyberbotics.com/doc/guide/webots-license-agreement</a></p>
