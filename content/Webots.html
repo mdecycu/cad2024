@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,73 +141,19 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">NXOpen << <a href='NXOpen.html'>Previous</a> <a href='Open C.html'>Next</a> >> Open C<br /><h1>NXOpen_Python</h1>
-<p><a href="./../downloads/generate_cylinder_nx2312_py.txt">generate_cylinder_nx2312_py.txt</a></p>
-<p><span><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">NXOpen Programmer's Guide</a></span></p>
-<p><span><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.custom_api.nxopen_python_ref">NXOpen Python Reference Guide 2312</a></span></p>
-<p>NX2312 與 NX2406 必須配合 Python 3.10 使用 (以 Python 3.10.12 編譯 .pyd), 這裡利用 gen_python_for_nx2312.py 如下, 建立 Python310 備用 (由於 Python 3.10.12 可攜目錄無法使用下列程式建立, 因此退至 Python 3.10.11):</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import urllib.request
-import os
-    
-dir_path = os.path.dirname(os.path.realpath(__file__))
-# basic files for Python installation
-# before 3.12.0
-py_list = ["core", "dev", "exe", "lib", "tcltk", "tools"]
-# 3.12.1 no tools.msi
-#py_list = ["core", "dev", "exe", "lib", "tcltk"]
-# Python version 3.10.11 for NX2312
-version = "3.10.11"
-# Python msi download URL
-ftp = "https://www.python.org/ftp/python/" + version + "/amd64/"
-# location for Portable Python
-path = "y:\\tmp\\Python310"
-# create directory
-try:
-    os.mkdir(path)
-except:
-    # path exists
-    pass
-# get Python installation msi files and extract into target dir
-for i in py_list:
-    filename = i + ".msi"
-    url = ftp + filename
-    # download basic python msi file
-    urllib.request.urlretrieve(url, filename)
-    os.system("msiexec.exe /a " + i + ".msi targetdir=" + path)
-    # delete msi file
-    os.remove(dir_path + "\\" + i + ".msi")
-    os.remove(path + "\\" + i + ".msi")</pre>
-<p>其中可攜程式系統啟動批次檔, 必須將 NX\NXbin\python 納入 PYTHONPATH 設定, 因為 NXOptn 相關的動態連結程式庫 *.pyd 都放在這個目錄.</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">set PYTHONPATH=%Disk%:\Python310\DLLs;%Disk%:\Python310\Lib;%Disk%:\Python310\Lib\site-packages;%Disk%:\NX\NXBIN\python;</pre>
-<p>在可攜啟動批次檔案中的 path 指令搜尋路徑之後, 讓 NX2312 取得使用授權後啟動:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for NX2312, must after path setup 
-set SPLM_LICENSE_SERVER=29000@192.168.56.3
-set UGII_LANG=english
-set UGS_LICENSE_BUNDLE=ACD11,ACD10
-set UGII_BASE_DIR=%Disk%:\NX\
-set UGII_TMP_DIR=%Disk%:\NX\temp
-set UGII_LIB_PATH=%Disk%:\NX\NXBIN\python
-set ugii=%Disk%:\NX\ugii;%Disk%:\NX\nxbin;
-path = %ugii%;%path%
-Xcopy %Disk%:\home_ipv6\AppData\Local\Siemens\NX2312 C:\users\%USERNAME%\AppData\Local\Siemens\NX2312 /E /H /C /I /Y</pre>
-<p>AppData\Local\Siemens\NX2312\NX_user.dpv 內容設定:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-
-&lt;?xml-stylesheet type="text/xsl" href="NX_user.xsl"?&gt;
-&lt;PrefValues defaultLockStatus="unlocked"&gt;
-&lt;Pref Application="Gateway" Category="General" Tab="Data Privacy" displayValue="No" modified="2024-08-09T08:48:09" name="NX_ProductExcellenceProgram" title="Product Excellence Program - Participate" value="false"/&gt;
-&lt;Pref Application="Gateway" Category="General" Tab="Miscellaneous" displayValue="No" modified="2024-08-09T08:25:55" name="NX_ProductExcellenceProgramMessage" title="Product Excellence Program - Display Initial Startup Message" value="false"/&gt;
-&lt;Pref Application="Gateway" Category="User Interface" Tab="Journal" displayValue="Python" modified="2024-08-09T08:26:17" name="UG_journalLanguage" title="Journal Language" value="4"/&gt;
-&lt;/PrefValues&gt;</pre>
-<p><a href="./../downloads/nxopen_ex.7z">nxopen_ex.7z</a></p>
-<p>可攜啟動之後, 若從命令列中啟動 NX, 則系統內定設定將讀取 home_ipv6\AppData\Local\Siemens\NX2312 目錄中的相關設定, 其中與 Menu 下拉式功能表有關的設定位於 user.mtx, 決定顯示 Menu 的設定內容為:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">&lt;ActionList name="QuickAccessBar" type="popupbar"&gt;
-    &lt;ActionItems&gt;
-        &lt;ActionItem name="MenuBar" type="cascade" visibility="1"/&gt;
-    &lt;/ActionItems&gt;
-&lt;/ActionList&gt;</pre>
-<p><a href="./../downloads/NX2312_user_mtx_and_NX_user_dpv.7z">NX2312_user_mtx_and_NX_user_dpv.7z</a></p>
-<br />NXOpen << <a href='NXOpen.html'>Previous</a> <a href='Open C.html'>Next</a> >> Open C</div>
+    <div id="tipue_search_content">ZMQ << <a href='ZMQ.html'>Previous</a> <a href='SolidWorks.html'>Next</a> >> SolidWorks<br /><h1>Webots</h1>
+<p><a href="http://229.cycu.org/Webots_2023b.7z">Webots_2023b.7z</a></p>
+<p><a href="./../downloads/vrml97specification.pdf">vrml97specification.pdf</a> (<a href="http://www.graphics.stanford.edu/courses/cs248-98-fall/Assignments/Assignment3/VRML2_Specification/">VRML 2.0</a>, <a href="https://zh.wikipedia.org/zh-tw/VRML">VRML</a>)</p>
+<p>Webots 原始碼: <a href="https://github.com/cyberbotics/webots">https://github.com/cyberbotics/webots</a></p>
+<p>官方網站: <a href="https://cyberbotics.com/">https://cyberbotics.com/</a></p>
+<p><a href="https://webots.cloud/">https://webots.cloud/</a> </p>
+<p><a href="https://www.cyberbotics.com/doc/guide/samples-howto?version=cyberbotics:R2023b">https://www.cyberbotics.com/doc/guide/samples-howto?version=cyberbotics:R2023b</a> </p>
+<p><a href="https://www.cyberbotics.com/doc/guide/index.php?version=cyberbotics:R2019a">https://www.cyberbotics.com/doc/guide/index.php?version=cyberbotics:R2019a</a> </p>
+<p>License: <a href="https://cyberbotics.com/doc/guide/webots-license-agreement">https://cyberbotics.com/doc/guide/webots-license-agreement</a></p>
+<p><a href="https://cyberbotics.com/doc/guide/web-interface">https://cyberbotics.com/doc/guide/web-interface</a> </p>
+<p><a href="https://cyberbotics.com/doc/guide/web-server">https://cyberbotics.com/doc/guide/web-server</a> </p>
+<p><a href="https://cyberbotics.com/doc/guide/web-streaming">https://cyberbotics.com/doc/guide/web-streaming</a> </p>
+<p></p><br />ZMQ << <a href='ZMQ.html'>Previous</a> <a href='SolidWorks.html'>Next</a> >> SolidWorks</div>
         
     <!-- footer -->
       <div class="container">
