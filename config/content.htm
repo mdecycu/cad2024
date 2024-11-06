@@ -3052,7 +3052,40 @@ for i in py_list:
     os.remove(dir_path + "\\" + i + ".msi")
     os.remove(path + "\\" + i + ".msi")
 </pre>
-<h1>Project</h1>
+<h2>Python_ex</h2>
+<p>利用 Python 指定使用 mm 尺寸單位, 建立新零件檔案:</p>
+<p><a href="/downloads/file_new_model_py.txt">file_new_model_py.txt</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># NX 2312 Journal
+
+import math
+import NXOpen
+import os
+import NXOpen.UF
+
+FileName = "Y:\\tmp\\nx_ex\\model1.prt"
+
+# --------------------------------------------------------------------------------------------
+current_directory = os.path.dirname(os.path.realpath(__file__))
+theUfSession = NXOpen.UF.UFSession.GetUFSession()
+theUfSession.Part.CloseAll() 
+# --------------------------------------------------------------------------------------------
+    
+def main() : 
+
+    theSession  = NXOpen.Session.GetSession() 
+    fileNew1 = theSession.Parts.FileNew()
+    fileNew1.TemplateFileName = "model-plain-1-mm-template.prt"
+    fileNew1.Units = NXOpen.Part.Units.Millimeters
+    fileNew1.TemplatePresentationName = "Model"
+    fileNew1.NewFileName = FileName
+    nXObject1 = fileNew1.Commit()
+    workPart = theSession.Parts.Work
+    displayPart = theSession.Parts.Display
+    fileNew1.Destroy()
+    
+if __name__ == '__main__':
+    main()</pre>
+<p></p><h1>Project</h1>
 <p>已知:</p>
 <ol>
 <li>修課學員經由 @nfu.edu.tw 網域, 可利用"學號@nfu.edu.tw"經由 <a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a> 登入 MS 365.</li>
@@ -3404,8 +3437,7 @@ if __name__ == '__main__':
 <p data-pm-slice="0 0 []" style="padding-left: 30px;">3. 啟動應用程式<br/><br/>確保你的 Flask 應用程式和模板文件已經正確配置，然後啟動應用程式：</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">python app.py
 </pre>
-<p data-pm-slice="0 0 []" style="padding-left: 30px;">接下來, 可以在瀏覽器中訪問 <code>http://127.0.0.1:5000/</code> 來查看和管理你的資料。</p>
-<h1>Brython</h1>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">接下來, 可以在瀏覽器中訪問 <code>http://127.0.0.1:5000/</code> 來查看和管理你的資料。</p><h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->

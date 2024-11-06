@@ -1,0 +1,30 @@
+﻿# NX 2312 Journal
+
+import math
+import NXOpen
+import os
+import NXOpen.UF
+
+FileName = "Y:\\tmp\\nx_ex\\model1.prt"
+
+# --------------------------------------------------------------------------------------------
+current_directory = os.path.dirname(os.path.realpath(__file__))
+theUfSession = NXOpen.UF.UFSession.GetUFSession()
+theUfSession.Part.CloseAll() 
+# --------------------------------------------------------------------------------------------
+    
+def main() : 
+
+    theSession  = NXOpen.Session.GetSession() 
+    fileNew1 = theSession.Parts.FileNew()
+    fileNew1.TemplateFileName = "model-plain-1-mm-template.prt"
+    fileNew1.Units = NXOpen.Part.Units.Millimeters
+    fileNew1.TemplatePresentationName = "Model"
+    fileNew1.NewFileName = FileName
+    nXObject1 = fileNew1.Commit()
+    workPart = theSession.Parts.Work
+    displayPart = theSession.Parts.Display
+    fileNew1.Destroy()
+    
+if __name__ == '__main__':
+    main()
