@@ -903,6 +903,9 @@ openByGet();
 <p>(<a href="https://www.pinrepair.com/em/index1.htm">source</a>)</p>
 <p><img alt="" height="274" src="/images/pinball_table_dimension.png" width="400"/></p>
 <p>(<a href="https://www.dimensions.com/element/pinball-machines">source</a>)</p>
+<hr/>
+<p><a href="/downloads/big_old_pinball.ttt">big_old_pinball.ttt</a></p>
+<p><a href="/downloads/big_old_pinball_rot.ttt">big_old_pinball_rot.ttt</a></p>
 <p>Pinball 遊戲台上各種裝置的正式英文名稱:</p>
 <p>Playfield (遊戲場)</p>
 <p style="padding-left: 30px;">整個遊戲台的主要活動區域.</p>
@@ -930,7 +933,7 @@ openByGet();
 <p style="padding-left: 30px;">遊戲台上的傾斜軌道, 球可以滾過並加分.</p>
 <p>Outlanes (外側軌道)</p>
 <p style="padding-left: 30px;">位於flipper兩側的軌道, 通常會導致球掉落.</p>
-<p>Plunger (發射器)</p>
+<p>Plunger (發射器) - <a href="/downloads/pinball_plunger.ttt">pinball_plunger.ttt</a></p>
 <p style="padding-left: 30px;">用於初始發射球的裝置.</p>
 <hr/>
 <p>References:</p>
@@ -941,7 +944,6 @@ openByGet();
 <p style="padding-left: 30px;"><a href="https://www.kineticist.com/post/a-beginners-guide-to-pinball-designers">https://www.kineticist.com/post/a-beginners-guide-to-pinball-designers</a></p>
 <p style="padding-left: 30px;"><a href="https://technologystudent.com/pdf22/pinball-full1B.pdf">https://technologystudent.com/pdf22/pinball-full1B.pdf</a></p>
 <p style="padding-left: 30px;"><a href="https://www.sciencedirect.com/science/article/pii/S1474667017307358">https://www.sciencedirect.com/science/article/pii/S1474667017307358</a></p><h3>HW 3</h3>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 62cc07a0d1334189f056cf0e26e19badc1ab055f</p>
 <p>建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
 <p><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
 <p>上列倉儲中有兩個採 Solidworks 繪製的系統模型, 可以直接以 NX2312 開啟後存為 .prt 檔案. 只是各零組件並沒有詳細的零組件繪製流程. 學員可以自行利用 Solvespace 與 NX2312 建立相同尺寸的零組件.</p>
@@ -963,8 +965,7 @@ openByGet();
 <p style="padding-left: 30px;"><a href="https://iopscience.iop.org/article/10.1088/1742-6596/2187/1/012024/pdf">Balance Control of an Inverted Pendulum on a Quadruped Robot by Reinforcement Learning</a></p>
 <p style="padding-left: 30px;"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10919658/">Control strategies for inverted pendulum: A comparative analysis of linear, nonlinear, and artificial intelligence approaches</a></p>
 <p style="padding-left: 30px;"><a href="https://ir.lib.nycu.edu.tw/bitstream/11536/10654/1/000249410400016.pdf">Design of nonlinear controller for bi-axial inverted pendulum system</a></p>
-<p></p>
-<h1>References</h1>
+<p></p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
@@ -2653,7 +2654,8 @@ sim.stopSimulation()
 <p><a href="/downloads/cad2024_foosball_with_ball_python_script.7z">cad2024_foosball_with_ball_python_script.7z</a></p>
 <p>將上列採用 Python script 控制的手足球, 改為使用 ZMQ Remote API Python 執行控制:</p>
 <p><a href="/downloads/cad2024_foosball.7z">cad2024_foosball.7z</a></p>
-<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p><h3>ZMQ</h3>
+<p>Ball-Plate-Control: <a href="https://github.com/mdecycu/Ball-Plate-Control">https://github.com/mdecycu/Ball-Plate-Control</a> </p><h3>Copsim_EX</h3>
+<h3>ZMQ</h3>
 <p><a href="https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html">https://learning-0mq-with-pyzmq.readthedocs.io/en/latest/index.html</a></p>
 <p style="padding-left: 30px;">ØMQ is a neat messaging library that allows you to build your own messaging infrastructure. ØMQ does not provide out of box messaging system experience like ActiveMQ or RabbitMQ. It is higher level concept than sockets and provides as low level conceptual framework as possible to build messaging systems. It can help build framework that scales where services could be handled by different applications that does one job well.</p>
 <p style="padding-left: 30px;">Distributed applications are also easier to change compared to a monolithic applications. It’s expensive to try to define the behavior of each of many software applications that work together in a large network. It’s much cheaper, and more flexible, to define the interfaces between them: the APIs. Messaging is an API that can be stretched across a network.<br/><br/>ØMQ 是一個精簡的訊息傳遞程式庫 (messaging library)，允許使用者自行建立訊息傳遞基礎架構。ØMQ 不像 ActiveMQ 或 RabbitMQ 那樣提供開箱即用的訊息系統體驗。ØMQ 是比封包更高層級的概念，同時提供了儘可能低階的概念框架來構建訊息傳遞系統。它能夠幫助構建可擴展的框架 (framework)，使得這個框架中，不同的服務可以由專注於單一任務的獨立應用程式來處理。</p>
@@ -2846,8 +2848,7 @@ if __name__ == "__main__":
 </ol>
 <p>這個例子展示了如何使用 pyzmq 來實現一個分散式計算系統，用於解決複雜的數值問題。它將一個大問題分解成多個小問題，利用多台機器或多個處理器並行計算，從而提高計算效率。</p>
 <p>注意：這個實現使用了自然邊界條件（Neumann邊界條件）來處理子區間的邊界。在實際應用中，可能需要根據具體問題調整邊界條件的處理方式。</p>
-<p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p>
-<h2>Webots</h2>
+<p><a href="https://zx7978123.medium.com/%E8%AE%93%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0-%E7%A8%8B%E5%BC%8F-%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BA%92%E7%9B%B8%E6%BA%9D%E9%80%9A%E6%96%B9%E6%B3%95-%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84zeromq-%E6%95%99%E5%AD%B8-407f7d17c23">Reference</a></p><h2>Webots</h2>
 <p>Stable version: <a href="http://229.cycu.org/Webots_2023b.7z">Webots_2023b.7z</a></p>
 <p><span style="background-color: #ffff00;">1.</span> 與 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> 結合使用, Webots - Tools - Preferences - Python Command 設定為 Y:\Python310\python.exe</p>
 <p><span style="background-color: #ffff00;">2.</span> start_ipv6.bat 必須設定:</p>
