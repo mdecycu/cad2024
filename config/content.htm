@@ -1363,7 +1363,9 @@ openByGet();
 <p>上列題目完成後, 請登入課程 Teams 一般頻道中, 將對應資料填入各班的 Exam1 考試回報表中.</p>
 <p>題目一:</p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
-<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></div>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"> </canvas>
+<p>題目二:</p>
+<canvas height="300" id="cv2" style="border: 1px solid;" width="400"> </canvas></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -1418,11 +1420,13 @@ function openByUrl(){
     opt.SceneUrl = url;
     // 可以添加更多的 STL URL
     readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+    readSTLfile(opt, 'cv2');
 }
 
 function openByGet(){
     var urls = [
-        "https://s104.cycu.org/~scrum1/w10_part1.stl"
+        "https://s104.cycu.org/~scrum1/w10_part1.stl",
+        "https://s104.cycu.org/~scrum1/w10_part2.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
