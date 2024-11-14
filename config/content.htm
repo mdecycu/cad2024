@@ -1360,7 +1360,79 @@ openByGet();
 <p><span style="background-color: #ccffcc;">題目一</span>: 請利用 Solvespace 繪製<a href="https://mde.tw/cad2024/images/cad2024_ex1.png">圖面</a>所示零件, 並將過程錄製為操作影片,  請以"國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - 題目一: 學號" 作為影片標題, 並在影片說明欄位中敘述此一影片的繪製流程與心得, 完成後請將影片上傳至個人 Youtube 帳號中, 並嵌入個人網站中的 "w10" 頁面.</p>
 <p><span style="background-color: #ccffcc;">題目二</span>: 請嘗試利用 NX2312 繪製題目一中的零件, <span>並將過程錄製為操作影片</span>. 影片命名及嵌入網頁要求與題目一相同, 但必須使用"題目二"標示.</p>
 <p><span style="background-color: #ccffcc;">題目三</span>:<span> 請嘗試利用可攜系統中的 <a href="https://www.debugmode.com/wink.html">Wink</a> 拍攝 Solvespace 繪製<a href="https://mde.tw/cad2024/images/cad2024_ex4.png">圖面</a>所示零件的過程, 並使用 Textbox 中的文字說明繪圖流程</span>, <span>影片命名及嵌入網頁要求與題目一相同, </span>但必須使用"題目三"標示.</p>
-<p>上列題目完成後, 請登入課程 Teams 一般頻道中, 將對應資料填入各班的 Exam1 考試回報表中.</p><h3>Problem_set</h3>
+<p>上列題目完成後, 請登入課程 Teams 一般頻道中, 將對應資料填入各班的 Exam1 考試回報表中.</p>
+<p>題目一:</p>
+<script src="/static/jsc3d.js" type="text/javascript"></script>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas></div>
+<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
+<option>Flat</option>
+<option>Point</option>
+<option>Wireframe</option>
+<option>Smooth</option>
+</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
+<option>Standard</option>
+<option>low</option>
+<option>high</option>
+</select></div>
+<script type="text/javascript">
+var viewers = [];
+
+function getOptions(){
+    var mc = document.getElementById("mdlClr").value;
+    var bc1 = document.getElementById("bckClr1").value;
+    var bc2 = document.getElementById("bckClr2").value;
+    var ren = document.getElementById("render").value;
+    var def = document.getElementById("defini").value;
+    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+}
+
+function readSTLfile(opt, canvasId){
+    var canvas = document.getElementById(canvasId);
+    var viewer = new JSC3D.Viewer(canvas);
+    viewer.setParameter('SceneUrl', opt.SceneUrl);
+    viewer.setParameter('InitRotationX', 0);
+    viewer.setParameter('InitRotationY', 0);
+    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('ModelColor', opt.ModelColor);
+    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
+    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
+    viewer.setParameter('RenderMode', opt.RenderMode);
+    viewer.setParameter('Definition', opt.Definition);
+    viewer.init();
+    viewer.update();
+    viewers.push(viewer); // 保存 viewer 實例
+}
+
+function changeOption(strOpt,strValue){
+    console.log("change " + strOpt + " to " + strValue);
+    viewers.forEach(viewer => {
+        viewer.setParameter(strOpt, strValue);
+        viewer.init();
+        viewer.update();
+    });
+}
+
+function openByUrl(){
+    var url = document.getElementById("url").value;
+    var opt = getOptions();
+    opt.SceneUrl = url;
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+}
+
+function openByGet(){
+    var urls = [
+        "https://s104.cycu.org/~scrum1/w10_part1.stl"
+    ];
+    var opt = getOptions();
+    urls.forEach((url, index) => {
+        opt.SceneUrl = url;
+        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+    });
+}
+
+openByGet();
+</script><h3>Problem_set</h3>
 <p><img alt="" height="290" src="/images/cad2024_ex1.png" width="400"/></p>
 <p><img alt="" height="287" src="/images/cad2024_ex4.png" width="400"/></p>
 <p><img caption="false" height="300" src="/images/cad2024_six_part_4-a.jpg" width="400"/></p><h1>References</h1>
