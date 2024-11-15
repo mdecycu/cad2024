@@ -142,7 +142,24 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">CoppeliaSim << <a href='CoppeliaSim.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ<br /><h1>Copsim_EX</h1>
-<br />CoppeliaSim << <a href='CoppeliaSim.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ</div>
+<p>download_and_extract_python_2025_lite.bat 使用管理者身分執行, 目的是在 C: 下載一份python_2025_lite, 可以結合隨身碟中的可攜系統檔案, 選擇使用 C:\ 中的 NX2312 或 CoppeliaSim 執行, 可以取得比較快速的反應.</p>
+<p>但是 Python 系統在輔助設計開發過程可能會需要安裝特定模組, 因此 Python 仍可選擇使用隨身碟中的解譯系統.</p>
+<p>CoppeliaSim 執行 ZMQ Remote API 程式控制時, 需要 Python 解譯器安裝 pyzmq, cbor, cbor2 與 keyboard 等模組, 可攜系統啟動後, 可以利用命令列指令 pip list 查驗是否已經安裝這些模組.</p>
+<p>另外一個必須注意的是: CoppeliaSim 4.7.0 rev4 啟動時必須位於 CoppeliaSim 套件所在目錄, 否則部分動態連結程式庫與 Lua 解譯系統將無法正常運作. 而且其 usrset.txt 設定檔案固定存入 C:\users\%USERNAME%\AppData\Roaming\CoppeliaSim 目錄, 因此使用者必須在啟動可攜系統時, 將先前對於 Python 解譯或其他設定從隨身碟中, 利用 XCOPY 指令存入指定位置, 否則每次都必須重新設定.</p>
+<p><span>AppData\Roaming\CoppeliaSim\</span>usrset.txt 內容有關 Python 解譯器所在目錄設定：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">defaultPython = y:/python310/python.exe </pre>
+<p>在啟動批次檔案的 XCOPY 指令: </p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">REM for coppeliasim
+Xcopy %Disk%:\home_ipv6\AppData\Roaming\CoppeliaSim C:\users\%USERNAME%\AppData\Roaming\CoppeliaSim /E /H /C /I /Y</pre>
+<p>若希望以批次檔案啟動 CoppeliaSim, 將下列指令存入 y:\copsim.bat:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">@echo off
+cd y:\coppeliasim
+coppeliasim.exe</pre>
+<p>可攜系統啟動後, 可以在命令列視窗中輸入 copsim 啟動 CoppeliaSim, 或將指令整合進可攜的啟動檔案.</p>
+<p>滿足上述條件後, 請利用以下範例進行測試:</p>
+<p>彈珠檯發射器: <span>Plunger (</span><a href="https://www.youtube.com/shorts/P5ZvQ0R0iCo">Shooter</a><span>) (發射器) - </span><a href="https://mde.tw/cad2024/downloads/pinball_plunger.ttt">pinball_plunger.ttt</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/paXTYHnb2PA?si=ZmTBAZFmwHoQwiv6" title="YouTube video player" width="560"></iframe></p>
+<p>接下來要將上述發射器改為 ZMQ Remote API Python 程式.</p><br />CoppeliaSim << <a href='CoppeliaSim.html'>Previous</a> <a href='ZMQ.html'>Next</a> >> ZMQ</div>
         
     <!-- footer -->
       <div class="container">
