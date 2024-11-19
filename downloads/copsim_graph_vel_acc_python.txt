@@ -1,0 +1,83 @@
+import math
+
+def sysCall_init():
+    sim = require('sim')
+    
+    # Get the handle of the sphere object
+    self.sphereHandle = sim.getObject('/Sphere0')
+    
+    # Get the handle of the graph object (ensure it exists in the scene)
+    self.graph = sim.getObject('/Graph')
+    
+    # Check if the graph object exists before proceeding
+    if self.graph == -1:
+        sim.addStatusbarMessage("Error: Graph object not found. Make sure '/Graph' exists in the scene.")
+        return
+    
+    # Create graph streams for velocity and acceleration components (X, Y, Z)
+    self.velX = sim.addGraphStream(self.graph, 'X-velocity', 'm/s', 0, [1, 0, 0])
+    self.velY = sim.addGraphStream(self.graph, 'Y-velocity', 'm/s', 0, [0, 1, 0])
+    self.velZ = sim.addGraphStream(self.graph, 'Z-velocity', 'm/s', 0, [0, 0, 1])
+    
+    self.accX = sim.addGraphStream(self.graph, 'X-acceleration', 'm/s2', 0, [1, 1, 0])
+    self.accY = sim.addGraphStream(self.graph, 'Y-acceleration', 'm/s2', 0, [0, 1, 1])
+    self.accZ = sim.addGraphStream(self.graph, 'Z-acceleration', 'm/s2', 0, [1, 0, 1])
+    
+    # Initialize previous time for acceleration calculation
+    self.previous_time = 0.0
+    self.previous_linear_velocity = [0.0, 0.0, 0.0]  # To store previous linear velocity for acceleration
+
+    # Show initial data on the graph before the simulation starts
+    sim.setGraphStreamValue(self.graph, self.velX, 0.0)  # X-component of velocity (initial 0)
+    sim.setGraphStreamValue(self.graph, self.velY, 0.0)  # Y-component of velocity (initial 0)
+    sim.setGraphStreamValue(self.graph, self.velZ, 0.0)  # Z-component of velocity (initial 0)
+    
+    sim.setGraphStreamValue(self.graph, self.accX, 0.0)  # X-component of acceleration (initial 0)
+    sim.setGraphStreamValue(self.graph, self.accY, 0.0)  # Y-component of acceleration (initial 0)
+    sim.setGraphStreamValue(self.graph, self.accZ, 0.0)  # Z-component of acceleration (initial 0)
+
+def sysCall_sensing():
+    sim = require('sim')
+    
+    # Get the current simulation time
+    current_time = sim.getSimulationTime()
+
+    # Get the current linear velocity and angular velocity of the sphere
+    linear_velocity, angular_velocity = sim.getObjectVelocity(self.sphereHandle)
+    
+    # Calculate the time difference (delta time)
+    dt = current_time - self.previous_time if self.previous_time > 0 else 0.01
+    
+    # Calculate the linear acceleration (difference in velocity over time)
+    acceleration = [(linear_velocity[i] - self.previous_linear_velocity[i]) / dt if dt > 0 else 0 for i in range(3)]
+
+    # Update the previous values for the next iteration
+    self.previous_linear_velocity = linear_velocity
+    self.previous_time = current_time
+    
+    # Update the graph with the new velocity and acceleration values
+    sim.setGraphStreamValue(self.graph, self.velX, linear_velocity[0])  # X-component of velocity
+    sim.setGraphStreamValue(self.graph, self.velY, linear_velocity[1])  # Y-component of velocity
+    sim.setGraphStreamValue(self.graph, self.velZ, linear_velocity[2])  # Z-component of velocity
+    
+    sim.setGraphStreamValue(self.graph, self.accX, acceleration[0])  # X-component of acceleration
+    sim.setGraphStreamValue(self.graph, self.accY, acceleration[1])  # Y-component of acceleration
+    sim.setGraphStreamValue(self.graph, self.accZ, acceleration[2])  # Z-component of acceleration
+
+def sysCall_thread():
+    sim = require('sim')
+    
+    # Get the handle for the spring and damper (or other joints/actuators in the scene)
+    #spring = sim.getObject("/springAndDamper")
+    
+    # Set the spring joint to the target position (example control)
+    while not sim.getSimulationStopping():
+        # Set the joint target position to move the spring (or related object)
+        #sim.setJointTargetPosition(spring, 0.1, [None, None, None])  # Set the target position
+        
+        # Optionally, apply force to the sphere or move it directly
+        # Example: Apply force to the sphere in the X direction (if needed)
+        # sim.addForce(self.sphereHandle, [1.0, 0.0, 0.0])  # Apply force in the X-direction
+        
+        # Use sim.switchThread() to allow simulation to continue running
+        sim.switchThread()  # Yield control to the simulator to continue simulation
