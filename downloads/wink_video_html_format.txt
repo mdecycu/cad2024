@@ -1,0 +1,3 @@
+<!-- data-varname="" should be different for multiple wink mp4 files on same page -->
+<div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="winkVideoData_gear_design" height="630" muted="true" width="1008">
+<source src="/downloads/nxopen_gear_design.mp4" type="video/mp4"/></video></div>
