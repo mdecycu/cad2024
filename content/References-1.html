@@ -2,7 +2,7 @@
         <head>
         <title>cad2024</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,7 +141,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Codespaces << <a href='Codespaces.html'>Previous</a> <a href='Topics.html'>Next</a> >> Topics<br /><h1>Project</h1>
+    <div id="tipue_search_content">Computer << <a href='Computer.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2<br /><h1>References-1</h1>
+<p><a href="./../downloads/peer_review_project.7z">peer_review_project.7z</a></p>
 <p>已知:</p>
 <ol>
 <li>修課學員經由 @nfu.edu.tw 網域, 可利用"學號@nfu.edu.tw"經由 <a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a> 登入 MS 365.</li>
@@ -302,16 +303,16 @@ if __name__ == "__main__":
 <hr/>
 <p>以下利用 ChatGPT 4omini 進行對話:</p>
 <p>問:</p>
-<p data-pm-slice="0 0 []">使用 python + flask 開發一個簡單的資料庫程式, 並使用 SQLite, 目前表單有使用者學號以及其 github 帳號, 還有一個備註欄位, 只需要 add, query, update 與 delete 功能, 該如何進行?</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">使用 python + flask 開發一個簡單的資料庫程式, 並使用 SQLite, 目前表單有使用者學號以及其 github 帳號, 還有一個備註欄位, 只需要 add, query, update 與 delete 功能, 該如何進行?</p>
 <p data-pm-slice="0 0 []">答:</p>
-<p data-pm-slice="0 0 []">1. 安裝 Flask 和 SQLite<br/><br/>首先，確保你已經安裝了 Flask 和 SQLite。如果你還沒有安裝，請使用以下命令：</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">1. 安裝 Flask 和 SQLite<br/><br/>首先，確保你已經安裝了 Flask 和 SQLite。如果你還沒有安裝，請使用以下命令：</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip install Flask
 </pre>
-<p data-pm-slice="0 0 []">SQLite 通常已經隨 Python 安裝，不需要額外安裝。如果你需要 SQLite 的 Python 模組，可以使用以下命令：</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">SQLite 通常已經隨 Python 安裝，不需要額外安裝。如果你需要 SQLite 的 Python 模組，可以使用以下命令：</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip install sqlite3
 </pre>
-<p data-pm-slice="0 0 []">2. 建立 Flask 應用程式</p>
-<p data-pm-slice="0 0 []">應用程式結構</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">2. 建立 Flask 應用程式</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">應用程式結構</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">flask_app/
 │
 ├── app.py
@@ -322,7 +323,7 @@ if __name__ == "__main__":
     ├── update.html
     └── query.html
 </pre>
-<p data-pm-slice="0 0 []">schema.sql — 定義 SQLite 資料表<br/><br/>在 schema.sql 文件中，定義 SQLite 資料表結構：</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">schema.sql — 定義 SQLite 資料表<br/><br/>在 schema.sql 文件中，定義 SQLite 資料表結構：</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_id TEXT NOT NULL UNIQUE,
@@ -330,7 +331,7 @@ if __name__ == "__main__":
     notes TEXT
 );
 </pre>
-<p data-pm-slice="0 0 []">app.py — Flask 應用程式<br/><br/>在 app.py 中，設置 Flask 應用程式並建立 CRUD 功能：</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">app.py — Flask 應用程式<br/><br/>在 app.py 中，設置 Flask 應用程式並建立 CRUD 功能：</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request, redirect, url_for, render_template
 import sqlite3
 
@@ -402,7 +403,7 @@ if __name__ == '__main__':
     init_db()
     app.run(debug=True)
 </pre>
-<p data-pm-slice="0 0 []">templates/index.html</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/index.html</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -415,7 +416,7 @@ if __name__ == '__main__':
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-<p data-pm-slice="0 0 []">templates/add.html</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/add.html</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -436,7 +437,7 @@ if __name__ == '__main__':
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-<p data-pm-slice="0 0 []">templates/update.html</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/update.html</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -457,7 +458,7 @@ if __name__ == '__main__':
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-<p data-pm-slice="0 0 []">templates/query.html</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/query.html</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -490,11 +491,21 @@ if __name__ == '__main__':
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-<p data-pm-slice="0 0 []">3. 啟動應用程式<br/><br/>確保你的 Flask 應用程式和模板文件已經正確配置，然後啟動應用程式：</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">3. 啟動應用程式<br/><br/>確保你的 Flask 應用程式和模板文件已經正確配置，然後啟動應用程式：</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">python app.py
 </pre>
-<p data-pm-slice="0 0 []">接下來, 可以在瀏覽器中訪問 <code>http://127.0.0.1:5000/</code> 來查看和管理你的資料。</p>
-<br />Codespaces << <a href='Codespaces.html'>Previous</a> <a href='Topics.html'>Next</a> >> Topics</div>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">接下來, 可以在瀏覽器中訪問 <code>http://127.0.0.1:5000/</code> 來查看和管理你的資料。</p>
+<hr/>
+<p data-pm-slice="0 0 []">Video:</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://vimeo.com/user24079973" rel="nofollow">https://vimeo.com/user24079973</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://www.youtube.com/@-kmolab9376" rel="nofollow">https://www.youtube.com/@-kmolab9376</a></p>
+<p dir="auto">References:</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://web.mae.ufl.edu/designlab/DFMA%20Tips/Fundamental_Design_Principles_KCraig.pdf">Fundamental_Design_Principles</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://myigetit.com/tech/interview-questions-for-design-engineers/">Q&amp;A</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://github.com/jax-ml/jax">https://github.com/jax-ml/jax</a> (<a href="https://ithelp.ithome.com.tw/articles/10290025?sc=rss.iron">About JAX</a>, <a href="https://vocus.cc/article/63f48a09fd89780001f5a728">AI 2.0</a>)</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://link.springer.com/content/pdf/10.1007/978-3-031-55015-7_19.pdf">RL-X: A Deep Reinforcement Learning Library (Not Only) for RoboCup</a> (<a href="https://github.com/nico-bohlinger/RL-X">RL-X</a>)</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://github.com/n2cholas/awesome-jax">https://github.com/n2cholas/awesome-jax</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://github.com/deepmodeling/jax-fem">https://github.com/deepmodeling/jax-fem</a></p><br />Computer << <a href='Computer.html'>Previous</a> <a href='Topic 2.html'>Next</a> >> Topic 2</div>
         
     <!-- footer -->
       <div class="container">
