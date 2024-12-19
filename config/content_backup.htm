@@ -1016,8 +1016,371 @@ python %Disk%:\tmp\nx_ex\new_part.py</pre>
 <h4>Ubuntu</h4>
 <p><a href="https://s104.cycu.org/~scrum1/ubuntu24041_vdi_mde.7z">ubuntu24041_vdi_mde.7z</a></p>
 <hr/>
-<h4>網路連線</h4>
-<p></p><h2>Topic 2</h2>
+<h3>Ref</h3>
+<p><a href="/downloads/peer_review_project.7z">peer_review_project.7z</a></p>
+<p>已知:</p>
+<ol>
+<li>修課學員經由 @nfu.edu.tw 網域, 可利用"學號@nfu.edu.tw"經由 <a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a> 登入 MS 365.</li>
+<li>登入後, 使用者可以利用"<a href="https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">應用程式註冊</a>"建立應用程式</li>
+<li>所註冊的延伸應用程式則可以利用 Microsoft Online 主機所提供的 OAuth2 API 程式庫, 取得登入者的 profile</li>
+<li>經由上列步驟取得登入者的 profile 後, 延伸應用程式可設法讀取課程學員的作業倉儲與網站連結</li>
+<li>當每一階段的學員作業網頁完成後, 若再經由亂數方法, 隨機分配給每一位學員 10 個除自己以外的學員作業網站進行評分, 即可根據既定的評分基準完成自評</li>
+<li>隨機分配的學員作業網址可利用 email 寄出, 而評分回報則可利用 MS 365 的 Forms 表單取回</li>
+</ol>
+<p>以下為上列流程的 step 1 測試程式 (<a href="/downloads/teams_oauth2_flask_py.txt">teams_oauth2_flask_py.txt</a>):</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, redirect, request, session, url_for
+import requests
+import json
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # 用於 Flask session 的秘密金鑰
+
+# 替換成你的 Azure AD 應用程式資訊
+'''
+CLIENT_ID 為"應用程式 (用戶端) 識別碼"
+CLIENT_SECRET 則為"憑證及秘密"中"用戶端密碼"的"值"
+'''
+CLIENT_ID = 'id'
+CLIENT_SECRET = 'secret'
+TENANT_ID = 'id'
+AUTHORITY = f'https://login.microsoftonline.com/{TENANT_ID}'
+REDIRECT_URI = 'http://localhost:8000/callback'
+SCOPE = 'User.Read'
+
+# 用於登錄和取得授權碼
+@app.route('/')
+def index():
+    auth_url = (f'{AUTHORITY}/oauth2/v2.0/authorize'
+                f'?client_id={CLIENT_ID}'
+                f'&amp;response_type=code'
+                f'&amp;redirect_uri={REDIRECT_URI}'
+                f'&amp;response_mode=query'
+                f'&amp;scope={SCOPE}')
+    return redirect(auth_url)
+
+# 處理回調和交換授權碼
+@app.route('/callback')
+def callback():
+    code = request.args.get('code')
+    token_url = f'{AUTHORITY}/oauth2/v2.0/token'
+    token_data = {
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': REDIRECT_URI,
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'scope': SCOPE
+    }
+    token_r = requests.post(token_url, data=token_data)
+    token_r.raise_for_status()
+    tokens = token_r.json()
+    session['access_token'] = tokens['access_token']
+    return redirect(url_for('profile'))
+
+# 使用訪問令牌呼叫 Microsoft Graph API 來獲取用戶資料
+@app.route('/profile')
+def profile():
+    access_token = session.get('access_token')
+    if not access_token:
+        return redirect(url_for('index'))
+
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    graph_url = 'https://graph.microsoft.com/v1.0/me'
+    graph_r = requests.get(graph_url, headers=headers)
+    graph_r.raise_for_status()
+    user_info = graph_r.json()
+    user_email = str(user_info["mail"])
+    user_id = user_email.split("@")[0]
+    session["user_id"] = user_id
+    # 登出 MS Online 並重定向回首頁
+    # 返回 HTML 及 JavaScript 以進行自動登出
+    return (f'Hello, {user_id} &lt;br&gt;'
+            f'&lt;script type="text/javascript"&gt;'
+            f'  window.location = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";'
+            f'&lt;/script&gt;')
+
+@app.route('/userid')
+def userid():
+    return session["user_id"]
+    
+
+# 登出功能
+@app.route('/logout')
+def logout():
+    # 清除 session 中的訪問令牌
+    session.pop('access_token', None)
+    # 重定向到 MS Online 登出 URL
+    return redirect('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
+
+if __name__ == '__main__':
+    app.run(debug=True, port=8000)
+</pre>
+<p>以下則為寄信範例:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import requests
+import json
+
+# 替換為你的應用程式資訊
+CLIENT_ID = 'your_client_id'
+CLIENT_SECRET = 'your_client_secret'
+TENANT_ID = 'your_tenant_id'
+AUTHORITY = f'https://login.microsoftonline.com/{TENANT_ID}'
+TOKEN_URL = f'{AUTHORITY}/oauth2/v2.0/token'
+SCOPE = 'https://graph.microsoft.com/.default'
+
+# 獲取 OAuth2 訪問令牌
+def get_access_token():
+    token_data = {
+        'grant_type': 'client_credentials',
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'scope': SCOPE
+    }
+    token_r = requests.post(TOKEN_URL, data=token_data)
+    token_r.raise_for_status()
+    tokens = token_r.json()
+    return tokens['access_token']
+
+# 發送電子郵件
+def send_email(access_token, to_address, subject, body):
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    email_data = {
+        "message": {
+            "subject": subject,
+            "body": {
+                "contentType": "Text",
+                "content": body
+            },
+            "toRecipients": [
+                {
+                    "emailAddress": {
+                        "address": to_address
+                    }
+                }
+            ]
+        },
+        "saveToSentItems": "true"
+    }
+    email_url = 'https://graph.microsoft.com/v1.0/me/sendMail'
+    response = requests.post(email_url, headers=headers, json=email_data)
+    response.raise_for_status()
+    print("Email sent successfully!")
+
+if __name__ == "__main__":
+    token = get_access_token()
+    send_email(token, 'recipient@example.com', 'Test Subject', 'This is the email body.')
+</pre>
+<hr/>
+<p>以下利用 ChatGPT 4omini 進行對話:</p>
+<p>問:</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">使用 python + flask 開發一個簡單的資料庫程式, 並使用 SQLite, 目前表單有使用者學號以及其 github 帳號, 還有一個備註欄位, 只需要 add, query, update 與 delete 功能, 該如何進行?</p>
+<p data-pm-slice="0 0 []">答:</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">1. 安裝 Flask 和 SQLite<br/><br/>首先，確保你已經安裝了 Flask 和 SQLite。如果你還沒有安裝，請使用以下命令：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip install Flask
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">SQLite 通常已經隨 Python 安裝，不需要額外安裝。如果你需要 SQLite 的 Python 模組，可以使用以下命令：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pip install sqlite3
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">2. 建立 Flask 應用程式</p>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">應用程式結構</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">flask_app/
+│
+├── app.py
+├── schema.sql
+└── templates/
+    ├── index.html
+    ├── add.html
+    ├── update.html
+    └── query.html
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">schema.sql — 定義 SQLite 資料表<br/><br/>在 schema.sql 文件中，定義 SQLite 資料表結構：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_id TEXT NOT NULL UNIQUE,
+    github_account TEXT NOT NULL,
+    notes TEXT
+);
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">app.py — Flask 應用程式<br/><br/>在 app.py 中，設置 Flask 應用程式並建立 CRUD 功能：</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from flask import Flask, request, redirect, url_for, render_template
+import sqlite3
+
+app = Flask(__name__)
+
+DATABASE = 'database.db'
+
+def get_db():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def init_db():
+    with app.app_context():
+        db = get_db()
+        with open('schema.sql', 'r') as f:
+            db.executescript(f.read())
+        db.commit()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_user():
+    if request.method == 'POST':
+        student_id = request.form['student_id']
+        github_account = request.form['github_account']
+        notes = request.form.get('notes', '')
+
+        db = get_db()
+        db.execute('INSERT INTO users (student_id, github_account, notes) VALUES (?, ?, ?)',
+                   (student_id, github_account, notes))
+        db.commit()
+        return redirect(url_for('index'))
+
+    return render_template('add.html')
+
+@app.route('/update/&lt;int:user_id&gt;', methods=['GET', 'POST'])
+def update_user(user_id):
+    db = get_db()
+    if request.method == 'POST':
+        student_id = request.form['student_id']
+        github_account = request.form['github_account']
+        notes = request.form.get('notes', '')
+
+        db.execute('UPDATE users SET student_id = ?, github_account = ?, notes = ? WHERE id = ?',
+                   (student_id, github_account, notes, user_id))
+        db.commit()
+        return redirect(url_for('index'))
+
+    user = db.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+    return render_template('update.html', user=user)
+
+@app.route('/delete/&lt;int:user_id&gt;')
+def delete_user(user_id):
+    db = get_db()
+    db.execute('DELETE FROM users WHERE id = ?', (user_id,))
+    db.commit()
+    return redirect(url_for('index'))
+
+@app.route('/query')
+def query_users():
+    db = get_db()
+    users = db.execute('SELECT * FROM users').fetchall()
+    return render_template('query.html', users=users)
+
+if __name__ == '__main__':
+    init_db()
+    app.run(debug=True)
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/index.html</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to User Management&lt;/h1&gt;
+    &lt;a href="{{ url_for('add_user') }}"&gt;Add User&lt;/a&gt; |
+    &lt;a href="{{ url_for('query_users') }}"&gt;Query Users&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/add.html</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Add User&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Add User&lt;/h1&gt;
+    &lt;form action="{{ url_for('add_user') }}" method="post"&gt;
+        &lt;label for="student_id"&gt;Student ID:&lt;/label&gt;
+        &lt;input type="text" id="student_id" name="student_id" required&gt;&lt;br&gt;
+        &lt;label for="github_account"&gt;GitHub Account:&lt;/label&gt;
+        &lt;input type="text" id="github_account" name="github_account" required&gt;&lt;br&gt;
+        &lt;label for="notes"&gt;Notes:&lt;/label&gt;
+        &lt;textarea id="notes" name="notes"&gt;&lt;/textarea&gt;&lt;br&gt;
+        &lt;input type="submit" value="Add"&gt;
+    &lt;/form&gt;
+    &lt;a href="{{ url_for('index') }}"&gt;Back&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/update.html</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Update User&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Update User&lt;/h1&gt;
+    &lt;form action="{{ url_for('update_user', user_id=user['id']) }}" method="post"&gt;
+        &lt;label for="student_id"&gt;Student ID:&lt;/label&gt;
+        &lt;input type="text" id="student_id" name="student_id" value="{{ user['student_id'] }}" required&gt;&lt;br&gt;
+        &lt;label for="github_account"&gt;GitHub Account:&lt;/label&gt;
+        &lt;input type="text" id="github_account" name="github_account" value="{{ user['github_account'] }}" required&gt;&lt;br&gt;
+        &lt;label for="notes"&gt;Notes:&lt;/label&gt;
+        &lt;textarea id="notes" name="notes"&gt;{{ user['notes'] }}&lt;/textarea&gt;&lt;br&gt;
+        &lt;input type="submit" value="Update"&gt;
+    &lt;/form&gt;
+    &lt;a href="{{ url_for('index') }}"&gt;Back&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">templates/query.html</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Query Users&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Users&lt;/h1&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;Student ID&lt;/th&gt;
+            &lt;th&gt;GitHub Account&lt;/th&gt;
+            &lt;th&gt;Notes&lt;/th&gt;
+            &lt;th&gt;Actions&lt;/th&gt;
+        &lt;/tr&gt;
+        {% for user in users %}
+        &lt;tr&gt;
+            &lt;td&gt;{{ user['id'] }}&lt;/td&gt;
+            &lt;td&gt;{{ user['student_id'] }}&lt;/td&gt;
+            &lt;td&gt;{{ user['github_account'] }}&lt;/td&gt;
+            &lt;td&gt;{{ user['notes'] }}&lt;/td&gt;
+            &lt;td&gt;
+                &lt;a href="{{ url_for('update_user', user_id=user['id']) }}"&gt;Update&lt;/a&gt; |
+                &lt;a href="{{ url_for('delete_user', user_id=user['id']) }}"&gt;Delete&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        {% endfor %}
+    &lt;/table&gt;
+    &lt;a href="{{ url_for('index') }}"&gt;Back&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">3. 啟動應用程式<br/><br/>確保你的 Flask 應用程式和模板文件已經正確配置，然後啟動應用程式：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">python app.py
+</pre>
+<p data-pm-slice="0 0 []" style="padding-left: 30px;">接下來, 可以在瀏覽器中訪問 <code>http://127.0.0.1:5000/</code> 來查看和管理你的資料。</p>
+<hr/>
+<p data-pm-slice="0 0 []">Video:</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://vimeo.com/user24079973" rel="nofollow">https://vimeo.com/user24079973</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://www.youtube.com/@-kmolab9376" rel="nofollow">https://www.youtube.com/@-kmolab9376</a></p>
+<p dir="auto">References:</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://web.mae.ufl.edu/designlab/DFMA%20Tips/Fundamental_Design_Principles_KCraig.pdf">Fundamental_Design_Principles</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://myigetit.com/tech/interview-questions-for-design-engineers/">Q&amp;A</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://github.com/jax-ml/jax">https://github.com/jax-ml/jax</a> (<a href="https://ithelp.ithome.com.tw/articles/10290025?sc=rss.iron">About JAX</a>, <a href="https://vocus.cc/article/63f48a09fd89780001f5a728">AI 2.0</a>)</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://link.springer.com/content/pdf/10.1007/978-3-031-55015-7_19.pdf">RL-X: A Deep Reinforcement Learning Library (Not Only) for RoboCup</a> (<a href="https://github.com/nico-bohlinger/RL-X">RL-X</a>)</p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://github.com/n2cholas/awesome-jax">https://github.com/n2cholas/awesome-jax</a></p>
+<p dir="auto" style="padding-left: 30px;"><a href="https://github.com/deepmodeling/jax-fem">https://github.com/deepmodeling/jax-fem</a></p><h2>Topic 2</h2>
 <p>主題:<span> </span><span>計算機程式課程作業與學員網頁 (複習)</span></p>
 <p style="padding-left: 30px;">What is Github Classroom?</p>
 <p style="padding-left: 30px;"><a href="https://classroom.github.com/">GitHub Classroom</a></p>
@@ -1671,7 +2034,13 @@ def main():
 # Start the main control loop
 main()
 </pre>
-<p></p><h1>References</h1>
+<p></p><h2>w15</h2>
+<p>請各學員連結到 <a aria-label="連結 https://mde.tw/cad2024/content/w14.html" class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://mde.tw/cad2024/content/w14.html" id="menurar" rel="noreferrer noopener" target="_blank" title="https://mde.tw/cad2024/content/w14.html">https://mde.tw/cad2024/content/w14.html</a>, 透過教學影片了解如何將 Solvespace 或 NX2312 所建立的 Flipper 機構零組件轉入 CoppeliaSim 建立機電模擬系統.</p>
+<p>各組完成 Flipper 系統模擬之後, 著手將 <a aria-label="連結 http://229.cycu.org/cd2023_pj3ag4_zmq_football_4.7.7z" class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="http://229.cycu.org/cd2023_pj3ag4_zmq_football_4.7.7z" id="menurat" rel="noreferrer noopener" target="_blank" title="http://229.cycu.org/cd2023_pj3ag4_zmq_football_4.7.7z">http://229.cycu.org/cd2023_pj3ag4_zmq_football_4.7.7z</a> 中的記分板 (先嘗試導入數位版, 之後再設法導入類比版), 開始建立各組的 CoppeliaSim 模擬彈珠檯.</p>
+<p>W16 開始各組員準備就 CoppeliaSim 模擬彈珠檯專案進行報告.</p>
+<hr/>
+<p><a href="https://mde.tw/cad2024/downloads/flipper_in_solvespace_cw_and_ccw_w14.7z">flipper_in_solvespace_cw_and_ccw_w14.7z</a> 中的 flipper 零件從 62mm 轉入 CoppeliaSim 場景後成為 62cm, 尺寸計放大 10 倍, 因此整體彈珠台也將從 56cm x 130cm 放大到 560cm x 130cm, 也就是 CoppeliaSim 中檯體面板的尺寸設為 5.6m x 13m, 使得原先的地板 5m x 5m 過小, 因此選擇刪除原先的內建 Floor, 改用 infrastructure - floor 中的 infiniteFloor 模型.</p>
+<p>彈珠檯面板 - 560cm x 130cm 厚度 15cm, 在 Solvespace 中以 560mm x 130mm x 15mm 繪圖, 轉入模擬場景時採 z 軸向上, Scaling 為 0.01, 表示尺寸放大 10 倍.</p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
@@ -2365,7 +2734,7 @@ show([read_mesh])</pre>
 <p class="whitespace-pre-wrap break-words">2007年之後的版本請參考: <a href="https://en.wikipedia.org/wiki/Siemens_NX">https://en.wikipedia.org/wiki/Siemens_NX</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/mdecycu/nxlab">https://github.com/mdecycu/nxlab</a> </p>
 <p class="whitespace-pre-wrap break-words"><a href="https://github.com/me5763">https://github.com/me5763</a> </p>
-<hr/>
+<hr>
 <p>NX2312 需要 Windows 操作系統帶有 Windows Desktop Runtime 6.0.16.</p>
 <p>NX2312 client 連線到認證主機設定採 29000 時, client 端需要讓防火牆可以對 29000 與 29001 port 連外, 至於 server 端則需要讓防火牆可以對 29000 與 29001 port 連入.</p>
 <p>NX2312 與 NX2406 已經不再使用 VENDOR ugslmg 執行認證, 也就是不再需要 ugslmg.exe, 而是採用 Siemens Advanced Licensing Technology Daemon (<a href="https://support.sw.siemens.com/en-US/okba/PL8777155/About-Siemens-Advanced-Licensing-Technology-SALT-and-Siemens-License-Server-SLS/index.html">SALTD</a>), 並且透過 Mentor Standard Licensing (MSL) - (mgcld) utility 進行使用授權認證, license file 設定更動如下:</p>
@@ -2473,7 +2842,7 @@ VENDOR saltd saltd PORT=29001</pre>
 "LANGUAGE"="english"
 "LICENSESERVER"="29000@your_license_server"
 "UGII_BASE_DIR"="D:\\NX2312"</pre>
-<hr>
+<hr/>
 <p>透過 <a href="/downloads/get_file_size_python.txt">get_dir_size.py</a> 可以取得 Siemens NX 各子目錄與總容量.</p>
 <p class="whitespace-pre-wrap break-words">各目錄的功能:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">AUTOMATION_DESIGNER: 自動化設計工具, 用於創建和管理自動化系統。
@@ -2653,7 +3022,7 @@ Tooling Design &amp; NX Joint - DESIGN_TOOLS MOLDWIZARD NXAECDESIGN NXCOATINGS N
 Translators - CATIAV5 DXFDWG IGES NXCREO STEP203UG STEP214UG UGCATIA UGMW UGTO2D TRANSLATORS
 Validation - DESIGN_TOOLS NXREPORTS MPA
 NX VR - NXVR</pre>
-<hr>
+<hr/>
 <h3>NX2406</h3>
 <p><span>NX2406 NXOpen Python 動態連結程式庫採用 Python</span><span> 3.10.12 版本編譯</span><span>.</span></p>
 <p><span><a href="http://229.cycu.org/NX2406_CAD.7z">下載</a> NX2406 可攜 CAD 壓縮檔案 (1.76 GB, 解開後約 9 GB)</span></p>
@@ -2691,7 +3060,7 @@ NX VR - NXVR</pre>
 <li>Translators: 目錄名稱 CATIAV5, DXFDWG, IGES, NXCREO, STEP203UG STEP214UG, UGCATIA, UGIMW, UGTO2D, TRANSLATORS, 增加 815 MB.</li>
 <li>Validation: 目錄名稱 DESIGN_TOOLS, TOOLS_NXREPORTS, MPA, 增加 182 MB.</li>
 </ol>
-<hr>
+<hr/>
 <p><a href="https://plm.sw.siemens.com/en-US/nx/best-cad-cam-software-industry-awards/">https://plm.sw.siemens.com/en-US/nx/best-cad-cam-software-industry-awards/</a> </p>
 <p>NX X:</p>
 <p>2024 <a href="https://www.engineering.com/siemens-announces-nx-x/">Siemens 推出 NX X</a>.</p>
@@ -2707,7 +3076,7 @@ NX VR - NXVR</pre>
 <h3>NXOpen</h3>
 <p>cad2024 最新整理的 <a href="/downloads/gear_c_NX2312.txt">gear_c_NX2312.txt</a></p>
 <p><a href="/downloads/1_block_only_short_py.txt">1_block_only_short_py.txt</a></p>
-<hr/>
+<hr>
 <p><a href="https://github.com/mdecycu/nxopen">https://github.com/mdecycu/nxopen</a></p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.xid1968491/xid2091711">Browse Programming Tools Help</a></p>
 <p><a href="https://docs.sw.siemens.com/en-US/doc/209349590/PL20230425446868577.nxopen_prog_guide/purpose">Overview of Programmer's Guide</a></p>
@@ -4104,4 +4473,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p></hr></hr></hr></hr>
+</p></hr></hr></hr>
