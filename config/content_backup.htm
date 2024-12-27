@@ -1969,7 +1969,11 @@ openByGet();
 </script><h3>Problem_set</h3>
 <p><img alt="" height="290" src="/images/cad2024_ex1.png" width="400"/></p>
 <p><img alt="" height="287" src="/images/cad2024_ex4.png" width="400"/></p>
-<p><img caption="false" height="300" src="/images/cad2024_six_part_4-a.jpg" width="400"/></p><h2>w11_hw</h2>
+<p><img caption="false" height="300" src="/images/cad2024_six_part_4-a.jpg" width="400"/></p><h2>Exam234</h2>
+<p><a href="https://mde.tw/cad2024_hw/content/HW2_Exam.html">w16_exam1</a></p>
+<p><a href="https://mde.tw/cad2024_hw/content/HW3_Exam.html">w16_exam2</a></p>
+<p><a href="https://mde.tw/cad2024_hw/content/HW4_Exam.html">w16_exam3</a></p>
+<h2>w11_hw</h2>
 <p>1. 請各分組根據 <a href="https://mde.tw/cad2024/downloads/flipper_nx2312.7z">flipper_nx2312.7z</a><span> 中的零件尺寸, 分別採 Solvespace 與 NX2312 繪製以下零件:</span></p>
 <p style="padding-left: 30px;">Plongeur Batteur_sldprt.prt</p>
 <p style="padding-left: 30px;">Piece composite_sldprt.prt</p>
@@ -1986,8 +1990,7 @@ openByGet();
 <p style="padding-left: 30px;"><a href="https://mde.tw/cad2024/downloads/copsim_graph_vel_acc_python.txt">copsim_graph_vel_acc_python.txt</a></p>
 <p style="padding-left: 30px;"><a href="https://mde.tw/cad2024/downloads/double_crank_slider.ttt">double_crank_slider.ttt</a></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/EpOcDJPGwgk?si=v4pgr07KMLO88b1C" title="YouTube video player" width="560"></iframe></p>
-<p><a href="/downloads/flipper_in_solvespace.7z">flipper_in_solvespace.7z</a></p>
-<h2>w14</h2>
+<p><a href="/downloads/flipper_in_solvespace.7z">flipper_in_solvespace.7z</a></p><h2>w14</h2>
 <p>下載 <a href="https://mde.tw/cad2024/downloads/pinball_cad2024.7z">pinball_cad2024.7z</a> 後, 在可攜系統 (<a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a>) 安裝 pyzmq、cbor 與 keyboard 模組後, 可以利用 Python 程式控制 Flipper 的旋轉角度. 操作過程如下:</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/QdM7q87yoww?si=Nn0n-ZRKGRVv7hML" title="YouTube video player" width="560"></iframe></p>
 <p>利用 Solvespace 所繪製的 Flipper 進行組立的過程:</p>
@@ -2043,7 +2046,11 @@ main()
 <p><a href="https://mde.tw/cad2024/downloads/flipper_in_solvespace_cw_and_ccw_w14.7z">flipper_in_solvespace_cw_and_ccw_w14.7z</a> 中的 flipper 零件從 62mm 轉入 CoppeliaSim 場景後成為 62cm, 尺寸計放大 10 倍, 因此整體彈珠台也將從 56cm x 130cm 放大到 560cm x 130cm, 也就是 CoppeliaSim 中檯體面板的尺寸設為 5.6m x 13m, 使得原先的地板 5m x 5m 過小, 因此選擇刪除原先的內建 Floor, 改用 infrastructure - floor 中的 infiniteFloor 模型.</p>
 <p>彈珠檯面板 - 560cm x 130cm 厚度 15cm, 在 Solvespace 中以 560mm x 130mm x 15mm 繪圖, 轉入模擬場景時採 z 軸向上, Scaling 為 0.01, 表示尺寸放大 10 倍.</p>
 <p>請各組接續 <a href="/downloads/w15.7z">w15.7z</a> 中的相關檔案完成期末彈珠台系統模擬.</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/qAQFDTscC4g?si=-TZm32Zwjd8ujHY6" title="YouTube video player" width="560"></iframe></p><h1>References</h1>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/qAQFDTscC4g?si=-TZm32Zwjd8ujHY6" title="YouTube video player" width="560"></iframe></p><h2>w16</h2>
+<p>從以下的組立圖來看 (<a href="https://mde.tw/cad2024/downloads/flipper_in_solvespace_cw_and_ccw_w14.7z">flipper_in_solvespace_cw_and_ccw_w14.7z</a>), 電磁鐵的滑動軸 (slider) 與連結片 (piece-composite) 應該要位於 left-metal-piece 零件的下方. 如此電磁鐵才不會與上方的固定板產生干涉, 且連結片轉動時才不會與 left-metal-piece 旋轉後用來斷電的觸動片產生干涉.</p>
+<p>另外, 由於下方的零組件與固定板必須與上方的彈珠台面板連接, 因此兩側電磁鐵較好的配置應該與左右兩方的電源線對應 (採最短距離配置), 且機構的組立位置可選擇觸發前的設定位置 (場景中 slider initial position), 最後再讓 flipper 以兩側下垂的位置進行組立.</p>
+<p><img alt="" height="233" src="/images/w16_1.png" width="400"/></p>
+<p></p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
