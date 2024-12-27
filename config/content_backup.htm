@@ -2047,10 +2047,31 @@ main()
 <p>彈珠檯面板 - 560cm x 130cm 厚度 15cm, 在 Solvespace 中以 560mm x 130mm x 15mm 繪圖, 轉入模擬場景時採 z 軸向上, Scaling 為 0.01, 表示尺寸放大 10 倍.</p>
 <p>請各組接續 <a href="/downloads/w15.7z">w15.7z</a> 中的相關檔案完成期末彈珠台系統模擬.</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/qAQFDTscC4g?si=-TZm32Zwjd8ujHY6" title="YouTube video player" width="560"></iframe></p><h2>w16</h2>
-<p>從以下的組立圖來看 (<a href="https://mde.tw/cad2024/downloads/flipper_in_solvespace_cw_and_ccw_w14.7z">flipper_in_solvespace_cw_and_ccw_w14.7z</a>), 電磁鐵的滑動軸 (slider) 與連結片 (piece-composite) 應該要位於 left-metal-piece 零件的下方. 如此電磁鐵才不會與上方的固定板產生干涉, 且連結片轉動時才不會與 left-metal-piece 旋轉後用來斷電的觸動片產生干涉.</p>
-<p>另外, 由於下方的零組件與固定板必須與上方的彈珠台面板連接, 因此兩側電磁鐵較好的配置應該與左右兩方的電源線對應 (採最短距離配置), 且機構的組立位置可選擇觸發前的設定位置 (場景中 slider initial position), 最後再讓 flipper 以兩側下垂的位置進行組立.</p>
-<p><img alt="" height="233" src="/images/w16_1.png" width="400"/></p>
-<p></p><h1>References</h1>
+<p>接續 <a href="https://mde.tw/cad2024/downloads/flipper_in_solvespace_cw_and_ccw_w14.7z">flipper_in_solvespace_cw_and_ccw_w14.7z</a> 中的 Solvespace 零組件繪圖, 配置與彈珠台面板連接的固定板後的組立, 如下圖:</p>
+<p><img alt="" height="209" src="/images/w16_solvespace_assembly.png" width="400"/></p>
+<p><a href="/downloads/flipper_in_solvespace_cw_and_ccw_w16.7z">flipper_in_solvespace_cw_and_ccw_w16.7z</a></p>
+<p>隨著場景中的零件越來越多之後, 彈珠台在場景中的組立架構, 可以透過 XML 場景格式進行處理.</p>
+<p>首先利用下列 Python 程式取出 XML 場景檔案中的標註 (w16 場景中帶有 376 個不同的標註)</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># from https://stackoverflow.com/questions/29596584/getting-a-list-of-xml-tags-in-file-using-xml-etree-elementtree
+import xml.etree.ElementTree as ET
+# load and parse the file
+xmlTree = ET.parse('w16.simscene.xml')
+ 
+elemList = []
+ 
+for elem in xmlTree.iter():
+    elemList.append(elem.tag)
+ 
+# now I remove duplicities - by convertion to set and back to list
+elemList = list(set(elemList))
+ 
+# Just printing out the result
+print(elemList)
+ 
+for i in elemList:
+    print(i)</pre>
+<p><a href="http://wcm.cycu.org:88/github/cd2022_guide/content/w11%20%E4%BB%BB%E5%8B%99.html">參考資料</a> (只能從系上 IPv6 網段擷取)</p>
+<p><br/><br/></p><h1>References</h1>
 <p><a href="https://youtu.be/pX03H1oeyN0?feature=shared">What do I do as a mechanical design engineer?</a></p>
 <p><a href="https://youtu.be/u8THwmaU35U?feature=shared">Overview of mechanical design engineering</a></p>
 <p><a href="https://youtu.be/yLMdxdV1bfU?feature=shared">What does a mechanical design engineer do?</a></p>
